@@ -6,15 +6,15 @@
     <title>F.GAME CHAMPIONSHIP 2026 | チケット購入</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #FF6B00;
             --primary-dark: #E55A00;
             --secondary: #00D4FF;
             --accent: #FFD700;
-            --dark: #0A0A0A;
-            --dark-surface: #141414;
+            --dark: #000000;
+            --dark-surface: #000000;
             --dark-card: #1E1E1E;
             --text: #FFFFFF;
             --text-muted: #A0A0A0;
@@ -37,10 +37,6 @@
             overflow-x: hidden;
         }
 
-        .oswald {
-            font-family: 'Oswald', sans-serif;
-        }
-
         /* Hero Section */
         .hero {
             position: relative;
@@ -49,18 +45,20 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: var(--dark);
+            background: url('bg-info.png') center bottom no-repeat;
+            background-size: 100% auto;
+            background-color: var(--dark);
             overflow: hidden;
         }
 
         .hero.hero-image {
             min-height: auto;
-            padding: 2rem;
+            padding: 1rem;
         }
 
         .hero-main-image {
             width: 100%;
-            max-width: 1200px;
+            max-width: calc(100% - 1rem);
             height: auto;
             display: block;
             border-radius: 12px;
@@ -96,28 +94,31 @@
         /* Information Section */
         .info-section {
             padding: 0 0 3rem 0;
-            background: var(--dark);
+            background: url('bg-hero.png') center top no-repeat;
+            background-size: 100% auto;
+            background-color: var(--dark);
         }
 
         .info-header {
             text-align: center;
-            padding: 3rem 2rem 2rem;
-            background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+            padding: 3rem 2rem 10rem;
         }
 
         .info-title {
-            font-family: 'Oswald', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: clamp(1.8rem, 5vw, 2.5rem);
             font-weight: 700;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.1em;
             color: #FFFFFF;
+            white-space: nowrap;
         }
 
         .info-card {
             position: relative;
-            margin: 0 auto;
+            margin: -6rem auto 0;
             max-width: 1200px;
             padding: 0 2rem;
+            z-index: 10;
         }
 
         .info-slider {
@@ -208,32 +209,25 @@
         }
 
         .section-title {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: clamp(1.5rem, 5vw, 2rem);
             font-weight: 700;
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-fire);
-            margin: 1rem auto 0;
-            border-radius: 2px;
+            white-space: nowrap;
         }
 
         /* Seating Chart */
         .seating-section {
             padding: 5rem 2rem;
-            background: var(--dark);
+            background: url('bg-seating.png') center top no-repeat;
+            background-size: 100% auto;
+            background-color: var(--dark);
         }
 
         .seating-image-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
@@ -246,7 +240,9 @@
         /* Ticket Pricing */
         .pricing-section {
             padding: 5rem 2rem;
-            background: var(--dark-surface);
+            background: url('bg-pricing.png') center top no-repeat;
+            background-size: 100% auto;
+            background-color: var(--dark-surface);
         }
 
         .pricing-images {
@@ -266,7 +262,9 @@
         /* Benefits Section */
         .benefits-section {
             padding: 5rem 2rem;
-            background: var(--dark);
+            background: url('bg-benefits.png') center bottom no-repeat;
+            background-size: 100% auto;
+            background-color: var(--dark);
         }
 
         .benefits-images {
@@ -396,7 +394,7 @@
         }
 
         .date-value {
-            font-family: 'Oswald', sans-serif;
+            font-family: 'Noto Sans JP', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
@@ -427,7 +425,9 @@
         /* Footer */
         .footer {
             padding: 4rem 2rem;
-            background: var(--dark-surface);
+            background: url('bg-footer.png') center top no-repeat;
+            background-size: 100% auto;
+            background-color: var(--dark-surface);
             text-align: center;
         }
 
@@ -706,7 +706,7 @@
                 </div>
                 <img src="ashimon-gentei.svg" alt="あしもん限定" class="fanclub-image">
                 <img src="escort-kids.png" alt="エスコートキッズ募集" class="fanclub-image">
-                <a href="#" class="escort-apply-btn">エスコートキッズに応募する <span class="arrow">›</span></a>
+                <a href="https://fanclub.ashisalfc.jp/" class="escort-apply-btn">エスコートキッズに応募する <span class="arrow">›</span></a>
             </div>
         </div>
     </section>
@@ -718,8 +718,8 @@
             
             <div class="footer-buttons">
                 <a href="#" class="footer-btn footer-btn-outline">運営ボランティアスタッフ募集 <span class="arrow">›</span></a>
-                <a href="#" class="footer-btn footer-btn-outline">スポンサー・パートナー募集 <span class="arrow">›</span></a>
-                <a href="#" class="footer-btn footer-btn-white">大会に関するお問い合わせ <span class="arrow">›</span></a>
+                <a href="https://hp.ashisalfc.jp/sponsor-inquiry" class="footer-btn footer-btn-outline">スポンサー・パートナー募集 <span class="arrow">›</span></a>
+                <a href="https://hp.ashisalfc.jp/event-inquiry" class="footer-btn footer-btn-white">大会に関するお問い合わせ <span class="arrow">›</span></a>
             </div>
         </div>
     </footer>
@@ -727,7 +727,7 @@
     <!-- Fixed Navigation Bar -->
     <nav class="fixed-nav">
         <div class="fixed-nav-container">
-            <a href="#" class="nav-main-btn">
+            <a href="https://fanclub.ashisalfc.jp/priority-tickets" class="nav-main-btn">
                 <img src="btn-01.png" alt="チケット先行購入はこちら">
             </a>
             <div class="nav-sub-btns">
