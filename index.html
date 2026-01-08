@@ -29,12 +29,17 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background-color: var(--dark);
             color: var(--text);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
         /* Hero Section */
@@ -97,6 +102,7 @@
             background: url('bg-hero.png') center top no-repeat;
             background-size: 100% auto;
             background-color: var(--dark);
+            overflow: hidden;
         }
 
         .info-header {
@@ -111,6 +117,7 @@
             letter-spacing: 0.1em;
             color: #FFFFFF;
             white-space: nowrap;
+            overflow: hidden;
         }
 
         .info-card {
@@ -216,6 +223,7 @@
             margin-bottom: 3rem;
             position: relative;
             white-space: nowrap;
+            overflow: hidden;
         }
 
         /* Seating Chart */
@@ -224,6 +232,7 @@
             background: url('bg-seating.png') center top no-repeat;
             background-size: 100% auto;
             background-color: var(--dark);
+            overflow: hidden;
         }
 
         .seating-image-container {
@@ -243,6 +252,7 @@
             background: url('bg-pricing.png') center top no-repeat;
             background-size: 100% auto;
             background-color: var(--dark-surface);
+            overflow: hidden;
         }
 
         .pricing-images {
@@ -265,6 +275,7 @@
             background: url('bg-benefits.png') center bottom no-repeat;
             background-size: 100% auto;
             background-color: var(--dark);
+            overflow: hidden;
         }
 
         .benefits-images {
@@ -287,6 +298,7 @@
             padding: 2rem 2rem 5rem 2rem;
             background: url('bg-fanclub.png') center center;
             background-size: cover;
+            overflow: hidden;
         }
 
         .fanclub-images {
@@ -429,6 +441,7 @@
             background-size: 100% auto;
             background-color: var(--dark-surface);
             text-align: center;
+            overflow: hidden;
         }
 
         .footer-logo-img {
