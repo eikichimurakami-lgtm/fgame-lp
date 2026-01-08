@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F.GAME CHAMPIONSHIP 2026 | チケット購入</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B00;
+            --primary-dark: #E55A00;
+            --secondary: #00D4FF;
+            --accent: #FFD700;
+            --dark: #0A0A0A;
+            --dark-surface: #141414;
+            --dark-card: #1E1E1E;
+            --text: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --gradient-fire: linear-gradient(135deg, #FF6B00 0%, #FF2D00 100%);
+            --gradient-gold: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            --gradient-blue: linear-gradient(135deg, #00D4FF 0%, #0066FF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .oswald {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark);
+            overflow: hidden;
+        }
+
+        .hero.hero-image {
+            min-height: auto;
+            padding: 2rem;
+        }
+
+        .hero-main-image {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--text-muted);
+        }
+
+        /* Information Section */
+        .info-section {
+            padding: 0 0 3rem 0;
+            background: var(--dark);
+        }
+
+        .info-header {
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+        }
+
+        .info-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: #FFFFFF;
+        }
+
+        .info-card {
+            position: relative;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .info-slider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-slider-container {
+            position: relative;
+            overflow: hidden;
+            border: 30px solid #FFFFFF;
+            border-radius: 12px;
+        }
+
+        .info-slides {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+
+        .info-slide {
+            min-width: 100%;
+        }
+
+        .info-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #333;
+            transition: all 0.3s;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-btn:hover {
+            background: #FFFFFF;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-btn.prev {
+            left: -25px;
+        }
+
+        .slider-btn.next {
+            right: -25px;
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .slider-dot.active {
+            background: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-fire);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Seating Chart */
+        .seating-section {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .seating-image-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .seating-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Ticket Pricing */
+        .pricing-section {
+            padding: 5rem 2rem;
+            background: var(--dark-surface);
+        }
+
+        .pricing-images {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pricing-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .benefits-images {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .benefits-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        /* Fan Club Section */
+        .fanclub-section {
+            padding: 2rem 2rem 5rem 2rem;
+            background: url('bg-fanclub.png') center center;
+            background-size: cover;
+        }
+
+        .fanclub-images {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .fanclub-header {
+            text-align: center;
+            padding: 0.5rem 0 1rem 0;
+        }
+
+        .fanclub-label {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.7);
+            color: #FFFFFF;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .fanclub-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .fanclub-image + .fanclub-image {
+            margin-top: 1rem;
+        }
+
+        .escort-apply-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: #FFFFFF;
+            color: #E53935;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .escort-apply-btn:hover {
+            background: #F5F5F5;
+            transform: scale(1.02);
+        }
+
+        .escort-apply-btn .arrow {
+            font-size: 1.5rem;
+        }
+
+        /* Escort Kids Section */
+        .escort-section {
+            padding: 5rem 2rem;
+            background: var(--dark);
+        }
+
+        .escort-card {
+            background: var(--dark-card);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .escort-logo-img {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto 1.5rem;
+            display: block;
+        }
+
+        .escort-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .escort-dates {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .date-box {
+            background: var(--dark-surface);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--primary);
+        }
+
+        .date-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .date-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .date-day {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .escort-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 2px solid var(--primary);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .escort-btn:hover {
+            background: var(--primary);
+            color: var(--text);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem;
+            background: var(--dark-surface);
+            text-align: center;
+        }
+
+        .footer-logo-img {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto 2rem;
+            display: block;
+        }
+
+        .footer-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .footer-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-btn .arrow {
+            font-size: 1.3rem;
+        }
+
+        .footer-btn-outline {
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
+        }
+
+        .footer-btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-btn-white {
+            background: #FFFFFF;
+            color: #333333;
+            border: 2px solid #FFFFFF;
+        }
+
+        .footer-btn-white:hover {
+            background: #F5F5F5;
+        }
+
+        /* Fixed Navigation Bar */
+        .fixed-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.8rem 1rem;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .fixed-nav-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-main-btn {
+            display: block;
+        }
+
+        .nav-main-btn img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .nav-sub-btns {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+
+        .nav-sub-btn {
+            flex: 1;
+            display: block;
+        }
+
+        .nav-sub-btn img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Add padding to body for fixed nav */
+        body {
+            padding-bottom: 140px;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Button CTA */
+        .cta-section {
+            padding: 3rem 2rem;
+            background: linear-gradient(180deg, var(--dark) 0%, #1a0a00 100%);
+            text-align: center;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: var(--gradient-fire);
+            color: var(--text);
+            padding: 1.5rem 4rem;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.5);
+        }
+
+        .more-btn {
+            display: inline-block;
+            color: var(--text-muted);
+            padding: 0.8rem 2rem;
+            border: 1px solid var(--text-muted);
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+        }
+
+        .more-btn:hover {
+            color: var(--text);
+            border-color: var(--text);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero hero-image">
+        <img src="main-visual.png" alt="F.GAME CHAMPIONSHIP 2026 メインビジュアル" class="hero-main-image">
+    </section>
+
+    <!-- Information Section -->
+    <section class="info-section">
+        <div class="info-header">
+            <h2 class="info-title">INFORMATION</h2>
+        </div>
+        
+        <div class="info-card">
+            <div class="info-slider">
+                <button class="slider-btn prev" onclick="changeSlide(-1)">‹</button>
+                
+                <div class="info-slider-container">
+                    <div class="info-slides" id="infoSlides">
+                        <div class="info-slide">
+                            <img src="info-harisen.png" alt="来場者全員に応援ハリセンプレゼント" class="info-image">
+                        </div>
+                        <div class="info-slide">
+                            <img src="info-schedule.png" alt="チケット販売スケジュール" class="info-image">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="slider-btn next" onclick="changeSlide(1)">›</button>
+            </div>
+            
+            <div class="slider-dots">
+                <div class="slider-dot active" onclick="goToSlide(0)"></div>
+                <div class="slider-dot" onclick="goToSlide(1)"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 2;
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const slides = document.getElementById('infoSlides');
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            const dots = document.querySelectorAll('.slider-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+    </script>
+
+    <!-- Seating Chart Section -->
+    <section id="seating" class="seating-section">
+        <div class="container">
+            <h2 class="section-title">チケット座席表</h2>
+            
+            <div class="seating-image-container">
+                <img src="seating-chart.png" alt="チケット座席表" class="seating-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticket Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">チケット料金表</h2>
+            
+            <div class="pricing-images">
+                <img src="price-01.png" alt="チケット料金表（特典付きシート）" class="pricing-image">
+                <img src="price-02.png" alt="チケット料金表（一般シート）" class="pricing-image">
+            </div>
+
+            <p style="text-align: left; color: var(--text-muted); margin-top: 2rem; font-size: 0.9rem;">
+                ※幼児以下は膝上無料。座席を使用する場合は子ども料金適用となります。<br>
+                ※子ども料金で入場の方に学生証の提示を求めることがございますので予めご了承ください。
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">特典付きチケット内容</h2>
+            
+            <div class="benefits-images">
+                <img src="seat-01.png" alt="超ドリームシート特典" class="benefits-image">
+                <img src="seat-02.png" alt="ドリームシート特典" class="benefits-image">
+                <img src="seat-03.png" alt="プレミアムシート特典" class="benefits-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Fan Club Section -->
+    <section id="fanclub" class="fanclub-section">
+        <div class="container">
+            <div class="fanclub-images">
+                <div class="fanclub-header">
+                    <span class="fanclub-label">あしざるFC公式ファンクラブ</span>
+                </div>
+                <img src="ashimon-gentei.svg" alt="あしもん限定" class="fanclub-image">
+                <img src="escort-kids.png" alt="エスコートキッズ募集" class="fanclub-image">
+                <a href="#" class="escort-apply-btn">エスコートキッズに応募する <span class="arrow">›</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <img src="logo-fgame-championship.svg" alt="F.GAME CHAMPIONSHIP 2026" class="footer-logo-img">
+            
+            <div class="footer-buttons">
+                <a href="#" class="footer-btn footer-btn-outline">運営ボランティアスタッフ募集 <span class="arrow">›</span></a>
+                <a href="#" class="footer-btn footer-btn-outline">スポンサー・パートナー募集 <span class="arrow">›</span></a>
+                <a href="#" class="footer-btn footer-btn-white">大会に関するお問い合わせ <span class="arrow">›</span></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed Navigation Bar -->
+    <nav class="fixed-nav">
+        <div class="fixed-nav-container">
+            <a href="#" class="nav-main-btn">
+                <img src="btn-01.png" alt="チケット先行購入はこちら">
+            </a>
+            <div class="nav-sub-btns">
+                <a href="#seating" class="nav-sub-btn">
+                    <img src="btn-02.png" alt="チケット座席表">
+                </a>
+                <a href="#pricing" class="nav-sub-btn">
+                    <img src="btn-03.png" alt="チケット料金表">
+                </a>
+                <a href="#benefits" class="nav-sub-btn">
+                    <img src="btn-04.png" alt="特典付きチケット内容">
+                </a>
+                <a href="#fanclub" class="nav-sub-btn">
+                    <img src="btn-05.png" alt="エスコートキッズ募集">
+                </a>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
