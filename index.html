@@ -123,7 +123,7 @@
         .info-card {
             position: relative;
             margin: -6rem auto 0;
-            max-width: 1200px;
+            max-width: 650px;
             padding: 0 0.5rem;
             z-index: 10;
         }
@@ -309,6 +309,12 @@
             gap: 0;
         }
 
+        @media (min-width: 768px) {
+            .fanclub-images {
+                max-width: 1000px;
+            }
+        }
+
         .fanclub-header {
             text-align: center;
             padding: 0.5rem 0 1rem 0;
@@ -332,6 +338,18 @@
 
         .fanclub-image + .fanclub-image {
             margin-top: 1rem;
+        }
+
+        .escort-kids-picture {
+            display: block;
+            margin-top: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .ashimon-gentei-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
         }
 
         .escort-apply-btn {
@@ -610,7 +628,10 @@
 <body>
     <!-- Hero Section -->
     <section class="hero hero-image">
-        <img src="main-visual.png" alt="F.GAME CHAMPIONSHIP 2026 メインビジュアル" class="hero-main-image">
+        <picture>
+            <source media="(min-width: 768px)" srcset="main-visual-pc.jpg">
+            <img src="main-visual.png" alt="F.GAME CHAMPIONSHIP 2026 メインビジュアル" class="hero-main-image">
+        </picture>
     </section>
 
     <!-- Information Section -->
@@ -717,8 +738,11 @@
                 <div class="fanclub-header">
                     <span class="fanclub-label">あしざるFC公式ファンクラブ</span>
                 </div>
-                <img src="ashimon-gentei.svg" alt="あしもん限定" class="fanclub-image">
-                <img src="escort-kids.png" alt="エスコートキッズ募集" class="fanclub-image">
+                <img src="ashimon-gentei.svg" alt="あしもん限定" class="fanclub-image ashimon-gentei-image">
+                <picture class="escort-kids-picture">
+                    <source media="(min-width: 768px)" srcset="escort-kids-pc.png">
+                    <img src="escort-kids.png" alt="エスコートキッズ募集" class="fanclub-image">
+                </picture>
                 <a href="https://fanclub.ashisalfc.jp/" class="escort-apply-btn">エスコートキッズに応募する <span class="arrow">›</span></a>
             </div>
         </div>
@@ -730,7 +754,7 @@
             <img src="logo-fgame-championship.svg" alt="F.GAME CHAMPIONSHIP 2026" class="footer-logo-img">
             
             <div class="footer-buttons">
-                <a href="#" class="footer-btn footer-btn-outline">運営ボランティアスタッフ募集 <span class="arrow">›</span></a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeT8UVUcqB1UGLp9mk9CYTgv6eanqXAwzfziqPPIy0YByLS3A/viewform?usp=dialog" class="footer-btn footer-btn-outline">運営ボランティアスタッフ募集 <span class="arrow">›</span></a>
                 <a href="https://hp.ashisalfc.jp/sponsor-inquiry" class="footer-btn footer-btn-outline">スポンサー・パートナー募集 <span class="arrow">›</span></a>
                 <a href="https://hp.ashisalfc.jp/event-inquiry" class="footer-btn footer-btn-white">大会に関するお問い合わせ <span class="arrow">›</span></a>
             </div>
