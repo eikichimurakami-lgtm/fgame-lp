@@ -3,7 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F.GAME CHAMPIONSHIP 2026 | チケット購入</title>
+    <title>F.GAME CHAMPIONSHIP 2026 | あしざるFC エフゲーム チケット購入</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="あしざるFC主催のフットサルイベント「F.GAME CHAMPIONSHIP 2026（エフゲーム）」公式チケット販売ページ。FGAME.5は4/4名古屋金城ふ頭アリーナ、FGAME.6は7/25静岡香陵アリーナ、FGAME.7 Finalは11/1代々木第一体育館で開催。先行チケット・特典付きシートの購入はこちら。">
+    <meta name="keywords" content="あしざるFC,あしざるFC チケット,エフゲーム,FGAME,F.GAME,F.GAME CHAMPIONSHIP,フットサル,チケット,名古屋,静岡,代々木">
+    <meta name="author" content="あしざるFC">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fgame.jp/">
+    <meta property="og:title" content="F.GAME CHAMPIONSHIP 2026 | あしざるFC エフゲーム チケット購入">
+    <meta property="og:description" content="あしざるFC主催のフットサルイベント「F.GAME CHAMPIONSHIP 2026（エフゲーム）」公式チケット販売ページ。先行チケット・特典付きシートの購入はこちら。">
+    <meta property="og:image" content="https://fgame.jp/main-visual-pc.jpg">
+    <meta property="og:site_name" content="F.GAME CHAMPIONSHIP 2026">
+    <meta property="og:locale" content="ja_JP">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="F.GAME CHAMPIONSHIP 2026 | あしざるFC エフゲーム チケット購入">
+    <meta name="twitter:description" content="あしざるFC主催のフットサルイベント「F.GAME CHAMPIONSHIP 2026（エフゲーム）」公式チケット販売ページ。">
+    <meta name="twitter:image" content="https://fgame.jp/main-visual-pc.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://fgame.jp/">
+    
+    <!-- 構造化データ (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "F.GAME CHAMPIONSHIP 2026",
+        "description": "あしざるFC主催のフットサルイベント「F.GAME CHAMPIONSHIP 2026（エフゲーム）」。FGAME.5、FGAME.6、FGAME.7 Finalの3大会を開催。",
+        "image": "https://fgame.jp/main-visual-pc.jpg",
+        "organizer": {
+            "@type": "Organization",
+            "name": "あしざるFC",
+            "url": "https://hp.ashisalfc.jp/"
+        },
+        "subEvent": [
+            {
+                "@type": "Event",
+                "name": "F.GAME.5",
+                "startDate": "2026-04-04",
+                "location": {
+                    "@type": "Place",
+                    "name": "名古屋金城ふ頭アリーナ",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "名古屋市",
+                        "addressRegion": "愛知県",
+                        "addressCountry": "JP"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "name": "F.GAME.6",
+                "startDate": "2026-07-25",
+                "location": {
+                    "@type": "Place",
+                    "name": "静岡香陵アリーナ",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "静岡市",
+                        "addressRegion": "静岡県",
+                        "addressCountry": "JP"
+                    }
+                }
+            },
+            {
+                "@type": "Event",
+                "name": "F.GAME.7 Final",
+                "startDate": "2026-11-01",
+                "location": {
+                    "@type": "Place",
+                    "name": "代々木第一体育館",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "渋谷区",
+                        "addressRegion": "東京都",
+                        "addressCountry": "JP"
+                    }
+                }
+            }
+        ],
+        "offers": {
+            "@type": "Offer",
+            "url": "https://fanclub.ashisalfc.jp/priority-tickets",
+            "priceCurrency": "JPY",
+            "availability": "https://schema.org/InStock"
+        }
+    }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -291,6 +385,60 @@
             height: auto;
             display: block;
             border-radius: 12px;
+        }
+
+        /* Venue Info (in Footer) */
+        .venue-info-footer {
+            margin-top: 3rem;
+            padding-top: 3rem;
+        }
+
+        .venue-info-footer .section-title {
+            color: #FFFFFF;
+        }
+
+        .venue-image-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .venue-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .venue-buttons {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .venue-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid #FFFFFF;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .venue-btn:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        .venue-btn .arrow {
+            font-size: 1.2rem;
         }
 
         /* Fan Club Section */
@@ -650,6 +798,9 @@
                             <img src="info-schedule.png" alt="チケット販売スケジュール" class="info-image">
                         </div>
                         <div class="info-slide">
+                            <img src="info-ashimon-gold.png" alt="あしもんゴールド会員限定" class="info-image">
+                        </div>
+                        <div class="info-slide">
                             <img src="info-harisen.png" alt="来場者全員に応援ハリセンプレゼント" class="info-image">
                         </div>
                     </div>
@@ -661,13 +812,14 @@
             <div class="slider-dots">
                 <div class="slider-dot active" onclick="goToSlide(0)"></div>
                 <div class="slider-dot" onclick="goToSlide(1)"></div>
+                <div class="slider-dot" onclick="goToSlide(2)"></div>
             </div>
         </div>
     </section>
 
     <script>
         let currentSlide = 0;
-        const totalSlides = 2;
+        const totalSlides = 3;
 
         function changeSlide(direction) {
             currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
@@ -757,6 +909,23 @@
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSeT8UVUcqB1UGLp9mk9CYTgv6eanqXAwzfziqPPIy0YByLS3A/viewform?usp=dialog" class="footer-btn footer-btn-outline">運営ボランティアスタッフ募集 <span class="arrow">›</span></a>
                 <a href="https://hp.ashisalfc.jp/sponsor-inquiry" class="footer-btn footer-btn-outline">スポンサー・パートナー募集 <span class="arrow">›</span></a>
                 <a href="https://hp.ashisalfc.jp/event-inquiry" class="footer-btn footer-btn-white">大会に関するお問い合わせ <span class="arrow">›</span></a>
+            </div>
+            
+            <!-- Venue Info -->
+            <div class="venue-info-footer">
+                <h2 class="section-title">会場情報</h2>
+                
+                <div class="venue-image-container">
+                    <picture>
+                        <source media="(min-width: 768px)" srcset="venue-map-pc.png">
+                        <img src="venue-map.png" alt="会場マップ" class="venue-image">
+                    </picture>
+                </div>
+                
+                <div class="venue-buttons">
+                    <a href="https://kinjofuto-arena.com/" class="venue-btn">会場の詳細を見る <span class="arrow">›</span></a>
+                    <a href="https://kinjo-p.jp/" class="venue-btn">駐車場情報を確認する <span class="arrow">›</span></a>
+                </div>
             </div>
         </div>
     </footer>
