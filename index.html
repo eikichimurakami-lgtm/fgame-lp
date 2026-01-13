@@ -402,6 +402,12 @@
             margin: 0 auto;
         }
 
+        @media (min-width: 768px) {
+            .venue-image-container {
+                max-width: 500px;
+            }
+        }
+
         .venue-image {
             width: 100%;
             height: auto;
@@ -916,10 +922,7 @@
                 <h2 class="section-title">会場情報</h2>
                 
                 <div class="venue-image-container">
-                    <picture>
-                        <source media="(min-width: 768px)" srcset="venue-map-pc.png">
-                        <img src="venue-map.png" alt="会場マップ" class="venue-image">
-                    </picture>
+                    <img src="venue-map.png" alt="会場マップ" class="venue-image">
                 </div>
                 
                 <div class="venue-buttons">
