@@ -402,12 +402,6 @@
             margin: 0 auto;
         }
 
-        @media (min-width: 768px) {
-            .venue-image-container {
-                max-width: 500px;
-            }
-        }
-
         .venue-image {
             width: 100%;
             height: auto;
@@ -525,16 +519,6 @@
         .escort-apply-btn:hover {
             background: #F5F5F5;
             transform: scale(1.02);
-        }
-
-        .escort-apply-btn.disabled {
-            cursor: default;
-            pointer-events: none;
-        }
-
-        .escort-apply-btn.disabled:hover {
-            background: #FFFFFF;
-            transform: none;
         }
 
         .escort-apply-btn .arrow {
@@ -817,6 +801,9 @@
                             <img src="info-ashimon-gold.png" alt="あしもんゴールド会員限定" class="info-image">
                         </div>
                         <div class="info-slide">
+                            <img src="info-fgame5.png" alt="FGAME.5 名古屋金城ふ頭アリーナ" class="info-image">
+                        </div>
+                        <div class="info-slide">
                             <img src="info-harisen.png" alt="来場者全員に応援ハリセンプレゼント" class="info-image">
                         </div>
                     </div>
@@ -829,13 +816,14 @@
                 <div class="slider-dot active" onclick="goToSlide(0)"></div>
                 <div class="slider-dot" onclick="goToSlide(1)"></div>
                 <div class="slider-dot" onclick="goToSlide(2)"></div>
+                <div class="slider-dot" onclick="goToSlide(3)"></div>
             </div>
         </div>
     </section>
 
     <script>
         let currentSlide = 0;
-        const totalSlides = 3;
+        const totalSlides = 4;
 
         function changeSlide(direction) {
             currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
@@ -911,7 +899,7 @@
                     <source media="(min-width: 768px)" srcset="escort-kids-pc.png">
                     <img src="escort-kids.png" alt="エスコートキッズ募集" class="fanclub-image">
                 </picture>
-                <div class="escort-apply-btn disabled">募集開始は2月20日(金)から！</div>
+                <a href="https://fanclub.ashisalfc.jp/" class="escort-apply-btn">エスコートキッズに応募する <span class="arrow">›</span></a>
             </div>
         </div>
     </section>
