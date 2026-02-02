@@ -835,6 +835,119 @@
             color: var(--text);
             border-color: var(--text);
         }
+
+        /* FAQ Section */
+        .faq-wrapper {
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+
+        .faq-toggle {
+            width: 100%;
+            background: #FFFFFF;
+            color: #333333;
+            border: none;
+            border-radius: 12px;
+            padding: 1.2rem 2rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .faq-toggle:hover {
+            background: #F5F5F5;
+        }
+
+        .faq-toggle-icon {
+            font-size: 1.4rem;
+            transition: transform 0.3s;
+            line-height: 1;
+            color: #E8A0B4;
+        }
+
+        .faq-toggle.active .faq-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .faq-content.open {
+            max-height: 5000px;
+        }
+
+        .faq-list {
+            padding-top: 1.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: #F5E0E8;
+            color: #333333;
+            border: none;
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .faq-question:hover {
+            background: #F0D4DE;
+        }
+
+        .faq-question-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            color: #333333;
+        }
+
+        .faq-question.active {
+            background: #F0D4DE;
+        }
+
+        .faq-question.active .faq-question-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.open {
+            max-height: 500px;
+        }
+
+        .faq-answer-inner {
+            padding: 1rem 1.5rem 0.5rem;
+            color: #CCCCCC;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -906,7 +1019,20 @@
         }
     </script>
 
-    <!-- Seating Chart Section -->
+    <script>
+        function toggleFaq() {
+            const btn = document.querySelector('.faq-toggle');
+            const content = document.getElementById('faqContent');
+            btn.classList.toggle('active');
+            content.classList.toggle('open');
+        }
+
+        function toggleAnswer(btn) {
+            const answer = btn.nextElementSibling;
+            btn.classList.toggle('active');
+            answer.classList.toggle('open');
+        }
+    </script>
     <section id="seating" class="seating-section">
         <div class="container">
             <h2 class="section-title">チケット座席表</h2>
@@ -975,6 +1101,81 @@
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSeT8UVUcqB1UGLp9mk9CYTgv6eanqXAwzfziqPPIy0YByLS3A/viewform?usp=dialog" class="footer-btn footer-btn-outline">運営ボランティアスタッフ募集 <span class="arrow">›</span></a>
                 <a href="https://hp.ashisalfc.jp/sponsor-inquiry" class="footer-btn footer-btn-outline">スポンサー・パートナー募集 <span class="arrow">›</span></a>
                 <a href="https://hp.ashisalfc.jp/event-inquiry" class="footer-btn footer-btn-white">大会に関するお問い合わせ <span class="arrow">›</span></a>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-wrapper">
+                <button class="faq-toggle" onclick="toggleFaq()">
+                    よくあるお問い合わせ
+                    <span class="faq-toggle-icon">∨</span>
+                </button>
+                <div class="faq-content" id="faqContent">
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleAnswer(this)">
+                                <span>当日、会場でグッズ販売はありますか？</span>
+                                <span class="faq-question-icon">∨</span>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">はい、会場ロビーにて物販ブースを設置いたします。当日限定のグッズもご用しておりますので、ぜひお立ち寄りください。</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleAnswer(this)">
+                                <span>スマホでの写真・動画撮影は可能ですか？</span>
+                                <span class="faq-question-icon">∨</span>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">はい、可能です。ぜひSNSへ投稿してください。<br>ただし、フラッシュ撮影や三脚・一脚の使用、他のお客様の観戦を妨げるような長時間の撮影はご遠慮ください。</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleAnswer(this)">
+                                <span>大きな荷物を持っての観戦は可能ですか？（座席に置けますか？）</span>
+                                <span class="faq-question-icon">∨</span>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">座席スペースには限りがあるため、大きなお荷物の座席への持ち込みはご遠慮いただいております。<br>会場内のコインロッカーをご利用ください。<br>※ロッカーの数には限りがございますので、予めご了承いただけますようお願い申し上げます。</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleAnswer(this)">
+                                <span>会場内での飲食は可能ですか？</span>
+                                <span class="faq-question-icon">∨</span>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">はい、全席にてご飲食が可能です。<br>お弁当や飲み物などの持ち込み制限もございませんので、どうぞご自由にお楽しみください。</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleAnswer(this)">
+                                <span>ベビーカーを預ける場所はありますか？</span>
+                                <span class="faq-question-icon">∨</span>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">はい、会場内に専用のベビーカー置き場を設けております。なお、スペース内での管理につきましては、恐れ入りますがお客様ご自身の責任にてお願いいたします。</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleAnswer(this)">
+                                <span>授乳室やオムツ替えスペースはありますか？</span>
+                                <span class="faq-question-icon">∨</span>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">はい、会場内の所定の場所にございます。場所がわからない場合は、お近くのスタッフへお声がけください。</div>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleAnswer(this)">
+                                <span>会場内に喫煙所はありますか？</span>
+                                <span class="faq-question-icon">∨</span>
+                            </button>
+                            <div class="faq-answer">
+                                <div class="faq-answer-inner">会場内は電子タバコ含む全面禁煙となっております。会場屋外の指定喫煙所をご利用ください。<br>なお、再入場の際は電子チケットの画面が必要となりますので、お忘れのないようご注意ください。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <!-- Venue Info -->
