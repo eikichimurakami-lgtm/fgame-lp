@@ -990,53 +990,17 @@
         
         <div class="info-card">
             <div class="info-slider">
-                <button class="slider-btn prev" onclick="changeSlide(-1)">‹</button>
-                
                 <div class="info-slider-container">
                     <div class="info-slides" id="infoSlides">
-                        <div class="info-slide">
-                            <img src="info-fgame5.png" alt="FGAME.5 名古屋金城ふ頭アリーナ" class="info-image">
-                        </div>
                         <div class="info-slide">
                             <img src="info-harisen.png" alt="来場者全員に応援ハリセンプレゼント" class="info-image">
                         </div>
                     </div>
                 </div>
-                
-                <button class="slider-btn next" onclick="changeSlide(1)">›</button>
-            </div>
-            
-            <div class="slider-dots">
-                <div class="slider-dot active" onclick="goToSlide(0)"></div>
-                <div class="slider-dot" onclick="goToSlide(1)"></div>
             </div>
         </div>
     </section>
 
-    <script>
-        let currentSlide = 0;
-        const totalSlides = 2;
-
-        function changeSlide(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-            updateSlider();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateSlider();
-        }
-
-        function updateSlider() {
-            const slides = document.getElementById('infoSlides');
-            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            const dots = document.querySelectorAll('.slider-dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
-    </script>
 
     <script>
         function toggleFaq() {
