@@ -265,6 +265,52 @@
             fill: var(--text-muted);
         }
 
+        /* Ticket Purchase Section */
+        .ticket-purchase-section {
+            padding: 3rem 2rem;
+            background-color: var(--dark);
+            text-align: center;
+        }
+
+        .ticket-purchase-note {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: -2rem;
+        }
+
+        .ticket-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ticket-btn {
+            display: block;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            line-height: 0;
+        }
+
+        .ticket-btn:hover {
+            opacity: 0.8;
+        }
+
+        .ticket-btn img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* Information Section */
         .info-section {
             padding: 0 0 3rem 0;
@@ -1024,6 +1070,24 @@
         </div>
     </section>
 
+    <!-- Ticket Purchase Section -->
+    <section id="ticket-purchase" class="ticket-purchase-section">
+        <div class="container">
+            <h2 class="section-title">チケット購入</h2>
+            <p class="ticket-purchase-note">※各種サイトから購入いただけます</p>
+            <div class="ticket-buttons">
+                <a href="http://r.y-tickets.jp/ashisalfc2602" target="_blank" rel="noopener noreferrer" class="ticket-btn">
+                    <img src="mu-mo.png?v=2" alt="mu-mo TICKET">
+                </a>
+                <a href="https://w.pia.jp/t/fgame6/" target="_blank" rel="noopener noreferrer" class="ticket-btn">
+                    <img src="pia.png?v=2" alt="ぴあ">
+                </a>
+                <a href="https://l-tike.com/ashisalfc/" target="_blank" rel="noopener noreferrer" class="ticket-btn">
+                    <img src="lawtic.png?v=2" alt="ローチケ LAWSON TICKET">
+                </a>
+            </div>
+        </div>
+    </section>
 
     <script>
         function toggleFaq() {
@@ -1205,8 +1269,8 @@
     <!-- Fixed Navigation Bar -->
     <nav class="fixed-nav">
         <div class="fixed-nav-container">
-            <a href="https://fanclub.ashisalfc.jp/priority-tickets" class="nav-main-btn">
-                <img src="btn-01.png" alt="「F GAME.6」チケット先行販売はこちら">
+            <a href="#ticket-purchase" class="nav-main-btn">
+                <img src="btn-01.png" alt="チケット購入はこちら">
             </a>
             <div class="nav-sub-btns">
                 <a href="#seating" class="nav-sub-btn">
