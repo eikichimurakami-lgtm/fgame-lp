@@ -49,8 +49,8 @@
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "F GAME.7",
-  "startDate": "2026-11-01T13:00:00+09:00",
-  "endDate": "2026-11-01T18:00:00+09:00",
+  "startDate": "2026-11-01T15:00:00+09:00",
+  "endDate": "2026-11-01T20:00:00+09:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "image": ["https://fgame.jp/assets/kv_pc.jpg"],
@@ -616,7 +616,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
         <div class="kv-tilt" id="kv-tilt">
           <picture>
             <source media="(min-width: 900px)" srcset="assets/kv_pc.jpg">
-            <img class="kv-base" src="assets/kv_sp.jpg" alt="F GAME.7 待ってろ、代々木。2026.11.1(日) 代々木第一体育館 開演13:00 開場11:00 KICK OFF15:00">
+            <img class="kv-base" src="assets/kv_sp.jpg" alt="F GAME.7 待ってろ、代々木。2026.11.1(日) 代々木第一体育館 開演15:00 開場14:00 KICK OFF17:30">
           </picture>
         </div>
       </div>
@@ -1116,7 +1116,7 @@ const CONFIG = {
   saleStart: "2026-08-03T18:00:00+09:00",
   targetAttendance: 10000, // 「代々木満員」目標
   updatedAt: "2026-07-21 09:00",
-  DATA_URL: "",
+  DATA_URL: "https://script.google.com/macros/s/AKfycbwpjfgwhLprkYa3VvFO7L0vR_yemrkViInOZwfqbSvWxbWc2zLcNLQ4iZhz9HjkWdlV2Q/exec", // 進捗トラッカー(GAS)
   roadVideoId: "", // 空=「近日公開！」表示。動画IDを入れると自動でYouTube埋め込みに切替
   links: [
     { label:"チケットぴあ", url:"https://w.pia.jp/t/fgame6/" }, // ※F GAME.7用URL発行後に差し替え
@@ -1259,9 +1259,12 @@ addEventListener("scroll", ()=>hd.classList.toggle("scrolled", scrollY > 24), {p
 function renderAll(){
   const target = CONFIG.targetAttendance || 10000;
   const totalSold = CONFIG.tiers.reduce((s,t)=>s+t.sold,0);
-  const totalPct = Math.min(100, Math.round(totalSold/target*100));
+  // 実座席(9,368席)を「10,000人」に換算して表示: 完売時に 10,000 / 100% になる
+  const totalCap = CONFIG.tiers.reduce((s,t)=>s+t.capacity,0) || 1;
+  const shownSold = Math.min(target, Math.round(totalSold / totalCap * target));
+  const totalPct = Math.min(100, Math.round(totalSold / totalCap * 100));
   document.getElementById("total-pct").textContent = totalPct + "%";
-  document.getElementById("total-count").textContent = totalSold.toLocaleString() + " / " + target.toLocaleString() + "人";
+  document.getElementById("total-count").textContent = shownSold.toLocaleString() + " / " + target.toLocaleString() + "人";
   requestAnimationFrame(()=>{ document.getElementById("total-bar").style.width = totalPct + "%"; });
   document.getElementById("hero-updated").textContent = "最終更新 " + CONFIG.updatedAt;
 
@@ -1500,7 +1503,13 @@ async function fetchLive(){
     const res = await fetch(CONFIG.DATA_URL, {cache:"no-store"});
     const data = await res.json();
     if(data.updatedAt) CONFIG.updatedAt = data.updatedAt;
-    if(data.tiers) CONFIG.tiers.forEach(t=>{ if(data.tiers[t.id] && typeof data.tiers[t.id].sold==="number") t.sold = data.tiers[t.id].sold; });
+    if(data.tiers) CONFIG.tiers.forEach(t=>{
+      const d = data.tiers[t.id];
+      if(!d) return;
+      if(typeof d.sold === "number" && isFinite(d.sold)) t.sold = Math.max(0, d.sold);
+      // スプシ側で席数を変更した場合も自動追従（残席・SOLD OUT判定・10,000人換算の分母すべて連動）
+      if(typeof d.capacity === "number" && isFinite(d.capacity) && d.capacity > 0) t.capacity = d.capacity;
+    });
     renderAll();
     const active = document.querySelector(".zone.active");
     if(active) selectTier(active.dataset.tier, false);
