@@ -132,11 +132,65 @@ button{font-family:inherit;cursor:pointer}
 .tt-row.sub .tt-time{font-size:12px;color:transparent}
 .tt-row.sub::before{width:6px;height:6px;left:76px;background:rgba(255,255,255,.4);box-shadow:none}
 .tt-label{font-size:15px;font-weight:900;line-height:1.7}
+.tt-sm{font-style:normal;display:block;font-size:11px;font-weight:700;color:var(--mist);line-height:1.6}
 .tt-row.sub .tt-label{font-size:13px;font-weight:700;color:var(--mist)}
 .tt-note{max-width:560px;margin:18px auto 0;font-size:11.5px;font-weight:700;color:var(--mist);text-align:center}
 @media(max-width:600px){.tt::before{left:64px}.tt-time{width:52px;font-size:17px}.tt-row{gap:18px}.tt-row::before{left:59.5px}.tt-row.sub::before{left:62px}}
 .buy-links a.fc-main{background:linear-gradient(135deg,#8a6d1f,#c9a53a 45%,#8a6d1f);border-color:rgba(245,193,90,.7);color:#fff}
 .buy-links a.fc-main:hover{filter:brightness(1.12)}
+.ek-sched{margin-top:10px;display:grid;gap:7px}
+.ek-blk{display:grid;gap:2px}
+.ek-blk b{font-size:11px;font-weight:900;color:var(--gold);letter-spacing:.02em}
+.ek-blk b i{font-style:normal;font-weight:700;color:var(--mist);font-size:10px}
+.ek-blk span{font-size:10.5px;font-weight:700;color:var(--mist);line-height:1.7}
+.road-eps{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.road-eps button{font-family:inherit;font-size:12px;font-weight:900;letter-spacing:.04em;color:var(--mist);
+  background:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 18px;cursor:pointer;transition:.2s}
+.road-eps button:hover{color:#fff;border-color:rgba(255,255,255,.35)}
+.road-eps button.on{color:#fff;background:var(--red);border-color:var(--red);box-shadow:0 0 14px rgba(230,0,18,.4)}
+.vs-count[hidden]{display:none!important}
+.vs-count{display:flex;flex-direction:column;align-items:center;gap:2px;
+  margin:-16px auto 36px;max-width:620px;padding:15px 22px 13px;border-radius:14px;
+  background:linear-gradient(180deg,#ffffff,#f3f3f5);
+  border:2px solid var(--red);box-shadow:0 0 36px rgba(230,0,18,.35), 0 10px 34px rgba(0,0,0,.4);position:relative;overflow:hidden}
+.vs-count::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(230,0,18,.1) 50%,transparent 58%);
+  transform:translateX(-100%);animation:nbShine 4s ease-in-out infinite;pointer-events:none}
+.vc-line{display:flex;align-items:center;gap:11px;font-size:clamp(19px,4.6vw,26px);font-weight:900;letter-spacing:.05em;color:var(--red)}
+.vc-line b{transform:translateY(2px)}
+.vc-line .vc-sm{font-size:clamp(17px,4vw,22px);font-weight:900;color:var(--red)}
+.vc-line b{font-family:var(--font-disp);font-weight:400;font-size:clamp(58px,11vw,76px);line-height:1;color:var(--red);letter-spacing:.02em}
+.vc-sub{font-size:clamp(12.5px,3vw,14.5px);font-weight:900;color:#a3000f}
+.road-player{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+  background:radial-gradient(130% 130% at 72% 14%, #262633, #0b0b10 62%);text-align:center;padding:16px}
+.road-player::before{content:"";position:absolute;right:4%;top:-8%;width:120px;height:300px;background:var(--bolt) center/contain no-repeat;opacity:.14;filter:drop-shadow(0 0 16px rgba(160,180,255,.9))}
+.rp-kicker{font-size:10px;font-weight:900;letter-spacing:.34em;color:var(--mist)}
+.rp-title{font-family:var(--font-disp);font-size:clamp(30px,5.4vw,46px);line-height:1.05;color:#fff;letter-spacing:.02em}
+.rp-title b{color:var(--red);font-weight:400}
+.rp-ep{font-size:12.5px;font-weight:900;color:var(--gold);letter-spacing:.08em}
+.rp-play{margin-top:10px;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;color:#fff;
+  background:linear-gradient(160deg,#ff2f42,#8f000d);box-shadow:0 8px 26px rgba(230,0,18,.45);transition:transform .25s}
+.rp-play svg{width:30px;height:30px;margin-left:3px}
+.road-player:hover .rp-play{transform:scale(1.12)}
+.road-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.goods-cta{display:flex;align-items:center;gap:16px;max-width:560px;margin:26px auto 0;padding:17px 22px;border-radius:14px;
+  background:linear-gradient(135deg, rgba(230,0,18,.15), #14141a 58%);border:1px solid rgba(230,0,18,.45);
+  text-decoration:none;transition:.25s;position:relative;overflow:hidden}
+.goods-cta::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.08) 50%,transparent 58%);
+  transform:translateX(-100%);animation:nbShine 4.5s ease-in-out infinite;pointer-events:none}
+.goods-cta:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:0 10px 30px rgba(230,0,18,.28)}
+.gc-note{max-width:560px;margin:10px auto 0;text-align:center;font-size:11px;font-weight:700;color:var(--mist)}
+.gc-txt{display:grid;gap:3px}
+.gc-en{font-family:var(--font-disp);font-size:11px;letter-spacing:.3em;color:var(--gold)}
+.gc-jp{font-size:15px;font-weight:900;color:#fff}
+.gc-arrow{margin-left:auto;flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  background:var(--red);color:#fff;font-weight:900;font-size:17px;box-shadow:0 6px 18px rgba(230,0,18,.4);transition:transform .25s}
+.goods-cta:hover .gc-arrow{transform:translateX(4px)}
+.so-stamp{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:6}
+.so-stamp[hidden]{display:none!important}
+.so-stamp b{white-space:nowrap;transform:rotate(-11deg);font-family:var(--font-disp);font-weight:400;font-size:clamp(28px,6.5vw,40px);line-height:1;
+  letter-spacing:.08em;color:#ff2438;border:3px solid #ff2438;border-radius:7px;padding:7px 20px 5px;
+  background:rgba(10,5,7,.35);text-shadow:0 0 14px rgba(255,36,56,.35);filter:url(#soRough);opacity:.96}
+.rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
 .notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:10px;
   padding:11px 16px;text-align:center;font-size:13px;font-weight:900;letter-spacing:.05em;color:#fff;
   background:linear-gradient(90deg,#6e0009,#c60016 30%,#c60016 70%,#6e0009);
@@ -341,12 +395,22 @@ svg.arena{width:100%;height:auto;display:block}
 .zone.active rect,.zone.active path{stroke:#fff;stroke-width:2.5;filter:brightness(1.35) drop-shadow(0 0 10px rgba(255,255,255,.35))}
 .zone.soldout{cursor:not-allowed}
 .zone.soldout rect,.zone.soldout path{filter:saturate(.15) brightness(.55)}
-.so-label{fill:#fff;font-weight:900;letter-spacing:.06em;paint-order:stroke;stroke:#7a000c;stroke-width:3.5px;stroke-linejoin:round;font-family:var(--font-disp),sans-serif;pointer-events:none}
-.price-table tr.soldout td{opacity:.45}
-.price-table tr.soldout .tn::after,.pc-card.soldout .pc-top::after{content:"SOLD OUT";font-size:10px;font-weight:900;letter-spacing:.08em;color:#ff8a94;border:1px solid rgba(230,0,18,.55);background:rgba(230,0,18,.14);border-radius:5px;padding:2px 7px;margin-left:6px}
+.so-label{pointer-events:none}
+.so-label .so-bg{fill:#ffffff;stroke:#e60012;stroke-width:3;filter:drop-shadow(0 3px 10px rgba(0,0,0,.6))}
+.so-label .so-txt{fill:#e60012;font-weight:900;letter-spacing:.09em;font-family:var(--font-disp),sans-serif}
+.price-table tr.soldout td{opacity:.35}
+.price-table tr{position:relative}
+.price-table tr.soldout::after{content:"SOLD OUT";white-space:nowrap;position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) rotate(-5deg);z-index:2;pointer-events:none;line-height:1;
+  font-family:var(--font-disp);font-weight:400;font-size:29px;letter-spacing:.12em;color:#ff2438;
+  border:3px solid #ff2438;border-radius:6px;padding:4px 26px 2px;filter:url(#soRough)}
+.pc-card{position:relative;overflow:hidden}
+.pc-card.soldout::before{content:"SOLD OUT";white-space:nowrap;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-11deg);z-index:3;
+  font-family:var(--font-disp);font-weight:400;font-size:clamp(34px,9vw,44px);letter-spacing:.08em;color:#ff2438;
+  border:4px solid #ff2438;border-radius:8px;padding:8px 24px 5px;filter:url(#soRough);pointer-events:none}
 .pc-card.soldout{opacity:.5}
-.zone-pills button.soldout{opacity:.45}
-.zone-pills button.soldout::after{content:"完売";font-size:10px;color:#ff8a94;margin-left:5px;font-weight:900}
+.zone-pills button.soldout{opacity:.4;filter:grayscale(1)}
+.zone-pills button.soldout::after{content:"SOLD OUT";font-size:9px;letter-spacing:.05em;color:#ff8a94;margin-left:5px;font-weight:900}
 .zone text{font-family:var(--font-jp);font-weight:900;fill:#fff;pointer-events:none}
 .map-cap{text-align:center;font-size:10px;font-weight:700;color:rgba(154,155,168,.75);letter-spacing:.06em}
 .map-cap.n{margin-bottom:3px}
@@ -380,7 +444,7 @@ svg.arena{width:100%;height:auto;display:block}
 .d-prices .v{font-family:var(--font-disp);font-size:17px;line-height:1.4}
 .d-prices .v .nn{font-size:10px;color:var(--mist);font-family:var(--font-jp);font-weight:700}
 .d-prices .v.freev{font-family:var(--font-jp);font-weight:900;color:#8fe0a8;font-size:14px}
-.d-remain{margin:0 0 16px}
+.d-remain{margin:0 0 16px;position:relative}
 .d-remain .gauge{height:9px}
 .d-remain .row{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--mist);margin-bottom:6px}
 .badge{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.08em;padding:3px 10px;border-radius:6px}
@@ -536,6 +600,7 @@ svg.arena{width:100%;height:auto;display:block}
 .road-copy .big span{color:var(--red)}
 .video-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 26px 70px rgba(0,0,0,.55);background:#000}
 .video-frame iframe,.video-frame video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover;background:#000}
+.road-coming[hidden]{display:none!important}
 .road-coming{position:absolute;inset:0;display:grid;place-content:center;gap:8px;text-align:center;
   background:radial-gradient(70% 90% at 50% 30%, rgba(230,0,18,.18), transparent 70%), #0e0e14}
 .road-coming::before{content:"";position:absolute;right:8%;top:-6%;width:70px;height:180px;background:var(--bolt) center/contain no-repeat;opacity:.12;filter:drop-shadow(0 0 14px rgba(160,180,255,.9))}
@@ -652,6 +717,9 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
 </header>
 
 <!-- 緊急お知らせバー: CONFIG.notice で編集 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="soRough"><feTurbulence type="fractalNoise" baseFrequency="0.35" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8"/></filter>
+</svg>
 <div class="notice-bar" id="notice-bar" hidden role="alert">
   <span class="nb-icon">⚠</span><span id="notice-text"></span>
 </div>
@@ -669,6 +737,11 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
           </picture>
         </div>
       </div>
+    </div>
+    <!-- 対戦相手発表カウントダウン（8/10 18:00に自動で消灯） -->
+    <div class="vs-count fx d1" id="vs-count" hidden>
+      <div class="vc-line" id="vc-line"></div>
+      <div class="vc-sub">8月10日(月) 18:00 チケット一般販売開始と同時に発表！</div>
     </div>
     <div class="hero-grid">
       <div>
@@ -689,6 +762,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
             <div class="hb-label">チケット販売率</div>
             <div class="hl-row"><b class="hl-pct" id="total-pct">–</b><div class="gauge"><i id="total-bar"></i></div></div>
             <div class="hb-upd"><b id="total-count" style="color:#fff">–</b><span id="hero-updated">最終更新 –</span></div>
+            <p class="rate-note">※ チケットの販売率は、更新時点のものでリアルタイム進捗と異なる場合がございます。</p>
           </div>
         </div>
         <div class="hero-ctas fx d5">
@@ -914,8 +988,10 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
           <div class="d-prices" id="d-prices"></div>
           <p class="free-caution" id="d-caution" hidden>※ 小学生以下無料の場合も、チケットサイトでのお手続き（発券）が必要です。</p>
           <div class="d-remain">
+            <div class="so-stamp" id="d-stamp" hidden><b>SOLD OUT</b></div>
             <div class="row"><span>このエリアの販売率</span><span id="d-remain-txt">–</span></div>
             <div class="gauge"><i id="d-remain-bar"></i></div>
+            <p class="rate-note">※ 販売率は更新時点のものでリアルタイム進捗と異なる場合がございます。</p>
             <div style="margin-top:8px"><span class="badge" id="d-badge">–</span></div>
           </div>
           <div class="d-benefits" id="d-benefits-wrap">
@@ -1016,10 +1092,11 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
   <div class="wrap">
     <div class="sec-head fx">
       <span class="sec-en">TIME TABLE</span>
-      <h2 class="sec-jp">当日スケジュール</h2>
+      <h2 class="sec-jp">当日スケジュール（予定）</h2>
     </div>
     <div class="tt reveal" id="tt-list"></div>
     <p class="tt-note">※ 内容・時間は予告なく変更となる場合がございます。</p>
+
   </div>
 </section>
 
@@ -1035,6 +1112,14 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       <div class="ev-slider" id="event-list" aria-label="イベント情報（左右にスライドできます）"></div>
       <button type="button" class="ev-arrow next" id="ev-next" aria-label="次のイベントへ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 L16 12 L9.5 18.5"/></svg></button>
     </div>
+    <a class="goods-cta reveal" href="https://goods.ashisalfc.jp/" target="_blank" rel="noopener">
+      <span class="gc-txt">
+        <span class="gc-en">OFFICIAL GOODS</span>
+        <span class="gc-jp">開催前にあしざるFCグッズをゲットする</span>
+      </span>
+      <span class="gc-arrow" aria-hidden="true">→</span>
+    </a>
+    <p class="gc-note">※発送の関係上、10月上旬までの購入を推奨いたします。</p>
   </div>
 </section>
 
@@ -1047,11 +1132,11 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
         <p>「代々木満員」への道のりを描いた密着映像を近日公開！<br>普段は見せない挑戦の裏側を、お楽しみに。</p>
       </div>
       <div class="video-frame reveal">
-        <iframe id="road-video" src="" title="ROAD TO YOYOGI 密着映像" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen hidden></iframe>
-        <div class="road-coming" id="road-coming">
-          <span class="rc-pre">あしざるFC 公式YouTubeチャンネルにて</span>
-          <span class="rc-big">近日公開！</span>
-          <span class="rc-sub">COMING SOON</span>
+        <div class="road-player" id="road-player" data-cur="v-hMbLVi9qc" role="button" tabindex="0" aria-label="ROAD TO YOYOGI 第1話を再生">
+          <span class="rp-kicker">DOCUMENTARY</span>
+          <span class="rp-title">ROAD TO <b>YOYOGI</b></span>
+          <span class="rp-ep" id="rp-ep">第1話 公開中</span>
+          <span class="rp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
         </div>
       </div>
     </div>
@@ -1076,7 +1161,18 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     <div class="info-list reveal stagger">
       <a class="info-row" href="https://fanclub.ashisalfc.jp/my-account/draw-event" target="_blank" rel="noopener">
         <span class="en">ESCORT KIDS</span>
-        <div><div class="jt">エスコートキッズ募集</div><div class="jd">あしもん会員限定。選手と手を繋いでコートへ。対象は中学生まで（応募多数の場合は抽選）</div></div>
+        <div><div class="jt">エスコートキッズ募集</div><div class="jd">あしもん会員限定。選手と手を繋いでコートへ。対象は中学生まで（応募多数の場合は抽選）</div>
+          <div class="ek-sched">
+            <div class="ek-blk">
+              <b>【FC1次募集】ゴールド会員限定</b>
+              <span>募集 9/26(土)〜10/2(金)　抽選 10/4(日)　当落通知 10/5(月)</span>
+            </div>
+            <div class="ek-blk">
+              <b>【FC2次募集】ノーマル会員以上 <i>※1次にて満員の場合は実施なし</i></b>
+              <span>募集 10/9(金)〜10/16(金)　抽選 10/18(日)　当落通知 10/21(水)</span>
+            </div>
+          </div>
+        </div>
         <span class="go">→</span>
       </a>
       <a class="info-row" href="mailto:fgame.staff@salmate.co.jp?subject=%E8%BB%8A%E6%A4%85%E5%AD%90%E3%81%A7%E3%81%AE%E3%81%94%E8%A6%B3%E6%88%A6%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88F%20GAME.7%EF%BC%89">
@@ -1180,24 +1276,24 @@ const CONFIG = {
   // ===== 緊急お知らせバー（サイト最上部）: show:false で非表示 =====
   notice: {
     show: true,
-    text: "時間が変更となっております。お間違いのないようご注意ください。"
+    text: "イベント情報を更新！下部ページをチェック！"
   },
   // ===== 当日スケジュール: tが空の行はサブ項目表示 =====
   timetable: [
-    { t:"14:00", label:"開場" },
+    { t:"14:00", label:"開場<i class=\"tt-sm\">（※開場前にも会場外にてグッズ販売予定）</i>" },
     { t:"15:00", label:"開演" },
     { t:"",      label:"オープニングショー（あしざるFCメンバー登場）" },
     { t:"",      label:"オープニングマッチ（サルベイビー）" },
     { t:"",      label:"あしざるFC ウォーミングアップ" },
     { t:"17:00", label:"KICK OFF" },
     { t:"HT",    label:"ハーフタイムショー" },
-    { t:"19:15", label:"LIVE" },
-    { t:"20:15", label:"F GAME.7 閉演／ドリームシート&amp;VIPシート特典撮影会" },
+    { t:"19:15", label:"試合終了&amp;楽曲LIVEスタート" },
+    { t:"20:15", label:"F GAME.7 終演／ドリームシート&amp;VIPシート特典撮影会" },
     { t:"21:15", label:"ドリームシート&amp;VIPシート特典撮影会終了" }
   ],
   updatedAt: "2026-07-21 09:00",
   DATA_URL: "https://script.google.com/macros/s/AKfycbwpjfgwhLprkYa3VvFO7L0vR_yemrkViInOZwfqbSvWxbWc2zLcNLQ4iZhz9HjkWdlV2Q/exec", // 進捗トラッカー(GAS)
-  roadVideoId: "", // 空=「近日公開！」表示。動画IDを入れると自動でYouTube埋め込みに切替
+  roadVideoId: "v-hMbLVi9qc", // 第1話。GAS連携時はroadVideos(自動検出)が優先され、2話以降も自動で並ぶ
   links: [
     { label:"チケットぴあ", url:"https://w.pia.jp/t/fgame6/" }, // ※F GAME.7用URL発行後に差し替え
     { label:"ローチケ", url:"https://l-tike.com/ashisalfc/" },
@@ -1211,19 +1307,19 @@ const CONFIG = {
   // 表示フェーズの強制切替（デモ用）: "" | "pre" | "fc1" | "fc2" | "ga"
   FORCE_PHASE: "",
   events: [
-    { tag:"GOODS", title:"あしざるFCグッズ販売！", desc:"新作グッズも盛りだくさん！会場の物販ブースでお待ちしています。", sq:"assets/event_goods_sq.jpg" }
+    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（ゴールド会員対象）", desc:"募集 9/26(土)〜10/2(金)／抽選 10/4(日)／当落通知 10/5(月)。選手と手を繋いでコートへ！", sq:"assets/event_escort_gold.jpg" },
+    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（通常会員対象）", desc:"募集 10/9(金)〜10/16(金)／抽選 10/18(日)／当落通知 10/21(水) ※1次にて満員の場合は実施なし", sq:"assets/event_escort_normal.jpg" },
+    { tag:"GOODS", title:"会場にてグッズ販売実施！", desc:"あしざるFC公式グッズを会場で販売！新作も盛りだくさん。", sq:"assets/event_goods_hanbai.jpg" }
     // ▼ イベント追加はこの形式で行をコピーするだけ（何件でもOK・自動でスライダーに並び、周回します）
-    // ,{ tag:"FOOD",  title:"キッチンカー出店",   desc:"説明文",  sq:"（正方形画像のURL）" }
-    // ,{ tag:"EVENT", title:"◯◯体験ブース",     desc:"説明文",  sq:"（正方形画像のURL）" }
   ],
   tiers: [
     { id:"vip", en:"VIP", name:"VIPシート", hex:"#e60012", type:"指定席",
       price:50000, priceNote:"1名", childPrice:null, kidsFree:false, capacity:12, sold:0,
-      gifts:["試合前にあしざるメンバーとのグリーティングに参加","F GAME.7オリジナルユニフォーム","シークレットグッズ","サイン色紙"],
+      gifts:["試合前にあしざるメンバーとのグリーティングに参加","終演後にあしざるFCメンバーと写真撮影","F GAME.7オリジナルユニフォーム","シークレットグッズ","サイン色紙"],
       seat:"コートの目の前・北側センターの特等席" },
     { id:"dream", en:"DREAM", name:"ドリームシート", hex:"#2563eb", type:"指定席",
       price:30000, childPrice:25000, childLabel:"18歳以下", kidsFree:false, capacity:60, sold:0,
-      gifts:["F GAME.7オリジナルユニフォーム","シークレットグッズ","サイン色紙"],
+      gifts:["終演後にあしざるFCメンバーと写真撮影","F GAME.7オリジナルユニフォーム","シークレットグッズ","サイン色紙"],
       seat:"北側コートサイド指定席" },
     { id:"gold", en:"GOLD", name:"ゴールドシート", hex:"#f0b429", type:"指定席",
       price:12000, childPrice:8000, childLabel:"18歳以下", kidsFree:false, capacity:80, sold:0,
@@ -1293,6 +1389,23 @@ function schedStatus(s){
   return "done";
 }
 
+/* 対戦相手発表カウントダウン */
+(function(){
+  const el = document.getElementById("vs-count");
+  if (!el) return;
+  const target = new Date("2026-08-10T18:00:00+09:00");
+  const now = new Date();
+  if (now >= target) return; // 発表後は表示しない
+  const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const d1 = new Date(target.getFullYear(), target.getMonth(), target.getDate());
+  const days = Math.round((d1 - d0) / 86400000);
+  const line = document.getElementById("vc-line");
+  line.innerHTML = days <= 0
+    ? '対戦相手発表 <b style="font-size:42px">本日 18:00</b>'
+    : '対戦相手発表まで <span class="vc-sm">あと</span><b>' + days + '</b><span class="vc-sm">日</span>';
+  el.hidden = false;
+})();
+
 /* 販売スケジュール: 現在フェーズのハイライト */
 (function(){
   const rows = document.querySelectorAll(".fc-row[data-rd]");
@@ -1330,12 +1443,21 @@ function schedStatus(s){
   document.getElementById("cd-days").textContent = Math.max(0, Math.ceil((new Date(CONFIG.eventDate) - now()) / 864e5));
 })();
 
-if (CONFIG.roadVideoId){
-  const rv = document.getElementById("road-video");
-  rv.src = "https://www.youtube-nocookie.com/embed/" + CONFIG.roadVideoId;
-  rv.hidden = false;
-  document.getElementById("road-coming").hidden = true;
+/* ROAD TO YOYOGI: タップで再生（どの環境でも枠が必ず表示される方式） */
+function roadPlay(id){
+  const p = document.getElementById("road-player");
+  if (!p) return;
+  p.dataset.cur = id;
+  p.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&playsinline=1" title="ROAD TO YOYOGI" allow="autoplay; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>';
 }
+(function(){
+  const p = document.getElementById("road-player");
+  if (!p) return;
+  const start = ()=>{ if (!p.querySelector("iframe")) roadPlay(p.dataset.cur); };
+  p.addEventListener("click", start);
+  p.addEventListener("keydown", e=>{ if (e.key === "Enter" || e.key === " ") { e.preventDefault(); start(); } });
+})();
+
 
 /* KV 3D tilt (desktop) */
 (function(){
@@ -1521,39 +1643,63 @@ function renderAll(){
   document.querySelectorAll("#zone-pills button").forEach(b=>
     b.addEventListener("click", ()=>selectTier(b.dataset.tier, true)));
 
+  // SOLD OUT表示（座席表）
+  document.querySelectorAll(".so-label").forEach(el=>el.remove());
+  const NS = "http://www.w3.org/2000/svg";
+  const svgRoot = document.querySelector("svg.arena");
+  const soTiers = {};
   document.querySelectorAll(".zone").forEach(z=>{
     const t = tierById(z.dataset.tier);
     const out = !!t && salesOpen() && t.sold >= t.capacity;
     z.classList.toggle("soldout", out);
-    // 既存のSOLD OUTラベルを一旦除去（データ更新のたびに再判定）
-    z.querySelectorAll(".so-label").forEach(el=>el.remove());
-    if (!out) return;
-    const NS = "http://www.w3.org/2000/svg";
-    const rects = [...z.querySelectorAll(":scope > rect")];
-    const mk = (x, y, size)=>{
-      const tx = document.createElementNS(NS, "text");
-      tx.setAttribute("class","so-label");
-      tx.setAttribute("x", x); tx.setAttribute("y", y);
-      tx.setAttribute("text-anchor","middle");
-      tx.setAttribute("font-size", size);
-      tx.textContent = "SOLD OUT";
-      z.appendChild(tx);
-    };
-    if (rects.length){
-      // 矩形ゾーン(ドリーム/VIP/ゴールド/シルバー/ブロンズ): 全rectのバウンディング中央に表示
-      let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
-      rects.forEach(r=>{
-        const x=+r.getAttribute("x"), y=+r.getAttribute("y"),
-              w=+r.getAttribute("width"), h=+r.getAttribute("height");
-        x0=Math.min(x0,x); y0=Math.min(y0,y); x1=Math.max(x1,x+w); y1=Math.max(y1,y+h);
+    if (out) (soTiers[t.id] = soTiers[t.id] || []).push(z);
+  });
+  const mkBadge = (parent, cx, cy, size)=>{
+    const g = document.createElementNS(NS,"g");
+    g.setAttribute("class","so-label");
+    const w = size*6.2, h = size*1.7;
+    const bg = document.createElementNS(NS,"rect");
+    bg.setAttribute("x",(cx-w/2).toFixed(1)); bg.setAttribute("y",(cy-h/2).toFixed(1));
+    bg.setAttribute("width",w.toFixed(1)); bg.setAttribute("height",h.toFixed(1)); bg.setAttribute("rx","5");
+    bg.setAttribute("class","so-bg");
+    const tx = document.createElementNS(NS,"text");
+    tx.setAttribute("x",cx); tx.setAttribute("y",cy);
+    tx.setAttribute("text-anchor","middle");
+    tx.setAttribute("dominant-baseline","central");
+    tx.setAttribute("font-size",size.toFixed(1));
+    tx.setAttribute("textLength",(size*5.2).toFixed(0));
+    tx.setAttribute("lengthAdjust","spacingAndGlyphs");
+    tx.setAttribute("class","so-txt");
+    tx.textContent = "SOLD OUT";
+    g.appendChild(bg); g.appendChild(tx);
+    g.setAttribute("filter","url(#soRough)"); // 荒れたスタンプ質感
+    parent.appendChild(g);
+  };
+  Object.values(soTiers).forEach(zones=>{
+    const rectsAll = [];
+    zones.forEach(z=>[...z.querySelectorAll(":scope > rect")].forEach(r=>
+      rectsAll.push({z, x:+r.getAttribute("x"), y:+r.getAttribute("y"), w:+r.getAttribute("width"), h:+r.getAttribute("height")})));
+    if (rectsAll.length){
+      // 近接する矩形はひとかたまりにして1枚のバッジ（VIP左右2枠は結合）
+      rectsAll.sort((a,b)=>a.x-b.x);
+      const clusters = [];
+      rectsAll.forEach(r=>{
+        const c = clusters[clusters.length-1];
+        if (c && r.x <= c.x1 + 26){ c.x1 = Math.max(c.x1, r.x+r.w); c.y0 = Math.min(c.y0, r.y); c.y1 = Math.max(c.y1, r.y+r.h); }
+        else clusters.push({z:r.z, x0:r.x, x1:r.x+r.w, y0:r.y, y1:r.y+r.h});
       });
-      const w=x1-x0, h=y1-y0;
-      const size = Math.max(11, Math.min(w*0.17, h*0.62, 20));
-      mk((x0+x1)/2, (y0+y1)/2 + size*0.36, size);
+      clusters.forEach(c=>{
+        const w = c.x1-c.x0, h = c.y1-c.y0;
+        let size = Math.max(12, Math.min(h*0.66, 24));
+        size = Math.max(9.5, Math.min(size, (w-6)/6.2)); // ゾーン幅に収める
+        mkBadge(svgRoot, (c.x0+c.x1)/2, (c.y0+c.y1)/2, size); // 最前面に描画（隣接ゾーンに隠れない）
+      });
     } else {
-      // スタンド(2F/3F): 上下バンドの既存ラベルの直下に表示
-      [...z.querySelectorAll(":scope > text:not(.so-label)")].forEach(lb=>{
-        mk(+lb.getAttribute("x"), +lb.getAttribute("y") + 22, 16);
+      // スタンド: 上下バンドのラベル位置に大きめで
+      zones.forEach(z=>{
+        [...z.querySelectorAll(":scope > text")].forEach(lb=>{
+          mkBadge(svgRoot, +lb.getAttribute("x"), +lb.getAttribute("y") - 9, 23); // ラベルに被せて表示
+        });
       });
     }
   });
@@ -1590,6 +1736,8 @@ function selectTier(id, scroll){
   document.getElementById("d-remain-txt").textContent = salesOpen()
     ? p + "%"
     : "発売前";
+  const stampEl = document.getElementById("d-stamp");
+  if (stampEl) stampEl.hidden = !(salesOpen() && t.sold >= t.capacity);
   const bar = document.getElementById("d-remain-bar");
   bar.style.width = "0"; requestAnimationFrame(()=>{ bar.style.width = p + "%"; });
   const b = badgeFor(t);
@@ -1711,10 +1859,38 @@ async function fetchLive(){
       // スプシ側で席数を変更した場合も自動追従（残席・SOLD OUT判定・10,000人換算の分母すべて連動）
       if(typeof d.capacity === "number" && isFinite(d.capacity) && d.capacity > 0) t.capacity = d.capacity;
     });
+    if(Array.isArray(data.roadVideos)) renderRoadEps(data.roadVideos);
     renderAll();
     const active = document.querySelector(".zone.active");
     if(active) selectTier(active.dataset.tier, false);
   }catch(e){ console.warn("残席データの取得に失敗しました", e); }
+}
+
+/* ROAD TO YOYOGI: GASが検出した話数を自動反映（2話目以降は何もしなくてもタブが増える） */
+function renderRoadEps(list){
+  const ids = list.map(v => typeof v === "string" ? v : (v && v.id)).filter(Boolean);
+  const p = document.getElementById("road-player");
+  if (!p || !ids.length) return;
+  const latest = ids[ids.length-1];
+  p.dataset.cur = p.querySelector("iframe") ? p.dataset.cur : latest; // 未再生なら最新話を再生対象に
+  const ep = document.getElementById("rp-ep");
+  if (ep) ep.textContent = "第" + ids.length + "話まで公開中";
+  if (ids.length < 2) return;
+  const frame = p.closest(".video-frame");
+  let eps = document.getElementById("road-eps");
+  if (!eps){
+    eps = document.createElement("div");
+    eps.id = "road-eps"; eps.className = "road-eps";
+    frame.insertAdjacentElement("afterend", eps);
+  }
+  if (eps.childElementCount === ids.length) return; // 話数が変わったときだけ再構築
+  eps.innerHTML = ids.map((id,i)=>`<button type="button" data-id="${id}">第${i+1}話</button>`).join("");
+  [...eps.children].forEach((b,i)=>b.classList.toggle("on", i===ids.length-1));
+  eps.onclick = e => {
+    const b = e.target.closest("button"); if (!b) return;
+    roadPlay(b.dataset.id);
+    [...eps.children].forEach(x=>x.classList.toggle("on", x===b));
+  };
 }
 
 const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.1});
