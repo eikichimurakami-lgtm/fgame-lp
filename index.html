@@ -33,7 +33,9 @@
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="F GAME.7 | あしざるFC エフゲーム チケット">
 <meta property="og:description" content="F GAME.7 公式チケットサイト。2026.11.1(日) 国立代々木競技場第一体育館。座席を確認してそのまま購入できます。">
-<meta property="og:image" content="https://fgame.jp/assets/kv_pc.jpg">
+<!-- ▼ SNSシェア画像: kv_share.jpgは.htaccessにより8/10 18:00(JST)を境に発表前KV→「降臨」版へ自動切替。
+     rewrite無効環境でも実ファイル(発表前版)が配信されるためネタバレなし -->
+<meta property="og:image" content="https://fgame.jp/assets/kv_share.jpg">
 <meta property="og:image:width" content="1600">
 <meta property="og:image:height" content="900">
 
@@ -41,7 +43,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="F GAME.7 | あしざるFC エフゲーム チケット">
 <meta name="twitter:description" content="F GAME.7 公式チケットサイト。2026.11.1(日) 国立代々木競技場第一体育館。座席を確認してそのまま購入できます。">
-<meta name="twitter:image" content="https://fgame.jp/assets/kv_pc.jpg">
+<meta name="twitter:image" content="https://fgame.jp/assets/kv_share.jpg">
 
 <!-- 構造化データ: Event -->
 <script type="application/ld+json">
@@ -226,6 +228,21 @@ button{font-family:inherit;cursor:pointer}
   .ld-line i{animation:none;width:100%}
   .ld-sub{animation:none;opacity:1}
 }
+.opp-en{font-family:var(--font-disp);font-size:13px;letter-spacing:.3em;color:var(--gold);margin-bottom:6px;text-indent:.3em}
+.opp-box{margin-top:14px;padding:14px 12px 16px;border:1px solid rgba(245,193,90,.3);border-radius:14px;
+  background:linear-gradient(180deg, rgba(245,193,90,.05), rgba(255,255,255,.02))}
+.opp-box-lbl{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:12px;
+  font-size:11px;font-weight:900;letter-spacing:.14em;color:var(--gold)}
+.opp-box-lbl::before,.opp-box-lbl::after{content:"";width:26px;height:1px;background:rgba(245,193,90,.5)}
+.opp-players{display:flex;gap:16px;justify-content:center}
+.opp-p{display:grid;gap:2px;justify-items:center;max-width:150px}
+.opp-p img{width:84px;height:84px;border-radius:50%;object-fit:cover;margin-bottom:6px;
+  border:2px solid rgba(245,193,90,.55);box-shadow:0 6px 20px rgba(0,0,0,.5)}
+.opp-p b{font-family:var(--font-disp);font-weight:400;font-size:15px;letter-spacing:.06em;color:#fff}
+.opp-p i{font-style:normal;font-size:10px;font-weight:700;color:var(--mist)}
+.opp-p span{margin-top:5px;font-size:10px;font-weight:700;color:var(--mist);text-align:center;line-height:1.7}
+.sp-only{display:none}
+@media(max-width:768px){.sp-only{display:inline}}
 .rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
 .notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;
   padding:12px 18px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.07em;color:#fff;
@@ -1095,11 +1112,11 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       <div class="team">
         <img src="assets/emblem_ashisal.png" alt="あしざるFC エンブレム">
         <div class="name">あしざるFC</div>
-        <div class="sub">元日本代表も在籍する競技フットサルチーム</div>
+        <div class="sub">元日本代表も在籍する<br class="sp-only">競技フットサルチーム</div>
         <a class="textlink" href="https://hp.ashisalfc.jp/about_ashisal_fc/about_team_ashisal" target="_blank" rel="noopener">チーム情報を見る →</a>
       </div>
       <div class="vs">VS</div>
-      <div class="team">
+      <div class="team" id="opponent-card">
         <div class="cs">COMING SOON</div>
         <div class="name">対戦相手</div>
         <span class="tba">近日発表</span>
@@ -1209,7 +1226,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
 
     <div class="sponsor-card reveal">
       <div class="eb">SPONSOR ／ スポンサー・パートナー募集</div>
-      <h3>あしざるFCの夢を、一緒に作ろう。</h3>
+      <h3>あしざるFCの夢を、<br>一緒に作ろう。</h3>
       
       <a class="btn btn-red" href="https://hp.ashisalfc.jp/sponsor-inquiry" target="_blank" rel="noopener">スポンサーの相談をする<span class="arrow">→</span></a>
     </div>
@@ -1471,6 +1488,29 @@ window.__applyRevealKV = function(){
   const i = document.getElementById("kv-img");
   const n = document.getElementById("kv-note");
   if (n) n.hidden = false; // 小学生無料の注記もKVと同時に表示
+  // 対戦カードも同時に発表
+  const opp = document.getElementById("opponent-card");
+  if (opp) opp.innerHTML = `
+        <div class="name">フットサル世界選抜</div>
+        <div class="opp-box">
+          <div class="opp-box-lbl">主な出場選手</div>
+          <div class="opp-players">
+            <div class="opp-p">
+              <img src="assets/player_ortiz.jpg" alt="ORTIZ">
+              <b>ORTIZ</b><i>オルティス</i>
+              <span>元スペイン代表</span>
+            </div>
+            <div class="opp-p">
+              <img src="assets/player_ricardinho.jpg" alt="RICARDINHO">
+              <b>RICARDINHO</b><i>リカルジーニョ</i>
+              <span>元ポルトガル代表</span>
+            </div>
+          </div>
+        </div>`;
+  // オープニングマッチの対戦相手表記
+  document.querySelectorAll(".sub-ev .ss").forEach(el=>{
+    if (el.textContent.indexOf("サルベイビー") > -1) el.textContent = "サルベイビー vs フットサル世界選抜";
+  });
   if (s) s.srcset = "assets/kv_pc.jpg";
   if (i){ i.src = "assets/kv_sp.jpg"; i.alt = "F GAME.7 世界最強、降臨。あしざるFC vs フットサル世界選抜（ORTIZ／RICARDINHO） 2026.11.1(日) 代々木第一体育館 開演15:00 開場14:00 KICK OFF17:00 小学生無料（2階席・3階席対象）"; }
 };
