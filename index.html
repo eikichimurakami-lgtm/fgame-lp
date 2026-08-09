@@ -74,7 +74,7 @@
   },
   "offers": {
     "@type": "Offer",
-    "url": "https://w.pia.jp/t/fgame6/",
+    "url": "https://w.pia.jp/t/fgame7-y/",
     "priceCurrency": "JPY",
     "price": "1000",
     "availability": "https://schema.org/InStock",
@@ -148,6 +148,14 @@ button{font-family:inherit;cursor:pointer}
   background:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 18px;cursor:pointer;transition:.2s}
 .road-eps button:hover{color:#fff;border-color:rgba(255,255,255,.35)}
 .road-eps button.on{color:#fff;background:var(--red);border-color:var(--red);box-shadow:0 0 14px rgba(230,0,18,.4)}
+.kv-note{display:flex;justify-content:center;margin:-38px auto 26px;padding:0 16px;position:relative;z-index:3}
+.kv-note span{display:inline-flex;align-items:center;gap:9px;max-width:100%;padding:8px 18px;border-radius:12px;
+  background:linear-gradient(135deg, rgba(230,0,18,.1), rgba(16,14,18,.85));
+  border:1px solid rgba(255,85,99,.35);
+  font-size:11.5px;font-weight:700;color:#ffc9ce;letter-spacing:.06em;line-height:1.65;text-align:left}
+.kv-note span::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;
+  background:var(--red);box-shadow:0 0 9px rgba(230,0,18,.9)}
+.kv-note[hidden]{display:none!important}
 .vs-count[hidden]{display:none!important}
 .vs-count{display:flex;flex-direction:column;align-items:center;gap:2px;
   margin:-16px auto 36px;max-width:620px;padding:15px 22px 13px;border-radius:14px;
@@ -155,10 +163,12 @@ button{font-family:inherit;cursor:pointer}
   border:2px solid var(--red);box-shadow:0 0 36px rgba(230,0,18,.35), 0 10px 34px rgba(0,0,0,.4);position:relative;overflow:hidden}
 .vs-count::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(230,0,18,.1) 50%,transparent 58%);
   transform:translateX(-100%);animation:nbShine 4s ease-in-out infinite;pointer-events:none}
-.vc-line{display:flex;align-items:center;gap:11px;font-size:clamp(19px,4.6vw,26px);font-weight:900;letter-spacing:.05em;color:var(--red)}
-.vc-line b{transform:translateY(2px)}
-.vc-line .vc-sm{font-size:clamp(17px,4vw,22px);font-weight:900;color:var(--red)}
-.vc-line b{font-family:var(--font-disp);font-weight:400;font-size:clamp(58px,11vw,76px);line-height:1;color:var(--red);letter-spacing:.02em}
+.vc-line{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--red)}
+.vc-cap{font-size:clamp(15px,4vw,20px);font-weight:900;letter-spacing:.09em}
+.vc-nums{display:flex;align-items:baseline;justify-content:center;white-space:nowrap}
+.vc-nums b{font-family:var(--font-disp);font-weight:400;font-size:clamp(42px,11.5vw,64px);line-height:1;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.vc-nums i{font-style:normal;font-size:clamp(13px,3.5vw,17px);font-weight:900;margin:0 7px 0 3px}
+.vc-nums i:last-child{margin-right:0}
 .vc-sub{font-size:clamp(12.5px,3vw,14.5px);font-weight:900;color:#a3000f}
 .road-player{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;
   background:radial-gradient(130% 130% at 72% 14%, #262633, #0b0b10 62%);text-align:center;padding:16px}
@@ -190,16 +200,52 @@ button{font-family:inherit;cursor:pointer}
 .so-stamp b{white-space:nowrap;transform:rotate(-11deg);font-family:var(--font-disp);font-weight:400;font-size:clamp(28px,6.5vw,40px);line-height:1;
   letter-spacing:.08em;color:#ff2438;border:3px solid #ff2438;border-radius:7px;padding:7px 20px 5px;
   background:rgba(10,5,7,.35);text-shadow:0 0 14px rgba(255,36,56,.35);filter:url(#soRough);opacity:.96}
+/* ===== ページローディング ===== */
+#loader{position:fixed;inset:0;z-index:9999;background:#0a0a0e;display:grid;place-items:center;overflow:hidden;
+  transition:opacity .55s ease,visibility .55s}
+#loader.done{opacity:0;visibility:hidden;pointer-events:none}
+#loader::before{content:"";position:absolute;inset:-20%;
+  background:radial-gradient(50% 40% at 50% 46%, rgba(230,0,18,.14), transparent 70%)}
+.ld-box{display:flex;flex-direction:column;align-items:center;gap:14px;position:relative}
+.ld-logo{width:min(320px,72vw);opacity:0;transform:translateY(22px) scale(.96);filter:blur(7px);
+  animation:ldIn .7s .08s cubic-bezier(.2,.8,.2,1) forwards;
+  filter:blur(7px) drop-shadow(0 0 30px rgba(230,0,18,.35))}
+.ld-logo img{width:100%;display:block}
+@keyframes ldIn{to{opacity:1;transform:none;filter:blur(0) drop-shadow(0 0 30px rgba(230,0,18,.35))}}
+.ld-line{width:min(240px,56vw);height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.ld-line i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));
+  animation:ldBar 1.05s .3s cubic-bezier(.5,0,.2,1) forwards;box-shadow:0 0 12px rgba(245,193,90,.6)}
+@keyframes ldBar{to{width:100%}}
+.ld-sub{font-family:var(--font-disp);font-size:11px;letter-spacing:.5em;color:var(--gold);opacity:0;text-indent:.5em;
+  animation:ldIn .5s .5s forwards}
+#loader .ld-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+#loader.zap .ld-flash{animation:ldFlash .32s ease-out}
+@keyframes ldFlash{0%{opacity:0}12%{opacity:.85}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  .ld-logo{animation:none;opacity:1;transform:none;filter:none}
+  .ld-line i{animation:none;width:100%}
+  .ld-sub{animation:none;opacity:1}
+}
 .rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
-.notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:10px;
-  padding:11px 16px;text-align:center;font-size:13px;font-weight:900;letter-spacing:.05em;color:#fff;
-  background:linear-gradient(90deg,#6e0009,#c60016 30%,#c60016 70%,#6e0009);
-  border-bottom:1px solid rgba(245,193,90,.5);overflow:hidden}
+.notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;
+  padding:12px 18px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.07em;color:#fff;
+  background:rgba(28,8,12,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-top:1px solid rgba(245,193,90,.6);border-bottom:1px solid rgba(245,193,90,.6);
+  box-shadow:0 8px 28px rgba(230,0,18,.3);
+  overflow:hidden;cursor:pointer;transition:background .3s}
+.notice-bar:hover{background:rgba(16,14,18,.92)}
 .notice-bar[hidden]{display:none}
-.notice-bar::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.22) 50%,transparent 60%);
-  transform:translateX(-100%);animation:nbShine 3.6s ease-in-out infinite}
+.notice-bar::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg, rgba(230,0,18,.25), transparent 28%, transparent 72%, rgba(230,0,18,.25))}
+.notice-bar::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(245,193,90,.16) 50%,transparent 58%);
+  transform:translateX(-100%);animation:nbShine 4.2s ease-in-out infinite}
 @keyframes nbShine{0%,60%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-.nb-icon{flex:none;font-size:15px;color:#f5c15a}
+.nb-tag{flex:none;font-family:var(--font-disp);font-size:11px;letter-spacing:.3em;color:#fff;
+  background:var(--red);border-radius:999px;padding:4px 13px 3px;text-indent:.3em;
+  animation:nowPulse 1.8s ease-in-out infinite}
+.nb-go{flex:none;color:var(--gold);font-weight:900;font-size:14px;transition:transform .25s}
+.notice-bar:hover .nb-go{transform:translateX(4px)}
 @media(prefers-reduced-motion:reduce){.notice-bar::after{animation:none}}
 h1,h2,h3,.sec-jp,.mag-title,.d-name,.sponsor-card h3{text-wrap:balance}
 p,li,.ds,.ss,.jd,.gr,.mag-body,.mag-quote,.notes li,details .a,.fanclub p,.statement .ls{text-wrap:pretty;word-break:normal;overflow-wrap:break-word}
@@ -282,19 +328,20 @@ header.scrolled{background:rgba(8,8,11,.88);border-color:var(--line)}
 .hero-visual .kv::before{content:"";position:absolute;inset:6% 2%;background:radial-gradient(closest-side, rgba(230,0,18,.34), transparent 72%);filter:blur(34px);z-index:-1}
 .kv-tilt{position:relative;transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform}
 .kv img.kv-base{width:100%;display:block;
-  -webkit-mask-image:linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
+  -webkit-mask-image:linear-gradient(to right, transparent, #000 5%, #000 95%, transparent),
                      linear-gradient(to bottom, transparent, #000 2.5%, #000 98%, transparent);
   -webkit-mask-composite:source-in;
-          mask-image:linear-gradient(to right, transparent, #000 9%, #000 91%, transparent),
+          mask-image:linear-gradient(to right, transparent, #000 5%, #000 95%, transparent),
                      linear-gradient(to bottom, transparent, #000 2.5%, #000 98%, transparent);
           mask-composite:intersect}
 @media(min-width:901px){
   .kv img.kv-base{
-    -webkit-mask-image:linear-gradient(to right, transparent, #000 4%, #000 96.5%, transparent),
-                       linear-gradient(to bottom, transparent, #000 5%, #000 96%, transparent);
-            mask-image:linear-gradient(to right, transparent, #000 4%, #000 96.5%, transparent),
-                       linear-gradient(to bottom, transparent, #000 5%, #000 96%, transparent)}
+    -webkit-mask-image:linear-gradient(to right, transparent, #000 3%, #000 97%, transparent),
+                       linear-gradient(to bottom, transparent, #000 3.5%, #000 97%, transparent);
+            mask-image:linear-gradient(to right, transparent, #000 3%, #000 97%, transparent),
+                       linear-gradient(to bottom, transparent, #000 3.5%, #000 97%, transparent)}
 }
+
 @keyframes kvBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @media(prefers-reduced-motion:reduce){.hero-visual .kv{animation:none}}
 @media(max-width:900px){
@@ -699,6 +746,14 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
 </style>
 </head>
 <body>
+<div id="loader" aria-hidden="true">
+  <div class="ld-box">
+    <div class="ld-logo"><img src="assets/logo_fgame7.png" alt="F GAME.7"></div>
+    <div class="ld-line"><i></i></div>
+    <div class="ld-sub">YOYOGI 11.1</div>
+  </div>
+  <div class="ld-flash"></div>
+</div>
 
 <header id="site-header">
   <nav class="nav" aria-label="メインナビゲーション">
@@ -721,7 +776,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
   <filter id="soRough"><feTurbulence type="fractalNoise" baseFrequency="0.35" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8"/></filter>
 </svg>
 <div class="notice-bar" id="notice-bar" hidden role="alert">
-  <span class="nb-icon">⚠</span><span id="notice-text"></span>
+  <span class="nb-tag">INFO</span><span id="notice-text"></span><span class="nb-go" aria-hidden="true">→</span>
 </div>
 
 <main id="top">
@@ -732,12 +787,13 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       <div class="kv" id="kv">
         <div class="kv-tilt" id="kv-tilt">
           <picture>
-            <source media="(min-width: 900px)" srcset="assets/kv_pc.jpg">
-            <img class="kv-base" src="assets/kv_sp.jpg" alt="F GAME.7 待ってろ、代々木。2026.11.1(日) 代々木第一体育館 開演15:00 開場14:00 KICK OFF17:00">
+            <source media="(min-width: 900px)" srcset="assets/kv_pc_pre.jpg" id="kv-src">
+            <img class="kv-base" id="kv-img" src="assets/kv_sp_pre.jpg" alt="F GAME.7 待ってろ、代々木。2026.11.1(日) 代々木第一体育館 開演15:00 開場14:00 KICK OFF17:00">
           </picture>
         </div>
       </div>
     </div>
+    <p class="kv-note" id="kv-note" hidden><span>無料席の場合も、チケットサイトでのお手続き（発券）が必要です</span></p>
     <!-- 対戦相手発表カウントダウン（8/10 18:00に自動で消灯） -->
     <div class="vs-count fx d1" id="vs-count" hidden>
       <div class="vc-line" id="vc-line"></div>
@@ -1276,7 +1332,8 @@ const CONFIG = {
   // ===== 緊急お知らせバー（サイト最上部）: show:false で非表示 =====
   notice: {
     show: true,
-    text: "イベント情報を更新！下部ページをチェック！"
+    text: "イベント情報を更新！下部ページをチェック！",
+    href: "#events" // タップ時のスクロール先
   },
   // ===== 当日スケジュール: tが空の行はサブ項目表示 =====
   timetable: [
@@ -1295,9 +1352,9 @@ const CONFIG = {
   DATA_URL: "https://script.google.com/macros/s/AKfycbwpjfgwhLprkYa3VvFO7L0vR_yemrkViInOZwfqbSvWxbWc2zLcNLQ4iZhz9HjkWdlV2Q/exec", // 進捗トラッカー(GAS)
   roadVideoId: "v-hMbLVi9qc", // 第1話。GAS連携時はroadVideos(自動検出)が優先され、2話以降も自動で並ぶ
   links: [
-    { label:"チケットぴあ", url:"https://w.pia.jp/t/fgame6/" }, // ※F GAME.7用URL発行後に差し替え
+    { label:"チケットぴあ", url:"https://w.pia.jp/t/fgame7-y/" },
     { label:"ローチケ", url:"https://l-tike.com/ashisalfc/" },
-    { label:"mu-mo TICKET", url:"http://r.y-tickets.jp/ashisalfc2602" }
+    { label:"mu-mo TICKET", url:"http://r.y-tickets.jp/ashisalfc2603" }
   ],
   // ===== FC先行期間の購入遷移先（※あしもん側の販売ページURLが決まったら差し替え） =====
   fcLinks: {
@@ -1389,21 +1446,65 @@ function schedStatus(s){
   return "done";
 }
 
-/* 対戦相手発表カウントダウン */
+/* ローディング: 最短1.15秒見せて、稲光→フェードで開幕 */
+(function(){
+  const ld = document.getElementById("loader");
+  if (!ld) return;
+  const t0 = performance.now();
+  const MIN = 1150;
+  function finish(){
+    const wait = Math.max(0, MIN - (performance.now() - t0));
+    setTimeout(()=>{
+      ld.classList.add("zap");            // 一瞬の稲光
+      setTimeout(()=>ld.classList.add("done"), 200);
+      setTimeout(()=>ld.remove(), 900);
+    }, wait);
+  }
+  if (document.readyState === "complete") finish();
+  else window.addEventListener("load", finish);
+  setTimeout(()=>{ ld.classList.add("done"); setTimeout(()=>ld.remove(), 700); }, 4500); // 保険
+})();
+
+/* KV: 対戦相手発表(8/10 18:00)と同時に「世界最強、降臨。」版へ自動切替 */
+window.__applyRevealKV = function(){
+  const s = document.getElementById("kv-src");
+  const i = document.getElementById("kv-img");
+  const n = document.getElementById("kv-note");
+  if (n) n.hidden = false; // 小学生無料の注記もKVと同時に表示
+  if (s) s.srcset = "assets/kv_pc.jpg";
+  if (i){ i.src = "assets/kv_sp.jpg"; i.alt = "F GAME.7 世界最強、降臨。あしざるFC vs フットサル世界選抜（ORTIZ／RICARDINHO） 2026.11.1(日) 代々木第一体育館 開演15:00 開場14:00 KICK OFF17:00 小学生無料（2階席・3階席対象）"; }
+};
+(function(){
+  if (new Date() >= new Date("2026-08-10T18:00:00+09:00")) window.__applyRevealKV();
+})();
+
+/* 対戦相手発表カウントダウン（時間・分・秒、毎秒更新） */
 (function(){
   const el = document.getElementById("vs-count");
   if (!el) return;
   const target = new Date("2026-08-10T18:00:00+09:00");
-  const now = new Date();
-  if (now >= target) return; // 発表後は表示しない
-  const d0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const d1 = new Date(target.getFullYear(), target.getMonth(), target.getDate());
-  const days = Math.round((d1 - d0) / 86400000);
   const line = document.getElementById("vc-line");
-  line.innerHTML = days <= 0
-    ? '対戦相手発表 <b style="font-size:42px">本日 18:00</b>'
-    : '対戦相手発表まで <span class="vc-sm">あと</span><b>' + days + '</b><span class="vc-sm">日</span>';
-  el.hidden = false;
+  const pad = v => String(v).padStart(2,"0");
+  function render(){
+    const diff = target - new Date();
+    if (diff <= 0){
+      el.hidden = true;
+      if (window.__applyRevealKV) window.__applyRevealKV(); // その場でKVも切替
+      return false;
+    }
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    line.innerHTML = '<span class="vc-cap">対戦相手発表まで あと</span>'
+      + '<span class="vc-nums">'
+      + (h > 0 ? '<b>' + h + '</b><i>時間</i>' : '')
+      + '<b>' + pad(m) + '</b><i>分</i><b>' + pad(s) + '</b><i>秒</i></span>';
+    return true;
+  }
+  if (render()){
+    el.hidden = false;
+    const tm = setInterval(()=>{ if (!render()) clearInterval(tm); }, 1000);
+  }
 })();
 
 /* 販売スケジュール: 現在フェーズのハイライト */
@@ -1520,6 +1621,11 @@ addEventListener("scroll", ()=>hd.classList.toggle("scrolled", scrollY > 24), {p
     const nb = document.getElementById("notice-bar");
     document.getElementById("notice-text").textContent = CONFIG.notice.text;
     nb.hidden = false;
+    // タップで該当セクションへ（CONFIG.notice.href で変更可）
+    nb.addEventListener("click", ()=>{
+      const tgt = document.querySelector((CONFIG.notice && CONFIG.notice.href) || "#events");
+      if (tgt) tgt.scrollIntoView({ behavior:"smooth", block:"start" });
+    });
     // バー表示時はヒーロー上部の余白を詰める（固定ヘッダー分はバー側のmarginで確保済み）
     const hero = document.querySelector(".hero");
     if (hero) hero.style.paddingTop = "28px";
