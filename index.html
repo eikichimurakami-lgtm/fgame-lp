@@ -229,20 +229,29 @@ button{font-family:inherit;cursor:pointer}
   .ld-sub{animation:none;opacity:1}
 }
 .opp-en{font-family:var(--font-disp);font-size:13px;letter-spacing:.3em;color:var(--gold);margin-bottom:6px;text-indent:.3em}
-.opp-box{margin-top:14px;padding:14px 12px 16px;border:1px solid rgba(245,193,90,.3);border-radius:14px;
+.opp-box{margin-top:12px;padding:11px 12px 12px;border:1px solid rgba(245,193,90,.3);border-radius:14px;
   background:linear-gradient(180deg, rgba(245,193,90,.05), rgba(255,255,255,.02))}
-.opp-box-lbl{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:12px;
+.opp-box-lbl{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:9px;
   font-size:11px;font-weight:900;letter-spacing:.14em;color:var(--gold)}
 .opp-box-lbl::before,.opp-box-lbl::after{content:"";width:26px;height:1px;background:rgba(245,193,90,.5)}
-.opp-players{display:flex;gap:16px;justify-content:center}
-.opp-p{display:grid;gap:2px;justify-items:center;max-width:150px}
-.opp-p img{width:84px;height:84px;border-radius:50%;object-fit:cover;margin-bottom:6px;
-  border:2px solid rgba(245,193,90,.55);box-shadow:0 6px 20px rgba(0,0,0,.5)}
-.opp-p b{font-family:var(--font-disp);font-weight:400;font-size:15px;letter-spacing:.06em;color:#fff}
-.opp-p i{font-style:normal;font-size:10px;font-weight:700;color:var(--mist)}
-.opp-p span{margin-top:5px;font-size:10px;font-weight:700;color:var(--mist);text-align:center;line-height:1.7}
+.opp-players{display:flex;gap:10px 20px;justify-content:center;flex-wrap:wrap}
+.opp-p{display:flex;align-items:center;gap:9px;text-align:left}
+.opp-p img{width:46px;height:46px;max-width:none;flex:none;aspect-ratio:1/1;border-radius:50%;object-fit:cover;
+  border:2px solid rgba(245,193,90,.55);box-shadow:0 4px 14px rgba(0,0,0,.5)}
+.opp-pt{display:grid;gap:1px}
+.opp-pt b{font-family:var(--font-disp);font-weight:400;font-size:14px;letter-spacing:.06em;color:#fff;line-height:1.1}
+.opp-pt i{font-style:normal;font-size:9.5px;font-weight:700;color:var(--mist)}
 .sp-only{display:none}
 @media(max-width:768px){.sp-only{display:inline}}
+.guest{min-height:190px}
+.guest:not(.guest-photo){display:flex;flex-direction:column;justify-content:center}
+.guest.guest-photo{border-color:rgba(245,193,90,.4)}
+.gp-row{display:flex;align-items:center;justify-content:center;gap:15px;margin-top:10px}
+.gp-img{width:104px;height:104px;max-width:none;flex:none;aspect-ratio:1/1;border-radius:14px;object-fit:cover;
+  border:1px solid rgba(245,193,90,.5);box-shadow:0 8px 24px rgba(0,0,0,.55)}
+.gp-txt{text-align:left}
+.gp-name{font-family:var(--font-disp);font-size:23px;line-height:1.1;color:#fff;letter-spacing:.05em}
+.gp-role{font-size:11px;font-weight:800;color:var(--gold);margin-top:4px;letter-spacing:.05em}
 .rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
 .notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;
   padding:12px 18px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.07em;color:#fff;
@@ -1142,10 +1151,15 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
 
     <div class="guest-head">GUEST</div>
     <div class="guests reveal stagger">
-      <div class="guest" data-en="?">
+      <div class="guest guest-photo" data-en="HIPPY">
         <span class="no">GUEST 01</span>
-        <div class="gn gn-secret">SECRET</div>
-        <div class="gr">近日発表</div>
+        <div class="gp-row">
+          <img class="gp-img" src="assets/guest_hippy.jpg" alt="HIPPY">
+          <div class="gp-txt">
+            <div class="gp-name">HIPPY</div>
+            <div class="gp-role">シンガーソングライター</div>
+          </div>
+        </div>
       </div>
       <div class="guest" data-en="?">
         <span class="no">GUEST 02</span>
@@ -1495,21 +1509,13 @@ window.__applyRevealKV = function(){
         <div class="opp-box">
           <div class="opp-box-lbl">主な出場選手</div>
           <div class="opp-players">
-            <div class="opp-p">
-              <img src="assets/player_ortiz.jpg" alt="ORTIZ">
-              <b>ORTIZ</b><i>オルティス</i>
-              <span>元スペイン代表</span>
-            </div>
-            <div class="opp-p">
-              <img src="assets/player_ricardinho.jpg" alt="RICARDINHO">
-              <b>RICARDINHO</b><i>リカルジーニョ</i>
-              <span>元ポルトガル代表</span>
-            </div>
+            <div class="opp-p"><img src="assets/player_ortiz.jpg" alt="ORTIZ"><span class="opp-pt"><b>ORTIZ</b><i>オルティス／元スペイン代表</i></span></div>
+            <div class="opp-p"><img src="assets/player_ricardinho.jpg" alt="RICARDINHO"><span class="opp-pt"><b>RICARDINHO</b><i>リカルジーニョ／元ポルトガル代表</i></span></div>
           </div>
         </div>`;
   // オープニングマッチの対戦相手表記
   document.querySelectorAll(".sub-ev .ss").forEach(el=>{
-    if (el.textContent.indexOf("サルベイビー") > -1) el.textContent = "サルベイビー vs フットサル世界選抜";
+    // オープニングマッチ（サルベイビー）の対戦相手は別途発表のため据え置き
   });
   if (s) s.srcset = "assets/kv_pc.jpg";
   if (i){ i.src = "assets/kv_sp.jpg"; i.alt = "F GAME.7 世界最強、降臨。あしざるFC vs フットサル世界選抜（ORTIZ／RICARDINHO） 2026.11.1(日) 代々木第一体育館 開演15:00 開場14:00 KICK OFF17:00 小学生無料（2階席・3階席対象）"; }
