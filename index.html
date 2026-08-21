@@ -16,10 +16,10 @@
 <title>F GAME.7 | あしざるFC エフゲーム チケット</title>
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="favicon.png">
 
 <!-- SEO -->
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta name="description" content="F GAME.7 公式チケットサイト。2026.11.1(日) 国立代々木競技場第一体育館。座席を確認してそのまま購入できます。">
 <meta name="keywords" content="あしざるFC,あしざるFC チケット,エフゲーム,FGAME,F.GAME,F GAME.7,フットサル,チケット,代々木">
 <meta name="author" content="あしざるFC">
@@ -99,6 +99,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@600;800&display=swap" rel="stylesheet">
 <style>
+html{background:#0a0a0e;color-scheme:dark}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#0a0a0e}
+::-webkit-scrollbar-thumb{background:#2a2a34;border-radius:6px;border:2px solid #0a0a0e}
+::-webkit-scrollbar-thumb:hover{background:#3a3a46}
 :root{
   --bolt:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 340'><g stroke='%23ffffff' fill='none' stroke-linecap='round' stroke-linejoin='round'><path stroke-width='4' d='M64 0 L55 52 L66 64 L48 122 L60 132 L40 200 L54 210 L34 284 L44 340'/><path stroke-width='2.4' d='M60 132 L82 170'/><path stroke-width='2' d='M48 122 L30 152'/></g></svg>");
   --black:#08080b;
@@ -151,7 +156,7 @@ button{font-family:inherit;cursor:pointer}
 .road-eps button:hover{color:#fff;border-color:rgba(255,255,255,.35)}
 .road-eps button.on{color:#fff;background:var(--red);border-color:var(--red);box-shadow:0 0 14px rgba(230,0,18,.4)}
 .kv-note{display:flex;justify-content:center;margin:-38px auto 26px;padding:0 16px;position:relative;z-index:3}
-.kv-note span{display:inline-flex;align-items:center;gap:9px;max-width:100%;padding:8px 18px;border-radius:12px;
+.kv-note span{display:inline-flex;align-items:center;gap:6px 9px;flex-wrap:wrap;justify-content:center;max-width:100%;padding:8px 18px;border-radius:12px;
   background:linear-gradient(135deg, rgba(230,0,18,.1), rgba(16,14,18,.85));
   border:1px solid rgba(255,85,99,.35);
   font-size:11.5px;font-weight:700;color:#ffc9ce;letter-spacing:.06em;line-height:1.65;text-align:left}
@@ -220,8 +225,8 @@ button{font-family:inherit;cursor:pointer}
 @keyframes ldBar{to{width:100%}}
 .ld-sub{font-family:var(--font-disp);font-size:11px;letter-spacing:.5em;color:var(--gold);opacity:0;text-indent:.5em;
   animation:ldIn .5s .5s forwards}
-#loader .ld-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
-#loader.zap .ld-flash{animation:ldFlash .32s ease-out}
+#loader .ld-flash{position:absolute;inset:0;background:transparent;pointer-events:none}
+#loader.zap .ld-flash{background:#fff;opacity:0;animation:ldFlash .32s ease-out}
 @keyframes ldFlash{0%{opacity:0}12%{opacity:.85}100%{opacity:0}}
 @media(prefers-reduced-motion:reduce){
   .ld-logo{animation:none;opacity:1;transform:none;filter:none}
@@ -252,6 +257,293 @@ button{font-family:inherit;cursor:pointer}
 .gp-txt{text-align:left}
 .gp-name{font-family:var(--font-disp);font-size:23px;line-height:1.1;color:#fff;letter-spacing:.05em}
 .gp-role{font-size:11px;font-weight:800;color:var(--gold);margin-top:4px;letter-spacing:.05em}
+.ev-link{display:inline-flex;align-self:flex-start;margin-top:9px;font-size:11.5px;font-weight:900;color:var(--gold);
+  border:1px solid rgba(245,193,90,.55);border-radius:999px;padding:6px 15px;text-decoration:none;letter-spacing:.04em;transition:.25s}
+.ev-link:hover{background:rgba(245,193,90,.14);transform:translateY(-1px)}
+.stock-flash{display:flex;align-items:center;gap:14px;margin:0 0 16px;padding:14px 18px;border-radius:13px;
+  background:linear-gradient(135deg, rgba(230,0,18,.14), rgba(16,14,18,.94) 55%);border:1px solid rgba(230,0,18,.55);
+  box-shadow:0 0 26px rgba(230,0,18,.18);position:relative;overflow:hidden}
+.stock-flash::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.09) 50%,transparent 58%);
+  transform:translateX(-100%);animation:nbShine 4s ease-in-out infinite}
+.stock-flash[hidden]{display:none!important}
+.sf-tag{flex:none;font-size:11px;font-weight:900;letter-spacing:.12em;color:#fff;background:var(--red);
+  border-radius:7px;padding:6px 11px;animation:nowPulse 1.8s ease-in-out infinite}
+.sf-list{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.sf-list li{font-size:13px;font-weight:800;color:#fff;letter-spacing:.02em;line-height:1.6}
+.sf-list li b{color:var(--gold);font-weight:900;margin-right:7px}
+/* ===== メニュー ===== */
+.menu-btn{position:relative;width:46px;height:46px;margin-left:12px;border-radius:14px;cursor:pointer;flex:none;
+  background:linear-gradient(150deg,#ff2f42,#8f000d);border:0;box-shadow:0 6px 20px rgba(230,0,18,.4), inset 0 1px 0 rgba(255,255,255,.25);
+  display:grid;place-items:center;transition:transform .25s, box-shadow .25s}
+.menu-btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(230,0,18,.55), inset 0 1px 0 rgba(255,255,255,.25)}
+.mb-lines{display:grid;gap:6px;width:20px}
+.mb-lines span{display:block;height:2.4px;border-radius:2px;background:#fff;transition:.3s}
+.mb-lines span:nth-child(2){width:13px;justify-self:end;background:var(--gold)}
+.menu-btn:hover .mb-lines span:nth-child(2){width:20px}
+.menu-pop{position:fixed;inset:0;z-index:400;background:rgba(5,5,9,.7);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  display:grid;place-items:start end;padding:70px 16px 16px}
+.menu-pop[hidden]{display:none}
+.mp-panel{width:min(330px,92vw);background:linear-gradient(180deg,#17171f,#0c0c11);border:1px solid rgba(245,193,90,.45);
+  border-radius:20px;box-shadow:0 30px 90px rgba(0,0,0,.75), 0 0 40px rgba(230,0,18,.12);overflow:hidden;
+  animation:mpIn .3s cubic-bezier(.2,.8,.2,1);position:relative}
+.mp-panel::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(80% 40% at 80% 0%, rgba(230,0,18,.14), transparent 70%)}
+@keyframes mpIn{from{opacity:0;transform:translateY(-14px) scale(.96)}to{opacity:1;transform:none}}
+.mp-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 8px}
+.mp-ttl{font-family:var(--font-disp);font-size:13px;letter-spacing:.34em;color:var(--gold)}
+.mp-close{background:none;border:0;color:#fff;font-size:16px;cursor:pointer;padding:6px}
+.mp-links{display:grid;padding:2px 12px 14px}
+.mp-links a{display:flex;align-items:center;gap:12px;padding:15px 10px;color:#fff;text-decoration:none;font-size:14.5px;font-weight:900;
+  border-top:1px solid rgba(255,255,255,.08);transition:.22s;letter-spacing:.02em}
+.mp-links a:first-child{border-top:0}
+.mp-links a[hidden]{display:none!important}
+.mp-links a b{font-family:var(--font-disp);font-weight:400;font-size:12px;color:var(--red);letter-spacing:.1em}
+.mp-links .mp-go{margin-left:auto;color:var(--gold);opacity:0;transform:translateX(-6px);transition:.22s}
+.mp-links a:hover{color:var(--gold);padding-left:15px}
+.mp-links a:hover .mp-go{opacity:1;transform:none}
+/* ===== 下層ページ ===== */
+.subpage{position:fixed;inset:0;z-index:390;overflow-y:auto;
+  background:#0a0a0e radial-gradient(110% 46% at 50% 0%, #1d1d28, #0a0a0e 62%)}
+.subpage::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(46% 30% at 85% 8%, rgba(230,0,18,.16), transparent 70%)}
+.subpage[hidden]{display:none}
+.sp-inner{max-width:780px;margin:0 auto;padding:32px 22px 90px;position:relative}
+.sp-back{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:9px 18px;
+  font-size:12px;font-weight:900;cursor:pointer;margin-bottom:30px;transition:.25s}
+.sp-back:hover{border-color:var(--gold);color:var(--gold);transform:translateX(-3px)}
+.subpage .sec-en{display:block;font-family:var(--font-disp);font-size:12px;letter-spacing:.42em;color:var(--red);margin-bottom:8px}
+.subpage .sec-jp{position:relative;font-size:clamp(28px,6.4vw,40px);font-weight:900;margin:0 0 8px;padding-bottom:14px;line-height:1.3}
+.subpage .sec-jp::after{content:"";position:absolute;left:0;bottom:0;width:64px;height:3px;
+  background:linear-gradient(90deg,var(--red),var(--gold));border-radius:3px}
+.sp-lead{margin:20px 0 30px;font-size:15px;font-weight:700;line-height:2.1;color:#e8e8ee}
+.sp-lead b{color:#fff;background:linear-gradient(transparent 68%, rgba(230,0,18,.45) 68%)}
+.sp-block{margin:0 0 20px;padding:22px 22px 18px;border:1px solid var(--line);border-radius:16px;
+  background:linear-gradient(160deg, rgba(255,255,255,.045), rgba(255,255,255,.015));position:relative;overflow:hidden}
+.sp-block::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--red),transparent 80%)}
+.sp-block h3{margin:0 0 12px;font-size:16.5px;font-weight:900;color:#fff;display:flex;align-items:center;gap:10px}
+.sp-block h3::before{content:"";width:8px;height:8px;background:var(--red);border-radius:2px;transform:rotate(45deg);flex:none;box-shadow:0 0 10px rgba(230,0,18,.8)}
+.sp-block p{margin:0 0 8px;font-size:13.5px;line-height:2.05;color:#d9d9e2;font-weight:600}
+.sp-block p b{color:var(--gold)}
+.sp-cta{margin-top:14px}
+.sp-note{font-size:13px;font-weight:900;color:#ff8a94;margin-top:16px}
+/* ルール */
+.rule-list{display:grid;gap:12px;margin-bottom:6px}
+.rule{display:flex;gap:16px;align-items:flex-start;padding:17px 18px;border:1px solid var(--line);border-radius:14px;
+  background:linear-gradient(150deg, rgba(255,255,255,.045), rgba(255,255,255,.015));transition:.25s;counter-increment:rule}
+.rule:hover{border-color:rgba(230,0,18,.55);transform:translateX(4px)}
+.rule::before{content:"0" counter(rule);font-family:var(--font-disp);font-size:26px;line-height:1;color:var(--red);
+  text-shadow:0 0 16px rgba(230,0,18,.4);flex:none;margin-top:2px}
+.rule-list{counter-reset:rule}
+.rule b{display:block;font-size:15.5px;color:#fff;margin-bottom:4px}
+.rule p{margin:0;font-size:12.5px;color:var(--mist);font-weight:700;line-height:1.9}
+/* 歴史 */
+.hist-list{display:grid;gap:16px;position:relative}
+.hist{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(255,255,255,.03);padding:0;transition:.25s}
+.hist:hover{border-color:rgba(230,0,18,.5);transform:translateY(-2px)}
+.hkv{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.hrow{display:flex;gap:16px;align-items:center;padding:13px 16px}
+.hist .hn{flex:none;font-family:var(--font-disp);font-size:28px;line-height:1;color:rgba(255,255,255,.3);width:52px;letter-spacing:.02em}
+.hist .hd i{display:block;font-style:normal;font-size:15.5px;color:#fff;font-weight:900}
+.hist .hd i em{font-style:normal;font-size:11.5px;color:var(--mist);font-weight:800;margin-left:6px}
+.hist .hd b{display:block;font-size:12px;color:var(--mist);font-weight:700;margin-top:3px}
+.hist .hd u{display:block;text-decoration:none;font-size:11.5px;color:rgba(255,255,255,.42);font-weight:700;margin-top:3px}
+.hist .hd u.gold{color:var(--gold);font-weight:900}
+.hist .hd u.win{color:#7ee08a;font-weight:900}
+.hist.now{border:1.5px solid rgba(230,0,18,.65);margin-top:6px;padding:0;
+  background:linear-gradient(135deg, rgba(230,0,18,.16), rgba(255,255,255,.03) 62%);box-shadow:0 0 34px rgba(230,0,18,.2)}
+.hist.now .hn{color:var(--red);text-shadow:0 0 18px rgba(230,0,18,.5)}
+.hist.now .hd i{font-size:17px}
+/* ジュニア控えめ情報 */
+.sp-quiet{margin-top:30px;padding-top:16px;border-top:1px dashed rgba(255,255,255,.16)}
+.sp-quiet p{margin:0 0 6px;font-size:11px;color:var(--mist);font-weight:700;line-height:1.9}
+/* ===== 第2カウントダウン(サルベイビー) ===== */
+.vs-count.vc-mini{margin-top:-10px;padding:11px 20px 9px}
+.vc-mini .vc-line{gap:2px}
+.vc-mini .vc-cap{font-size:clamp(13px,3.4vw,16px)}
+.vc-mini .vc-nums b{font-size:clamp(26px,7vw,38px)}
+.vc-mini .vc-nums i{font-size:clamp(11px,3vw,14px);margin:0 5px 0 2px}
+.vc-mini .vc-sub{font-size:clamp(11px,2.8vw,12.5px)}
+/* メニューボタン: 右上固定 */
+.menu-btn{position:fixed;top:10px;right:12px;z-index:401;margin:0;width:auto;height:auto;
+  padding:11px 16px;gap:9px;display:inline-flex;align-items:center;
+  font-size:12px;font-weight:900;color:#fff;letter-spacing:.1em;font-family:var(--font-jp)}
+.tk-jump{display:inline-flex;align-items:center;gap:10px;margin:-10px auto 30px;padding:10px 20px;border-radius:999px;
+  background:rgba(16,14,18,.9);border:1px solid rgba(245,193,90,.55);color:#fff;text-decoration:none;
+  font-size:13px;font-weight:900;letter-spacing:.05em;transition:.25s;position:relative;left:50%;transform:translateX(-50%)}
+.tk-jump:hover{border-color:var(--gold);box-shadow:0 0 22px rgba(245,193,90,.25)}
+.tk-jump b{color:var(--gold);transition:transform .25s}
+.tk-jump:hover b{transform:translateX(4px)}
+.tk-jump[hidden]{display:none!important}
+.tj-dot{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 9px rgba(230,0,18,.9);
+  animation:nowPulse 1.8s ease-in-out infinite}
+#ticket-news .stock-flash{max-width:760px}
+.tn-note{max-width:760px;margin:10px 0 0;font-size:11px;font-weight:700;color:var(--mist)}
+.kv-note .nb1{font-style:normal;display:inline-block}
+/* ジュニア発表CTA */
+.junior-cta{display:flex;flex-direction:column;align-items:center;gap:5px;max-width:620px;margin:-8px auto 30px;
+  padding:15px 22px 13px;border-radius:14px;text-decoration:none;position:relative;overflow:hidden;
+  background:linear-gradient(135deg, rgba(245,193,90,.16), rgba(16,14,18,.94) 55%);
+  border:1.5px solid var(--gold);box-shadow:0 0 34px rgba(245,193,90,.25);transition:.25s}
+.junior-cta:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(245,193,90,.35)}
+.junior-cta::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.12) 50%,transparent 58%);
+  transform:translateX(-100%);animation:nbShine 3.6s ease-in-out infinite;pointer-events:none}
+.junior-cta[hidden]{display:none!important}
+.jc-tag{font-size:11px;font-weight:900;letter-spacing:.1em;color:#0a0a0e;background:var(--gold);border-radius:6px;padding:3px 10px}
+.jc-main{font-size:clamp(17px,4.6vw,22px);font-weight:900;color:#fff;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.jc-main .jc-go{font-size:12.5px;color:var(--gold);font-weight:900}
+/* チケット最新情報リスト */
+.tn-lead{max-width:760px;margin:14px 0 20px;font-size:13.5px;font-weight:700;color:var(--mist);line-height:1.9}
+.tn-list{list-style:none;margin:26px 0 0;padding:0;max-width:760px;display:grid;gap:10px}
+.tn-list li{display:flex;gap:14px;align-items:center;padding:15px 18px;border:1px solid rgba(230,0,18,.4);border-radius:13px;
+  background:linear-gradient(135deg, rgba(230,0,18,.1), rgba(16,14,18,.94) 55%)}
+.tn-list li:first-child{border-color:rgba(230,0,18,.7);box-shadow:0 0 24px rgba(230,0,18,.18)}
+.tn-date{flex:none;font-family:var(--font-disp);font-size:13px;letter-spacing:.06em;color:var(--gold);
+  border:1px solid rgba(245,193,90,.5);border-radius:7px;padding:4px 9px 3px}
+.tn-list p{margin:0;font-size:14px;font-weight:800;color:#fff;line-height:1.8}
+.tn-list p b{color:var(--gold);font-weight:900;margin-right:7px}
+/* ジュニアCTA強化 */
+.junior-cta{gap:9px;padding:22px 26px 19px;max-width:660px;border:0;position:relative;
+  background:linear-gradient(140deg, rgba(245,193,90,.2), rgba(18,14,10,.96) 40%, rgba(230,0,18,.16));
+  animation:jcGlow 2.2s ease-in-out infinite}
+.junior-cta::before{content:"";position:absolute;inset:0;border-radius:14px;padding:2.5px;pointer-events:none;
+  background:linear-gradient(120deg, var(--gold), #fff3d0 25%, var(--gold) 50%, var(--red) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:jcBorder 3s linear infinite;background-size:220% 100%}
+@keyframes jcBorder{to{background-position:220% 0}}
+@keyframes jcGlow{0%,100%{box-shadow:0 0 34px rgba(245,193,90,.4)}50%{box-shadow:0 0 64px rgba(245,193,90,.6), 0 0 30px rgba(230,0,18,.35)}}
+.jc-tag{background:var(--red);color:#fff;font-size:13px;padding:6px 16px;letter-spacing:.12em;animation:nowPulse 1.6s ease-in-out infinite}
+.jc-main{font-size:clamp(24px,6.6vw,34px);text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.jc-emb{width:44px;height:44px;object-fit:contain;flex:none;filter:drop-shadow(0 4px 12px rgba(0,0,0,.6))}
+.junior-cta .jc-go{font-size:14px;color:var(--gold);font-weight:900;letter-spacing:.06em}
+/* ジュニアページのエンブレム */
+.sp-emblem{width:76px;height:76px;object-fit:contain;margin-bottom:14px;filter:drop-shadow(0 8px 22px rgba(0,0,0,.6))}
+/* 無料席注記: 常に1行・PCは大きめ */
+.kv-note{padding:0 8px}
+.kv-note span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;flex-wrap:nowrap;box-sizing:border-box;max-width:100%;
+  font-size:clamp(10px,3.2vw,15px);padding:9px 15px;letter-spacing:0;
+  color:#fff;font-weight:900;border:1.5px solid #ff2d3f;border-radius:999px;
+  background:linear-gradient(135deg, rgba(230,0,18,.5), rgba(24,8,11,.97) 62%);
+  box-shadow:0 0 24px rgba(230,0,18,.5);animation:kvNotePulse 2s ease-in-out infinite}
+.kv-note span::before{content:"！";flex:none;display:grid;place-items:center;width:1.5em;height:1.5em;border-radius:50%;
+  background:linear-gradient(135deg,#f7d98c,var(--gold) 60%,#c9962e);color:#1a1206;font-weight:900;font-size:.92em}
+@keyframes kvNotePulse{0%,100%{box-shadow:0 0 16px rgba(230,0,18,.4)}50%{box-shadow:0 0 34px rgba(230,0,18,.75)}}
+/* F GAMEとは */
+.sp-textlink{display:inline-block;margin:-14px 0 26px;font-size:13.5px;font-weight:900;color:var(--gold);text-decoration:none;
+  border-bottom:1px solid rgba(245,193,90,.5);padding-bottom:2px;transition:.25s}
+.sp-textlink:hover{border-color:var(--gold);padding-left:4px}
+.sp-voice{border-color:rgba(230,0,18,.4)}
+.sp-voice::before{background:linear-gradient(180deg,var(--gold),transparent 80%)}
+.voice-from{font-size:11.5px!important;color:var(--gold)!important;font-weight:900!important;margin-bottom:10px!important}
+.sp-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+/* 会場写真ヒーロー */
+.sp-hero{margin:0 0 24px;border-radius:18px;overflow:hidden;border:1px solid rgba(245,193,90,.35);position:relative}
+.sp-hero img{display:block;width:100%;aspect-ratio:16/8.5;object-fit:cover}
+.sp-hero figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 18px 12px;font-size:11.5px;font-weight:800;color:#fff;
+  background:linear-gradient(180deg,transparent,rgba(5,5,9,.88));letter-spacing:.04em}
+/* 金ボタン */
+.btn-gold{background:linear-gradient(135deg,#f7d98c,var(--gold) 45%,#c9962e);color:#1a1206;font-weight:900;
+  box-shadow:0 8px 26px rgba(245,193,90,.35);border:0}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(245,193,90,.5)}
+.btn-gold .arrow{color:#1a1206}
+/* 想いブロック: 引用符飾り */
+.sp-voice{position:relative}
+.sp-voice::after{content:"\201C";position:absolute;top:-6px;right:14px;font-family:Georgia,serif;font-size:88px;line-height:1;
+  color:rgba(245,193,90,.18);pointer-events:none}
+/* ルールカードに写真スロット */
+.rule{flex-wrap:wrap}
+.rule .rphoto{width:100%;order:10;margin-top:12px;border-radius:10px;display:block;aspect-ratio:16/7;object-fit:cover;
+  border:1px solid rgba(255,255,255,.12)}
+/* サブページ装飾: 斜めストライプの気配 */
+.sp-inner::before{content:"";position:absolute;top:8px;right:0;width:150px;height:150px;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(-45deg, rgba(230,0,18,.16) 0 2px, transparent 2px 11px);
+  -webkit-mask:radial-gradient(closest-side, #000, transparent);mask:radial-gradient(closest-side, #000, transparent)}
+.sp-voice .sp-photo{width:100%;display:block;border-radius:12px;margin:2px 0 16px;aspect-ratio:16/8;object-fit:cover;border:1px solid rgba(255,255,255,.14)}
+/* 見出し背景ヒーロー */
+.sp-bghero{position:relative;border-radius:18px;overflow:hidden;padding:28px 22px 24px;margin:0 0 24px;border:1px solid rgba(245,193,90,.32)}
+.sp-bghero .sp-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.sp-bghero::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg, rgba(10,10,14,.66), rgba(10,10,14,.88) 78%)}
+.sp-bghero > *:not(.sp-bg){position:relative;z-index:2}
+.sp-bghero .sp-lead{margin-bottom:20px}
+/* 想いブロック: 写真を文字の背景に */
+.sp-voice{overflow:hidden}
+.sp-voice .sp-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.17;margin:0;border:0;border-radius:0;aspect-ratio:auto;z-index:0}
+.sp-voice > *:not(.sp-photo){position:relative;z-index:1}
+/* ボタン同サイズ */
+.sp-btns .btn{flex:1 1 230px;justify-content:center;text-align:center}
+/* ジュニアCTA刷新 */
+.junior-cta{max-width:700px;padding:0;gap:0;overflow:hidden}
+.jc-tag{width:100%;border-radius:0;font-size:13.5px;padding:9px 14px;letter-spacing:.16em;text-align:center}
+.jc-body{display:flex;flex-direction:column;align-items:center;gap:7px;padding:18px 22px 17px;width:100%}
+.jc-main{font-size:clamp(18px,5.2vw,32px);line-height:1.15;white-space:nowrap;flex-wrap:nowrap;display:inline-flex;align-items:center;gap:10px}
+.jc-main .jc-emb{width:clamp(30px,7vw,42px);height:clamp(30px,7vw,42px)}
+.junior-cta .jc-go{display:inline-flex;align-items:center;gap:8px;margin-top:4px;padding:9px 22px;border-radius:999px;
+  background:linear-gradient(135deg,#f7d98c,var(--gold) 45%,#c9962e);color:#1a1206;font-size:13.5px;font-weight:900}
+/* ===== 見出しの刷新: 線を廃止してマーカー&チップの躍動感に ===== */
+.sec-jp::before{display:none!important}
+.subpage .sec-jp::after{display:none!important}
+.sec-en{display:inline-block;background:linear-gradient(140deg,#ff2233,#c4000f);color:#fff;padding:7px 16px 6px;border-radius:7px;
+  transform:skewX(-8deg);letter-spacing:.18em;text-indent:.18em;font-size:13px;font-weight:700;
+  box-shadow:0 5px 18px rgba(230,0,18,.45), inset 0 1px 0 rgba(255,255,255,.22);margin-bottom:6px}
+.sec-jp{display:block;width:fit-content;margin-top:2px;padding:0;transform:none;background:none}
+.subpage .sec-jp{padding-bottom:6px}
+.rphoto.r-ill{background:#101016;object-fit:unset;height:auto;aspect-ratio:auto}
+.sp-logo{width:min(240px,55%);display:block;margin-bottom:14px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5))}
+.sec-en{display:flex!important;align-items:center;gap:9px;background:none;box-shadow:none;transform:none;
+  padding:0;border-radius:0;text-indent:0;margin-bottom:4px;
+  font-family:var(--font-disp);font-size:12.5px;font-weight:400;letter-spacing:.34em;color:var(--gold)}
+.sec-en::before{content:"";width:8px;height:8px;background:var(--red);transform:rotate(45deg);flex:none;
+  box-shadow:0 0 10px rgba(230,0,18,.75)}
+.sec-logo-ttl{display:flex;align-items:flex-end;gap:7px;background:none!important;transform:none;padding:0 0 6px;
+  flex-wrap:nowrap;white-space:nowrap;font-size:clamp(19px,5.6vw,34px)}
+.ttl-logo{width:clamp(118px,33vw,200px);display:block;transform:translateY(3px);flex:none}
+#junior-apply-btn{width:100%;justify-content:center;font-size:17px;padding:18px 22px;margin-top:20px}
+.sec-jp .nw{display:inline-block;margin-right:.3em}
+.sec-jp{-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.sp-sub{margin:-16px 0 24px;font-size:12.5px;font-weight:700;color:var(--mist);line-height:1.9}
+.jr-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.jr-grid .sp-block{margin:0}
+.jr-grid .sp-block p{margin:0}
+@media(max-width:560px){.jr-grid{grid-template-columns:1fr}}
+.mp-logo{height:17px;width:auto;display:inline-block;margin-right:-2px}
+.h3-logo{gap:7px}
+.h3-logo-img{height:22px;width:auto;display:inline-block;transform:translateY(1px)}
+.hist .hd .crowd{display:block;font-size:11.5px;font-weight:800;color:#b9b9c6;margin-top:3px}
+.hist .hd .crowd.gold{color:var(--gold)}
+.sel-wrap{display:grid;gap:12px}
+.sel-venue{padding:14px 15px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.03)}
+.sel-venue b{display:block;font-size:13.5px;color:#fff;margin-bottom:10px}
+.sel-days{display:flex;flex-wrap:wrap;gap:7px}
+.sel-days span{font-family:var(--font-disp);font-size:13.5px;letter-spacing:.04em;color:var(--gold);
+  border:1px solid rgba(245,193,90,.5);border-radius:8px;padding:5px 10px 4px;background:rgba(245,193,90,.07)}
+.sel-time{justify-self:start;font-size:13px;font-weight:900;color:#0a0a0e;background:linear-gradient(135deg,#f7d98c,var(--gold) 55%,#c9962e);
+  border-radius:999px;padding:8px 18px}
+/* ジュニアVSカード */
+.jr-vs{position:relative;border-radius:16px;overflow:hidden;margin:0 0 22px;border:1.5px solid rgba(245,193,90,.45);
+  background:linear-gradient(120deg, rgba(230,0,18,.14), rgba(14,12,16,.96) 45%, rgba(245,193,90,.12));
+  box-shadow:0 0 34px rgba(245,193,90,.2)}
+.jv-tag{display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;
+  background:linear-gradient(120deg,#ff2233,var(--red) 55%,#a3000d);color:#fff;padding:8px 10px 7px;position:relative;overflow:hidden}
+.jv-tag::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.28) 48%, transparent 62%);
+  transform:translateX(-100%);animation:nbShine 3.4s ease-in-out infinite;pointer-events:none}
+.jv-en{font-family:var(--font-disp);font-style:normal;font-size:11px;letter-spacing:.42em;text-indent:.42em;color:rgba(255,255,255,.85)}
+.jv-jp{font-size:clamp(10.5px,3.2vw,16px);font-weight:900;letter-spacing:0;white-space:nowrap;max-width:100%;
+  text-shadow:0 2px 10px rgba(0,0,0,.4)}
+.jv-row{display:flex;align-items:center;justify-content:center;gap:clamp(14px,5vw,38px);padding:12px 14px 11px}
+.jv-side{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 1 auto;min-width:0}
+.jv-side img{width:clamp(48px,13vw,68px);height:clamp(48px,13vw,68px);object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,.55))}
+.jv-side b{font-size:clamp(11.5px,3.1vw,15px);font-weight:900;color:#fff;text-align:center;line-height:1.35;white-space:nowrap}
+.jv-x{font-family:var(--font-disp);font-size:clamp(24px,7vw,34px);color:var(--gold);text-shadow:0 0 18px rgba(245,193,90,.5)}
+/* PC調整: 無料席注記を大きく / メニューボタンとnavの被り解消 */
+@media(min-width:768px){
+  .kv-note span{font-size:19.5px;padding:14px 28px}
+}
+@media(min-width:901px){
+  .nav{padding-right:132px}
+}
+.jr-photo{display:block;width:100%;height:auto;border-radius:16px;margin:4px 0 24px;border:1px solid rgba(255,255,255,.14)}
+.jr-apply-top{justify-content:center;font-size:14px;padding:12px 22px;margin:0 0 18px;width:auto;display:inline-flex}
 .rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
 .notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;
   padding:12px 18px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.07em;color:#fff;
@@ -284,7 +576,7 @@ section{padding:84px 0;position:relative}
 .sec-head::after{content:"";position:absolute;right:2px;top:-14px;width:56px;height:120px;background:var(--bolt) center/contain no-repeat;opacity:.1;filter:drop-shadow(0 0 14px rgba(160,180,255,.9));pointer-events:none}
 .sec-en{display:block;font-family:var(--font-disp);font-size:clamp(46px,8vw,86px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.18);letter-spacing:.02em;user-select:none}
 .sec-jp{display:flex;align-items:center;gap:14px;font-size:clamp(19px,3vw,25px);font-weight:900;letter-spacing:.05em;margin-top:-12px}
-.sec-jp::before{content:"";flex:none;width:30px;height:4px;background:var(--red)}
+.sec-jp::before{content:"";flex:none;width:34px;height:4px;border-radius:3px;background:linear-gradient(90deg,var(--red),var(--gold));box-shadow:0 0 10px rgba(230,0,18,.5)}
 
 /* ---------- header ---------- */
 header{position:fixed;inset:0 0 auto;z-index:100;background:rgba(8,8,11,.55);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
@@ -794,6 +1086,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       <a href="#faq">FAQ</a>
     </div>
     <a class="nav-cta" href="#seats">座席を確認する</a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-label="メニューを開く"><i class="mb-lines"><span></span><span></span></i>メニュー</button>
   </nav>
 </header>
 
@@ -801,6 +1094,224 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <filter id="soRough"><feTurbulence type="fractalNoise" baseFrequency="0.35" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.8"/></filter>
 </svg>
+
+<!-- ================= メニューポップアップ ================= -->
+<div class="menu-pop" id="menu-pop" hidden>
+  <div class="mp-panel">
+    <div class="mp-head"><span class="mp-ttl">MENU</span><button class="mp-close" id="mp-close" type="button" aria-label="閉じる">✕</button></div>
+    <nav class="mp-links">
+      <a href="#" data-page="page-about"><b>01</b><img class="mp-logo" src="assets/logo_fgame_en.png" alt="F GAME">とは<span class="mp-go">→</span></a>
+      <a href="#" data-page="page-rules"><b>02</b>特別ルール<span class="mp-go">→</span></a>
+      <a href="#" data-page="page-history"><b>03</b>過去の戦績<span class="mp-go">→</span></a>
+      <a href="#" data-page="page-junior" id="mi-junior" hidden><b>04</b>あしざるFCジュニアセレクション<span class="mp-go">→</span></a>
+    </nav>
+  </div>
+</div>
+
+<!-- ================= 下層: F GAMEとは ================= -->
+<div class="subpage" id="page-about" hidden>
+  <div class="sp-inner">
+    <button class="sp-back" type="button" data-spclose>← 戻る</button>
+    <div class="sp-bghero">
+      <img class="sp-bg" src="assets/yoyogi_exterior.jpg" alt="" loading="lazy">
+      <h2 class="sec-jp sec-logo-ttl"><img class="ttl-logo" src="assets/logo_fgame_en.png" alt="F GAME">とは</h2>
+      <p class="sp-lead" id="cms-about-lead">「<b>フットサルを日本一のスポーツに</b>」というスローガンを掲げて活動するあしざるFCが主催する、超演出フットサル試合イベント。</p>
+      <a class="sp-textlink" href="#" data-swpage="page-history">過去の試合結果はこちらから →</a>
+    </div>
+    <div class="sp-block sp-voice">
+      <img class="sp-photo" src="assets/about_omoi.jpg" alt="" loading="lazy">
+      <h3 class="h3-logo"><img class="h3-logo-img" src="assets/logo_fgame_en.png" alt="F GAME">への想い</h3>
+      <p class="voice-from">のぶくん（あしざるFC）</p>
+<div id="cms-omoi">
+      <p>自分は小学生の頃から身長が低く、中学生で大きな挫折を経験し、選手として諦めようとしていた時にフットサルと出会いました。そこから僕はフットサルのおかげで人生が明るくなりました。</p>
+      <p>しかし初めてフットサル選手としてピッチに立った時、身内だらけの客席でガラガラの状態。そんな状況を変えるべく、今の活動を始めました。「フットサル」というスポーツの価値を高めたい。もっと多くの人に注目され、熱狂されるスポーツにしたい。</p>
+      <p>ずっと目標にしてきた「代々木満員」。これまでたくさん失敗してきたし、色々なものも犠牲にしてきました。それでもこの大好きなフットサルをもっと世の中に届けたい。この「F GAME」に僕は人生をかけています。</p>
+      <p><b>11月1日(日)、みんなと10,000人の景色を一緒に見たい。ぜひ会場で僕らの背中を押してください。</b></p>
+</div>
+    </div>
+    <div class="sp-btns">
+      <a class="btn btn-gold" href="#seats" data-spclose-scroll>チケットを購入する<span class="arrow">→</span></a>
+      <a class="btn btn-red" href="https://hp.ashisalfc.jp/sponsor-inquiry" target="_blank" rel="noopener">スポンサーに応募する<span class="arrow">→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 下層: 特別ルール ================= -->
+<div class="subpage" id="page-rules" hidden>
+  <div class="sp-inner">
+    <button class="sp-back" type="button" data-spclose>← 戻る</button>
+    <span class="sec-en">SPECIAL RULES</span>
+    <h2 class="sec-jp">特別ルール</h2>
+    <p class="sp-lead">F GAME.7は、通常のフットサルルールをベースにした特別ルールで開催します。</p>
+    <div class="rule-list">
+      <div class="rule"><div><b>4ピリオド制</b><p>12分×4ピリオド制で試合を実施。</p></div><svg class="rphoto r-ill" viewBox="0 74 640 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="12分×4ピリオド制">
+  <rect width="640" height="280" rx="0" fill="#101016"/>
+  <g font-family="sans-serif" text-anchor="middle">
+    <g>
+      <rect x="34" y="96" width="128" height="110" rx="14" fill="rgba(230,0,18,.14)" stroke="#e60012" stroke-width="2"/>
+      <text x="98" y="146" fill="#ffffff" font-size="30" font-weight="900">1st</text>
+      <text x="98" y="180" fill="#c9c9d4" font-size="16" font-weight="800">12分</text>
+    </g>
+    <g>
+      <rect x="182" y="96" width="128" height="110" rx="14" fill="rgba(230,0,18,.14)" stroke="#e60012" stroke-width="2"/>
+      <text x="246" y="146" fill="#ffffff" font-size="30" font-weight="900">2nd</text>
+      <text x="246" y="180" fill="#c9c9d4" font-size="16" font-weight="800">12分</text>
+    </g>
+    <g>
+      <rect x="330" y="96" width="128" height="110" rx="14" fill="rgba(230,0,18,.14)" stroke="#e60012" stroke-width="2"/>
+      <text x="394" y="146" fill="#ffffff" font-size="30" font-weight="900">3rd</text>
+      <text x="394" y="180" fill="#c9c9d4" font-size="16" font-weight="800">12分</text>
+    </g>
+    <g>
+      <rect x="478" y="96" width="128" height="110" rx="14" fill="rgba(245,193,90,.2)" stroke="#f5c15a" stroke-width="2.5"/>
+      <circle cx="542" cy="130" r="14" fill="#f5c15a"/>
+      <path d="M542 121 l3 6 6 1-4.5 4.5 1 6-5.5-3-5.5 3 1-6L533 118l6-1z" fill="#8a6511"/>
+      <text x="542" y="170" fill="#ffffff" font-size="26" font-weight="900">4th</text>
+      <text x="542" y="194" fill="#f5c15a" font-size="13" font-weight="900">ゴールドボール</text>
+    </g>
+    <path d="M166 151 h12 m-4 -4 4 4 -4 4" stroke="#5a5a66" stroke-width="2.5" fill="none"/>
+    <path d="M314 151 h12 m-4 -4 4 4 -4 4" stroke="#5a5a66" stroke-width="2.5" fill="none"/>
+    <path d="M462 151 h12 m-4 -4 4 4 -4 4" stroke="#f5c15a" stroke-width="2.5" fill="none"/>
+  </g>
+</svg></div>
+      <div class="rule"><div><b>アドバンテージゲーム</b><p>2nd or 3rdピリオドで各チーム1回ずつ、相手の選手を2分間・1人減らすことが可能。</p></div><img class="rphoto" src="assets/rule_advantage.jpg" alt="アドバンテージゲーム" loading="lazy"><!-- ILLUST版(イラストに戻す時はこのコメントを外してimg行を消す): <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="アドバンテージゲーム"><rect width="640" height="280" fill="#101016"/>
+<text x="320" y="46" text-anchor="middle" fill="#9a9aa8" font-size="15" font-weight="800" letter-spacing="3" font-family="sans-serif">2分間、相手コートは 5 vs 4</text>
+<g>
+<rect x="52" y="72" width="230" height="130" rx="16" fill="rgba(230,0,18,.12)" stroke="#e60012" stroke-width="2"/>
+<text x="167" y="152" text-anchor="middle" fill="#fff" font-size="58" font-weight="900" font-family="sans-serif">5<tspan font-size="20" fill="#c9c9d4">人</tspan></text>
+</g>
+<text x="320" y="148" text-anchor="middle" fill="#f5c15a" font-size="26" font-weight="900" font-family="sans-serif">VS</text>
+<g>
+<rect x="358" y="72" width="230" height="130" rx="16" fill="rgba(255,255,255,.05)" stroke="#5a5a66" stroke-width="2"/>
+<text x="455" y="152" text-anchor="middle" fill="#fff" font-size="58" font-weight="900" font-family="sans-serif">4<tspan font-size="20" fill="#c9c9d4">人</tspan></text>
+<g transform="translate(536,118)"><circle r="20" fill="none" stroke="#e60012" stroke-width="3.5"/><path d="M-11-11 L11 11 M11-11 L-11 11" stroke="#e60012" stroke-width="3.5"/></g>
+</g>
+<text x="320" y="248" text-anchor="middle" fill="#8a8a96" font-size="13.5" font-weight="700" font-family="sans-serif">2nd or 3rd ピリオドで各チーム1回、相手を2分間・1人減らせる</text>
+</svg> --></div>
+      <div class="rule"><div><b>アディショナルPK</b><p>得点時に1試合に2回、PKを追加で蹴ることが可能。（女子選手 or 登録外スタッフがキッカー）</p></div><img class="rphoto" src="assets/rule_addpk.jpg" alt="アディショナルPK" loading="lazy"><!-- ILLUST版(イラストに戻す時はこのコメントを外してimg行を消す): <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="アディショナルPK"><rect width="640" height="280" fill="#101016"/>
+<text x="320" y="46" text-anchor="middle" fill="#9a9aa8" font-size="15" font-weight="800" letter-spacing="3" font-family="sans-serif">ゴールしたら、もう1本。</text>
+<g stroke="#c9c9d4" stroke-width="5" fill="none"><path d="M180 190 V88 H460 V190"/></g>
+<path d="M180 190 V110 M460 190 V110" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
+<circle cx="320" cy="196" r="17" fill="#fff"/><path d="M320 185 l3.5 7 7.5 1-5.5 5.5 1.3 7.5-6.8-3.6-6.8 3.6 1.3-7.5-5.5-5.5 7.5-1z" fill="#101016"/>
+<g transform="translate(430,60)"><rect x="-40" y="-24" width="84" height="46" rx="10" fill="#f5c15a"/><text x="2" y="10" text-anchor="middle" fill="#1a1206" font-size="26" font-weight="900" font-family="sans-serif">＋1</text></g>
+<text x="320" y="248" text-anchor="middle" fill="#8a8a96" font-size="13.5" font-weight="700" font-family="sans-serif">1試合2回まで／キッカーは女子選手 or 登録外スタッフ</text>
+</svg> --></div>
+      <div class="rule"><div><b>ダブルゲーム</b><p>第4ピリオドはゴールドボールを使用し、得点が倍になる。</p></div><img class="rphoto" src="assets/rule_double.jpg" alt="ゴールドボール" loading="lazy"><!-- ILLUST版(イラストに戻す時はこのコメントを外してimg行を消す): <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ダブルゲーム"><rect width="640" height="280" fill="#101016"/>
+<text x="320" y="46" text-anchor="middle" fill="#9a9aa8" font-size="15" font-weight="800" letter-spacing="3" font-family="sans-serif">第4ピリオドはゴールドボール</text>
+<circle cx="230" cy="148" r="58" fill="#f5c15a"/>
+<circle cx="230" cy="148" r="58" fill="none" stroke="#c9962e" stroke-width="3"/>
+<path d="M230 118 l8 16 18 2.5-13 12.7 3 18-16-8.6-16 8.6 3-18-13-12.7 18-2.5z" fill="#8a6511"/>
+<text x="395" y="168" text-anchor="middle" fill="#fff" font-size="64" font-weight="900" font-family="sans-serif">得点<tspan fill="#f5c15a">×2</tspan></text>
+<text x="320" y="248" text-anchor="middle" fill="#8a8a96" font-size="13.5" font-weight="700" font-family="sans-serif">最終ピリオドは1ゴールが2点。最後まで逆転がある。</text>
+</svg> --></div>
+      <div class="rule"><div><b>2ファール制</b><p>各ピリオド3つ目以降のファールから、第2PKが与えられる。</p></div><img class="rphoto" src="assets/rule_2foul.jpg" alt="2ファール制" loading="lazy"><!-- ILLUST版(イラストに戻す時はこのコメントを外してimg行を消す): <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2ファール制"><rect width="640" height="280" fill="#101016"/>
+<text x="320" y="46" text-anchor="middle" fill="#9a9aa8" font-size="15" font-weight="800" letter-spacing="3" font-family="sans-serif">各ピリオドのファールカウント</text>
+<g font-family="sans-serif" text-anchor="middle" font-weight="900">
+<g><circle cx="150" cy="140" r="34" fill="rgba(255,255,255,.07)" stroke="#5a5a66" stroke-width="2"/><text x="150" y="152" fill="#c9c9d4" font-size="30">1</text></g>
+<g><circle cx="250" cy="140" r="34" fill="rgba(255,255,255,.07)" stroke="#5a5a66" stroke-width="2"/><text x="250" y="152" fill="#c9c9d4" font-size="30">2</text></g>
+<g><circle cx="350" cy="140" r="38" fill="rgba(230,0,18,.2)" stroke="#e60012" stroke-width="3"/><text x="350" y="153" fill="#fff" font-size="32">3</text></g>
+<path d="M406 140 h44 m-12 -10 12 10 -12 10" stroke="#f5c15a" stroke-width="4" fill="none"/>
+<rect x="466" y="108" width="122" height="64" rx="12" fill="rgba(245,193,90,.16)" stroke="#f5c15a" stroke-width="2.5"/>
+<text x="527" y="149" fill="#f5c15a" font-size="27">第2PK</text>
+</g>
+<text x="320" y="248" text-anchor="middle" fill="#8a8a96" font-size="13.5" font-weight="700" font-family="sans-serif">各ピリオド3つ目以降のファールから、第2PKが与えられる</text>
+</svg> --></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 下層: これまでのF GAME ================= -->
+<div class="subpage" id="page-history" hidden>
+  <div class="sp-inner">
+    <button class="sp-back" type="button" data-spclose>← 戻る</button>
+    <span class="sec-en">HISTORY</span>
+    <h2 class="sec-jp">過去の戦績</h2>
+    <div class="hist-list">
+      <div class="hist">
+        <img class="hkv" src="assets/history_fg1.jpg" alt="F GAME.1 キービジュアル" loading="lazy">
+        <div class="hrow"><span class="hn">01</span><div class="hd"><i>vs ファイルフォックス八王子<em>（日本）</em></i><b>エスフォルタアリーナ八王子</b><span class="crowd">動員 約2,500人</span><u class="win">1-0 ○</u></div></div>
+      </div>
+      <div class="hist">
+        <img class="hkv" src="assets/history_fg2.jpg" alt="F GAME.2 キービジュアル" loading="lazy">
+        <div class="hrow"><span class="hn">02</span><div class="hd"><i>vs カフリンガ東久留米<em>（日本）</em></i><b>アリーナ立川立飛</b><span class="crowd">動員 約2,500人</span><u class="win">4-2 ○</u></div></div>
+      </div>
+      <div class="hist">
+        <img class="hkv" src="assets/history_fg3.jpg" alt="F GAME.3 キービジュアル" loading="lazy">
+        <div class="hrow"><span class="hn">03</span><div class="hd"><i>vs ゾット早稲田FC<em>（日本）</em></i><b>アリーナ立川立飛（2DAYS）</b><span class="crowd">動員 約5,000人（2日間）</span><u>1st leg 4-5 ×　2nd leg 5-5 △</u></div></div>
+      </div>
+      <div class="hist">
+        <img class="hkv" src="assets/history_fg4.jpg" alt="F GAME.4 キービジュアル" loading="lazy">
+        <div class="hrow"><span class="hn">04</span><div class="hd"><i>vs ZD SPORTS<em>（韓国）</em></i><b>おおきにアリーナ舞洲</b><span class="crowd">動員 約4,500人</span><u class="win">4-3 ○</u></div></div>
+      </div>
+      <div class="hist">
+        <img class="hkv" src="assets/history_fg5.jpg" alt="F GAME.5 キービジュアル" loading="lazy">
+        <div class="hrow"><span class="hn">05</span><div class="hd"><i>vs タイリーグ選抜連合軍<em>（タイ）</em></i><b>名古屋金城ふ頭アリーナ</b><span class="crowd">動員 約2,500人</span><u class="win">24-6 ○</u></div></div>
+      </div>
+      <div class="hist">
+        <img class="hkv" src="assets/history_fg6.jpg" alt="F GAME.6 キービジュアル" loading="lazy">
+        <div class="hrow"><span class="hn">06</span><div class="hd"><i>vs フットサル台湾選抜<em>（台湾）</em></i><b>香陵アリーナ（沼津）</b><span class="crowd">動員 約2,000人</span><u class="win">6-2 ○</u></div></div>
+      </div>
+      <div class="hist now">
+        <img class="hkv" src="assets/history_fg7.jpg" alt="F GAME.7 キービジュアル" loading="lazy">
+        <div class="hrow"><span class="hn">07</span><div class="hd"><i>vs フットサル世界選抜</i><b>国立代々木競技場第一体育館</b><span class="crowd gold">目標動員 10,000人満員</span><u class="gold">2026.11.1 SUN — 代々木満員へ</u></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 下層: あしざるFCジュニア（8/25公開） ================= -->
+<div class="subpage" id="page-junior" hidden>
+  <div class="sp-inner">
+    <button class="sp-back" type="button" data-spclose>← 戻る</button>
+    <span class="sec-en">ASHISAL FC JUNIOR</span>
+    <h2 class="sec-jp">あしざるFCジュニア<br>セレクション</h2>
+    <div class="jr-vs">
+      <span class="jv-tag"><b class="jv-jp">『F GAME.7』オープニングマッチ 対戦カードが決定！</b></span>
+      <div class="jv-row">
+        <div class="jv-side"><img src="assets/emblem_salbaby_sq.png" alt="サルベイビー"><b>サルベイビー</b></div>
+        <span class="jv-x">VS</span>
+        <div class="jv-side"><img src="assets/emblem_ashisal_sq.png" alt="あしざるFCジュニア"><b>あしざるFCジュニア</b></div>
+      </div>
+    </div>
+    <p class="sp-lead"><b>あしざるFCジュニアチームが新設！</b></p>
+    <p class="sp-sub">年間でのチーム活動に参加し、11月に代々木で試合に出場します。<br>毎年開催されるバーモントカップへの出場も検討しております。</p>
+    <a class="btn btn-gold jr-apply-top" href="https://docs.google.com/forms/d/e/1FAIpQLScSmBP_Bw5AVpnXC8EtargczmmLe6v7t206RhpYkePjxc1e6A/viewform" target="_blank" rel="noopener">セレクション応募はこちら<span class="arrow">→</span></a>
+    <div class="jr-grid">
+      <div class="sp-block">
+        <h3>募集締め切り</h3>
+        <p id="cms-jr-deadline"><b>9月30日（水）</b></p>
+      </div>
+      <div class="sp-block">
+        <h3>募集年齢</h3>
+        <p id="cms-jr-age"><b>小学3年生〜6年生</b></p>
+      </div>
+    </div>
+    <div class="sp-block">
+      <h3>セレクション日程</h3>
+      <div id="cms-jr-selection" class="sel-wrap">
+        <div class="sel-venue"><b>フットボールパーク東山田</b>
+          <div class="sel-days"><span>9/1</span><span>9/7</span><span>9/8</span><span>9/14</span><span>9/15</span><span>9/28</span><span>9/29</span></div>
+        </div>
+        <div class="sel-venue"><b>銀座deフットサル 多摩センタースタジアム</b>
+          <div class="sel-days"><span>9/3</span><span>9/4</span><span>9/10</span><span>9/11</span><span>9/17</span><span>9/18</span><span>9/24</span><span>9/25</span></div>
+        </div>
+        <div class="sel-time">各日 18:50〜20:10</div>
+      </div>
+    </div>
+    <div class="sp-block">
+      <h3>活動日程</h3>
+      <div id="cms-jr-schedule"><p>土日の活動（練習試合など／神奈川・東京・埼玉エリア予定）＋あしざるFCフットサルスクール上級者クラス 週4回通い放題</p>
+      <p>※全ての日程に参加できなくてもOKです</p></div>
+    </div>
+    <div class="sp-block">
+      <h3>主な活動場所（練習）</h3>
+      <div id="cms-jr-place">      <p><b>フットボールパーク東山田</b>（月・火）<br>住所：神奈川県横浜市都筑区早渕3-46（横浜市営地下鉄グリーンライン「東山田駅」徒歩3分）</p>
+      <p><b>銀座deフットサル 多摩センタースタジアム</b>（木・金）<br>住所：東京都多摩市落合1-46-1 ココリア多摩センター7F・屋上（「多摩センター駅」徒歩5分）</p></div>
+    </div>
+    <a class="btn btn-gold sp-cta" href="https://docs.google.com/forms/d/e/1FAIpQLScSmBP_Bw5AVpnXC8EtargczmmLe6v7t206RhpYkePjxc1e6A/viewform" target="_blank" rel="noopener" id="junior-apply-btn">セレクション応募はこちら<span class="arrow">→</span></a>
+  </div>
+</div>
+
 <div class="notice-bar" id="notice-bar" hidden role="alert">
   <span class="nb-tag">INFO</span><span id="notice-text"></span><span class="nb-go" aria-hidden="true">→</span>
 </div>
@@ -819,12 +1330,25 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
         </div>
       </div>
     </div>
-    <p class="kv-note" id="kv-note" hidden><span>無料席の場合も、チケットサイトでのお手続き（発券）が必要です</span></p>
+    <p class="kv-note" id="kv-note" hidden><span>無料席の場合もチケットサイトでの申込が必要です</span></p>
     <!-- 対戦相手発表カウントダウン（8/10 18:00に自動で消灯） -->
     <div class="vs-count fx d1" id="vs-count" hidden>
       <div class="vc-line" id="vc-line"></div>
       <div class="vc-sub">8月10日(月) 18:00 チケット一般販売開始と同時に発表！</div>
     </div>
+    <!-- サルベイビー対戦相手カウントダウン（8/10 18:00〜8/25発表まで表示） -->
+    <div class="vs-count vc-mini" id="vs-count2" hidden>
+      <div class="vc-line" id="vc-line2"></div>
+      <div class="vc-sub">8月28日(金) 18:00発表！</div>
+    </div>
+    <!-- 8/25発表後に出現: ジュニアセレクション導線 -->
+    <a class="junior-cta" id="junior-cta" href="#" hidden>
+      <span class="jc-tag">サルベイビー 対戦相手決定！</span>
+      <span class="jc-body">
+        <span class="jc-main">VS <img class="jc-emb" src="assets/emblem_ashisal.png" alt="">あしざるFCジュニア</span>
+        <span class="jc-go">選手応募はこちら →</span>
+      </span>
+    </a>
     <div class="hero-grid">
       <div>
         <h1 class="statement">
@@ -881,7 +1405,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
         <h3 class="mag-title">小学生以下 <em>0円</em></h3>
         <p class="mag-quote">「多くの人にフットサルを見てもらいたい。<br>子供達が夢をもつきっかけになってほしい。」</p>
         <p class="mag-body">そんな思いで、2階席・3階席は小学生以下を無料にしました。<br>家族みんなで、代々木へ。会場で一緒に応援してください！</p>
-        <p class="mag-caution">※ 無料のお子様も、チケットサイトでのお手続き（発券）が必要です。</p>
+        <p class="mag-caution">※ 無料席の場合もチケットサイトでの申込が必要です。</p>
       </div>
     </div>
 
@@ -891,7 +1415,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
           <span class="t">国立代々木競技場 第一体育館</span>
           <span class="hint">エリアをタップして選択</span>
         </div>
-        <div class="map-cap n">━ 北側・メインスタンド ━</div><div class="map-scroll"><svg class="arena" viewBox="120 96 760 588" role="group" aria-label="座席エリア選択マップ">
+        <div class="map-cap n">━ 南側・バックスタンド ━</div><div class="map-scroll"><svg class="arena" viewBox="120 96 760 588" role="group" aria-label="座席エリア選択マップ">
           <defs>
             <linearGradient id="vipG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff2f42"/><stop offset=".52" stop-color="#c60016"/><stop offset="1" stop-color="#70000a"/></linearGradient>
             <linearGradient id="goldG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9e79a"/><stop offset=".45" stop-color="#d9b544"/><stop offset="1" stop-color="#8f6f16"/></linearGradient>
@@ -901,7 +1425,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
             <linearGradient id="st2G" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4fca7c"/><stop offset=".5" stop-color="#15803d"/><stop offset="1" stop-color="#0a4d24"/></linearGradient>
             <linearGradient id="dreamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d8bf0"/><stop offset=".5" stop-color="#1e3a8a"/><stop offset="1" stop-color="#101f4e"/></linearGradient>
             <linearGradient id="benchG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#43434f"/><stop offset=".5" stop-color="#26262f"/><stop offset="1" stop-color="#14141a"/></linearGradient>
-          </defs>
+          </defs><g transform="translate(0,780) scale(1,-1)">
 
           <g class="zone" data-tier="stand3f" tabindex="0" role="button" aria-label="3階スタンド自由席を選択">
             <path fill="url(#st3G)" d="M 170 272 A 411 411 0 0 1 830 272 A 584.8 584.8 0 0 0 170 272 Z"/>
@@ -948,8 +1472,8 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
                 <line x1="697.1" y1="190.9" x2="689.9" y2="202.9" stroke-width="13"/>
                 <line x1="811.5" y1="245.9" x2="800.9" y2="255.1" stroke-width="13"/>
             </g>
-            <text x="500" y="146" text-anchor="middle" font-size="28">3階スタンド 自由席</text>
-            <text x="500" y="643" text-anchor="middle" font-size="28">3階スタンド 自由席</text>
+            <text transform="scale(1,-1)" x="500" y="-128.6" text-anchor="middle" font-size="28">3階スタンド 自由席</text>
+            <text transform="scale(1,-1)" x="500" y="-625.6" text-anchor="middle" font-size="28">3階スタンド 自由席</text>
           </g>
 
           <g class="zone" data-tier="stand2f" tabindex="0" role="button" aria-label="2階スタンド自由席を選択">
@@ -993,39 +1517,39 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
                 <line x1="617.8" y1="222.9" x2="614.8" y2="236.6" stroke-width="13"/>
                 <line x1="740.2" y1="239.4" x2="734.3" y2="252.1" stroke-width="13"/>
             </g>
-            <text x="500" y="208" text-anchor="middle" font-size="26">2階スタンド 自由席</text>
-            <text x="500" y="581" text-anchor="middle" font-size="26">2階スタンド 自由席</text>
+            <text transform="scale(1,-1)" x="500" y="-191.9" text-anchor="middle" font-size="26">2階スタンド 自由席</text>
+            <text transform="scale(1,-1)" x="500" y="-564.9" text-anchor="middle" font-size="26">2階スタンド 自由席</text>
           </g>
 
           <g class="zone" data-tier="dream" tabindex="0" role="button" aria-label="ドリームシート（北側左）を選択">
             <rect x="279" y="260" width="100" height="23" rx="5" fill="url(#dreamG)"/>
             <rect x="279" y="289" width="100" height="23" rx="5" fill="url(#dreamG)"/>
-            <text x="329" y="276" text-anchor="middle" font-size="14">ドリーム</text>
-            <text x="329" y="305" text-anchor="middle" font-size="14">ドリーム</text>
+            <text transform="scale(1,-1)" x="329" y="-267.3" text-anchor="middle" font-size="14">ドリーム</text>
+            <text transform="scale(1,-1)" x="329" y="-296.3" text-anchor="middle" font-size="14">ドリーム</text>
           </g>
           <g aria-hidden="true">
             <rect x="385" y="260" width="44" height="52" rx="6" fill="url(#benchG)" stroke="rgba(255,255,255,.2)"/>
-            <text x="407" y="282" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="700">選手</text>
-            <text x="407" y="298" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="700">ベンチ</text>
+            <text transform="scale(1,-1)" x="407" y="-274.6" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="700">選手</text>
+            <text transform="scale(1,-1)" x="407" y="-290.6" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="700">ベンチ</text>
           </g>
           <g class="zone" data-tier="vip" tabindex="0" role="button" aria-label="VIPシート（左）を選択">
             <rect x="435" y="260" width="62" height="52" rx="6" fill="url(#vipG)" stroke="rgba(245,193,90,.85)" stroke-width="1.5"/>
-            <text x="466" y="294" text-anchor="middle" font-size="20">VIP</text>
+            <text transform="scale(1,-1)" x="466" y="-281.6" text-anchor="middle" font-size="20">VIP</text>
           </g>
           <g class="zone" data-tier="vip" tabindex="0" role="button" aria-label="VIPシート（右）を選択">
             <rect x="503" y="260" width="62" height="52" rx="6" fill="url(#vipG)" stroke="rgba(245,193,90,.85)" stroke-width="1.5"/>
-            <text x="534" y="294" text-anchor="middle" font-size="20">VIP</text>
+            <text transform="scale(1,-1)" x="534" y="-281.6" text-anchor="middle" font-size="20">VIP</text>
           </g>
           <g aria-hidden="true">
             <rect x="571" y="260" width="44" height="52" rx="6" fill="url(#benchG)" stroke="rgba(255,255,255,.2)"/>
-            <text x="593" y="282" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="700">選手</text>
-            <text x="593" y="298" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="700">ベンチ</text>
+            <text transform="scale(1,-1)" x="593" y="-274.6" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="700">選手</text>
+            <text transform="scale(1,-1)" x="593" y="-290.6" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.7)" font-weight="700">ベンチ</text>
           </g>
           <g class="zone" data-tier="dream" tabindex="0" role="button" aria-label="ドリームシート（北側右）を選択">
             <rect x="621" y="260" width="100" height="23" rx="5" fill="url(#dreamG)"/>
             <rect x="621" y="289" width="100" height="23" rx="5" fill="url(#dreamG)"/>
-            <text x="671" y="276" text-anchor="middle" font-size="14">ドリーム</text>
-            <text x="671" y="305" text-anchor="middle" font-size="14">ドリーム</text>
+            <text transform="scale(1,-1)" x="671" y="-267.3" text-anchor="middle" font-size="14">ドリーム</text>
+            <text transform="scale(1,-1)" x="671" y="-296.3" text-anchor="middle" font-size="14">ドリーム</text>
           </g>
 
           <g aria-hidden="true">
@@ -1043,18 +1567,18 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
 
           <g class="zone" data-tier="gold" tabindex="0" role="button" aria-label="ゴールドシートを選択">
             <rect x="360" y="442" width="280" height="26" rx="6" fill="url(#goldG)"/>
-            <text x="500" y="462" text-anchor="middle" font-size="16.5" style="fill:#241a06">ゴールドシート</text>
+            <text transform="scale(1,-1)" x="500" y="-451.8" text-anchor="middle" font-size="16.5" style="fill:#241a06">ゴールドシート</text>
           </g>
           <g class="zone" data-tier="silver" tabindex="0" role="button" aria-label="シルバーシートを選択">
             <rect x="360" y="474" width="280" height="26" rx="6" fill="url(#silverG)"/>
-            <text x="500" y="494" text-anchor="middle" font-size="16.5" style="fill:#1e232c">シルバーシート</text>
+            <text transform="scale(1,-1)" x="500" y="-483.8" text-anchor="middle" font-size="16.5" style="fill:#1e232c">シルバーシート</text>
           </g>
           <g class="zone" data-tier="bronze" tabindex="0" role="button" aria-label="ブロンズシートを選択">
             <rect x="360" y="506" width="280" height="26" rx="6" fill="url(#bronzeG)"/>
-            <text x="500" y="526" text-anchor="middle" font-size="16.5" style="fill:#2b1608">ブロンズシート</text>
+            <text transform="scale(1,-1)" x="500" y="-515.8" text-anchor="middle" font-size="16.5" style="fill:#2b1608">ブロンズシート</text>
           </g>
 
-        </svg></div><div class="map-cap s">━ 南側・バックスタンド ━</div><div class="map-disc">※ 実際の縮尺とは異なる箇所がございます。</div>
+        </g></svg></div><div class="map-cap s">━ 北側・メインスタンド ━</div><div class="map-disc">※ 実際の縮尺とは異なる箇所がございます。</div>
         <div class="zone-pills" id="zone-pills" aria-label="エリアをリストから選択"></div>
       </div>
 
@@ -1068,7 +1592,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
           <h3 class="d-name" id="d-name">–</h3>
           <p class="d-type" id="d-type"></p>
           <div class="d-prices" id="d-prices"></div>
-          <p class="free-caution" id="d-caution" hidden>※ 小学生以下無料の場合も、チケットサイトでのお手続き（発券）が必要です。</p>
+          <p class="free-caution" id="d-caution" hidden>※ 無料席の場合もチケットサイトでの申込が必要です。</p>
           <div class="d-remain">
             <div class="so-stamp" id="d-stamp" hidden><b>SOLD OUT</b></div>
             <div class="row"><span>このエリアの販売率</span><span id="d-remain-txt">–</span></div>
@@ -1082,7 +1606,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
           </div>
           <div class="d-buy">
             <div class="presale-note" id="presale-note" hidden></div>
-            <a class="btn btn-ghost join-btn d-join" id="d-join" href="https://fanclub.ashisalfc.jp/membership-benefits" target="_blank" rel="noopener" hidden>あしもん入会はこちら<span class="arrow">→</span></a>
+            <a class="btn btn-ghost join-btn d-join" id="d-join" href="#events" hidden>エスコートキッズに応募する<span class="arrow">→</span></a>
             <button type="button" class="btn btn-red buy-btn" id="buy-open">チケットを購入する<span class="arrow">→</span></button>
           </div>
         </div>
@@ -1104,8 +1628,18 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       <li>VIPシートは年齢を問わず1名につき¥50,000です。</li>
       <li>ドリーム・ゴールド・シルバー・ブロンズの子ども料金は18歳以下が対象です。</li>
       <li>2階・3階スタンドの子ども料金は中学生以上〜18歳以下が対象、小学生以下は無料です。学生証のご提示をお願いする場合がございます。</li>
-      <li style="color:#ff5563;font-weight:900">小学生以下無料の場合も、チケットサイトでのお手続き（発券）が必要です。</li>
+      <li style="color:#ff5563;font-weight:900">無料席の場合もチケットサイトでの申込が必要です。</li>
     </ul>
+  </div>
+</section>
+
+<!-- ================= TICKET UPDATES ================= -->
+<section id="ticket-news">
+  <div class="wrap">
+    <span class="sec-en">TICKET UPDATES</span>
+    <h2 class="sec-jp">チケット最新情報</h2>
+    <ul class="tn-list" id="sf-list"></ul>
+    <p class="tn-note">※在庫状況は常に変動します。最新の空席は各プレイガイドにてご確認ください。</p>
   </div>
 </section>
 
@@ -1264,7 +1798,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       </a>
       <a class="info-row" href="mailto:fgame.staff@salmate.co.jp?subject=%E8%BB%8A%E6%A4%85%E5%AD%90%E3%81%A7%E3%81%AE%E3%81%94%E8%A6%B3%E6%88%A6%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88F%20GAME.7%EF%BC%89">
         <span class="en">ACCESSIBLE</span>
-        <div><div class="jt">車椅子でのご観戦</div><div class="jd">専用スペースをご用意。チケット購入のうえ事前にメールでご連絡ください</div></div>
+        <div><div class="jt">車椅子でのご観戦</div><div class="jd">専用スペースをご用意。2階席のチケットをご購入のうえ、事前にメールでご連絡ください</div></div>
         <span class="go">→</span>
       </a>
       <a class="info-row" href="https://maps.google.com/?q=国立代々木競技場第一体育館" target="_blank" rel="noopener">
@@ -1336,7 +1870,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     <h3 class="modal-title" id="buy-modal-title">購入サイトを選択</h3>
     <div class="modal-seat" id="modal-seat"><i id="modal-dot"></i><span id="modal-name">–</span><span class="mp" id="modal-price"></span></div>
     <div class="d-prices modal-prices" id="modal-prices"></div>
-    <p class="free-caution" id="modal-caution" hidden>※ 小学生以下無料の場合も、チケットサイトでのお手続き（発券）が必要です。</p>
+    <p class="free-caution" id="modal-caution" hidden>※ 無料席の場合もチケットサイトでの申込が必要です。</p>
     <div class="buy-links" id="modal-links"></div>
     <p class="modal-note" id="modal-note">※ 各プレイガイドの販売ページへ移動します。</p>
   </div>
@@ -1361,14 +1895,16 @@ const CONFIG = {
   saleStart: "2026-08-03T18:00:00+09:00",
   targetAttendance: 10000, // 「代々木満員」目標
   // ===== 緊急お知らせバー（サイト最上部）: show:false で非表示 =====
+  // ▼ 上部のお知らせバー（GAS連携: スプシから text/href/show をリアルタイム変更可）
   notice: {
     show: true,
-    text: "イベント情報を更新！下部ページをチェック！",
-    href: "#events" // タップ時のスクロール先
+    text: "チケット情報を更新！タップでチェック",
+    href: "#ticket-news"
   },
   // ===== 当日スケジュール: tが空の行はサブ項目表示 =====
   timetable: [
-    { t:"14:00", label:"開場<i class=\"tt-sm\">（※開場前にも会場外にてグッズ販売予定）</i>" },
+    { t:"10:00", label:"グッズ物販開始<i class=\"tt-sm\">（※会場外にて販売予定）</i>" },
+    { t:"14:00", label:"開場" },
     { t:"15:00", label:"開演" },
     { t:"",      label:"オープニングショー（あしざるFCメンバー登場）" },
     { t:"",      label:"オープニングマッチ（サルベイビー）" },
@@ -1380,6 +1916,11 @@ const CONFIG = {
     { t:"21:15", label:"ドリームシート&amp;VIPシート特典撮影会終了" }
   ],
   updatedAt: "2026-07-21 09:00",
+  // ▼ チケット最新情報。新しいお知らせを「上に」追加していく（空配列 [] でセクションごと非表示）。
+  //    形式: { date:"8.10", text:"..." }  ※【席種】は自動で金色になります。スプシ連携(stockNotes)があれば上書き
+  stockNotes: [
+    { date:"8.10", text:"【シルバー席】mu-mo TICKETにて残り2席" }
+  ],
   DATA_URL: "https://script.google.com/macros/s/AKfycbwpjfgwhLprkYa3VvFO7L0vR_yemrkViInOZwfqbSvWxbWc2zLcNLQ4iZhz9HjkWdlV2Q/exec", // 進捗トラッカー(GAS)
   roadVideoId: "v-hMbLVi9qc", // 第1話。GAS連携時はroadVideos(自動検出)が優先され、2話以降も自動で並ぶ
   links: [
@@ -1395,8 +1936,9 @@ const CONFIG = {
   // 表示フェーズの強制切替（デモ用）: "" | "pre" | "fc1" | "fc2" | "ga"
   FORCE_PHASE: "",
   events: [
-    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（ゴールド会員対象）", desc:"募集 9/26(土)〜10/2(金)／抽選 10/4(日)／当落通知 10/5(月)。選手と手を繋いでコートへ！", sq:"assets/event_escort_gold.jpg" },
-    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（通常会員対象）", desc:"募集 10/9(金)〜10/16(金)／抽選 10/18(日)／当落通知 10/21(水) ※1次にて満員の場合は実施なし", sq:"assets/event_escort_normal.jpg" },
+    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（ゴールド会員対象）", desc:"", link:{ label:"あしもんに入会する", url:"https://fanclub.ashisalfc.jp/" }, sq:"assets/event_escort_gold.jpg" },
+    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（通常会員対象）", desc:"", link:{ label:"あしもんに入会する", url:"https://fanclub.ashisalfc.jp/" }, sq:"assets/event_escort_normal.jpg" },
+    { tag:"LIVE", title:"HIPPY 出演決定！", desc:"あしざるFCと共に制作した「YOYOGI feat. HIPPY」をライブ披露！その他楽曲のミニライブも開催。", sq:"assets/event_hippy_live.jpg" },
     { tag:"GOODS", title:"会場にてグッズ販売実施！", desc:"あしざるFC公式グッズを会場で販売！新作も盛りだくさん。", sq:"assets/event_goods_hanbai.jpg" }
     // ▼ イベント追加はこの形式で行をコピーするだけ（何件でもOK・自動でスライダーに並び、周回します）
   ],
@@ -1477,6 +2019,20 @@ function schedStatus(s){
   return "done";
 }
 
+/* 残席速報 */
+function renderStockNotes(){
+  const el = document.getElementById("sf-list");
+  if (!el) return;
+  const list = CONFIG.stockNotes || [];
+  const sec = document.getElementById("ticket-news");
+  if (sec) sec.hidden = !list.length;
+  document.getElementById("sf-list").innerHTML = list.map(n => {
+    const date = (n && n.date) || "";
+    const text = (typeof n === "string" ? n : (n && n.text) || "").replace(/【(.+?)】/g, "<b>$1</b>");
+    return `<li>${date ? `<span class="tn-date">${date}</span>` : ``}<p>${text}</p></li>`;
+  }).join("");
+}
+
 /* ローディング: 最短1.15秒見せて、稲光→フェードで開幕 */
 (function(){
   const ld = document.getElementById("loader");
@@ -1496,6 +2052,161 @@ function schedStatus(s){
   setTimeout(()=>{ ld.classList.add("done"); setTimeout(()=>ld.remove(), 700); }, 4500); // 保険
 })();
 
+/* ===== スプシCMS: シート「コンテンツ」の値でサイト内容を上書き ===== */
+function cmsImg(u){
+  const m = String(u).match(/drive\.google\.com\/file\/d\/([^\/]+)/);
+  return m ? ("https://drive.google.com/uc?export=view&id=" + m[1]) : u;
+}
+function cmsParas(v){
+  return String(v).split(/\n\s*\n/).map(t => "<p>" + t.replace(/\n/g,"<br>") + "</p>").join("");
+}
+window.applyCMS = function(c){
+  if (!c) return;
+  const T = (id, v, html) => { const el = document.getElementById(id); if (el && v) el.innerHTML = html !== false ? String(v).replace(/\n/g,"<br>") : v; };
+  // 発表日時(サルベイビー)
+  if (c["サルベイビー発表日時"] && window.__setReveal2) {
+    const d = new Date(String(c["サルベイビー発表日時"]).replace(" ","T") + ":00+09:00");
+    if (!isNaN(d)) __setReveal2(d);
+  }
+  if (c["オープニング表記_発表後"]) window.__OPENING_TXT = c["オープニング表記_発表後"];
+  // F GAMEとは
+  T("cms-about-lead", c["FGAMEとは_リード"]);
+  const om = document.getElementById("cms-omoi");
+  if (om && c["想い本文"]) om.innerHTML = cmsParas(c["想い本文"]);
+  // ルール1〜5
+  document.querySelectorAll("#page-rules .rule").forEach((el, i) => {
+    const n = i + 1;
+    const b = el.querySelector("b"), p = el.querySelector("div > p") || el.querySelector("p");
+    if (b && c["ルール" + n + "_名前"]) b.textContent = c["ルール" + n + "_名前"];
+    if (p && c["ルール" + n + "_説明"]) p.innerHTML = String(c["ルール" + n + "_説明"]).replace(/\n/g,"<br>");
+    const url = c["ルール" + n + "_写真URL"];
+    if (url) {
+      let img = el.querySelector("img.rphoto");
+      if (!img) { img = document.createElement("img"); img.className = "rphoto"; img.loading = "lazy"; el.appendChild(img); }
+      img.src = cmsImg(url);
+    }
+  });
+  // ゲスト1〜3
+  const guests = document.querySelectorAll("#match .guest");
+  for (let n = 1; n <= 3; n++) {
+    const el = guests[n - 1];
+    if (!el) continue;
+    const name = c["ゲスト" + n + "_名前"], role = c["ゲスト" + n + "_肩書"] || "", url = c["ゲスト" + n + "_写真URL"];
+    if (!name) continue;
+    el.classList.add("guest-photo");
+    el.innerHTML = '<span class="no">GUEST 0' + n + '</span>'
+      + '<div class="gp-row">' + (url ? '<img class="gp-img" src="' + cmsImg(url) + '" alt="">' : '')
+      + '<div class="gp-txt"><div class="gp-name">' + name + '</div><div class="gp-role">' + role + '</div></div></div>';
+  }
+  // ジュニア
+  T("cms-jr-deadline", c["ジュニア_締切"]);
+  T("cms-jr-age", c["ジュニア_募集年齢"]);
+  T("cms-jr-selection", c["ジュニア_セレクション日程"]);
+  const js2 = document.getElementById("cms-jr-schedule");
+  if (js2 && c["ジュニア_活動日程"]) js2.innerHTML = cmsParas(c["ジュニア_活動日程"]);
+  const jp2 = document.getElementById("cms-jr-place");
+  if (jp2 && c["ジュニア_活動場所"]) jp2.innerHTML = cmsParas(c["ジュニア_活動場所"]);
+  const jab = document.getElementById("junior-apply-btn");
+  if (jab && c["ジュニア_応募URL"]) { jab.href = c["ジュニア_応募URL"]; jab.target = "_blank"; jab.rel = "noopener"; }
+  // 過去の戦績1〜7
+  document.querySelectorAll("#page-history .hist").forEach((el, i) => {
+    const n = i + 1;
+    const set = (sel, key, html) => { const t = el.querySelector(sel); const v = c["戦績" + n + key]; if (t && v) t.innerHTML = v; };
+    set(".hd i", "_対戦相手");
+    set(".hd b", "_会場");
+    set(".crowd", "_動員");
+    set(".hd u", "_結果");
+  });
+};
+
+/* ===== メニュー・下層ページ ===== */
+(function(){
+  const pop = document.getElementById("menu-pop");
+  const btn = document.getElementById("menu-btn");
+  if (!pop || !btn) return;
+  const open = ()=>{ pop.hidden = false; };
+  const close = ()=>{ pop.hidden = true; };
+  btn.addEventListener("click", open);
+  document.getElementById("mp-close").addEventListener("click", close);
+  pop.addEventListener("click", e=>{ if (e.target === pop) close(); });
+  pop.querySelectorAll("[data-close]").forEach(a=>a.addEventListener("click", close));
+  const openPage = id => {
+    const p = document.getElementById(id);
+    if (!p) return;
+    p.hidden = false; p.scrollTop = 0;
+    document.body.style.overflow = "hidden";
+  };
+  const closePages = ()=>{
+    document.querySelectorAll(".subpage").forEach(p=>p.hidden=true);
+    document.body.style.overflow = "";
+  };
+  pop.querySelectorAll("[data-page]").forEach(a=>a.addEventListener("click", e=>{
+    e.preventDefault(); close(); openPage(a.dataset.page);
+  }));
+  document.querySelectorAll("[data-spclose]").forEach(b=>b.addEventListener("click", closePages));
+  const jc = document.getElementById("junior-cta");
+  if (jc) jc.addEventListener("click", e=>{ e.preventDefault(); openPage("page-junior"); });
+  // 下層ページ間の遷移(F GAMEとは→過去の試合結果など)
+  document.querySelectorAll("[data-swpage]").forEach(a=>a.addEventListener("click", e=>{
+    e.preventDefault(); closePages(); openPage(a.dataset.swpage);
+  }));
+  document.querySelectorAll("[data-spclose-scroll]").forEach(b=>b.addEventListener("click", closePages));
+  document.addEventListener("keydown", e=>{ if (e.key === "Escape"){ close(); closePages(); } });
+})();
+
+/* ===== サルベイビー対戦相手カウントダウン（8/25発表・8/10 18:00から表示） ===== */
+(function(){
+  const SHOW_FROM = new Date("2026-08-10T18:00:00+09:00");
+  let REVEAL2 = new Date("2026-08-28T18:00:00+09:00"); // スプシ「コンテンツ」の"サルベイビー発表日時"で上書き可
+  window.__setReveal2 = d => { REVEAL2 = d; };
+  const el = document.getElementById("vs-count2");
+  if (!el) return;
+  const line = document.getElementById("vc-line2");
+  const pad = v => String(v).padStart(2,"0");
+  function applyJuniorReveal(){
+    document.querySelectorAll(".sub-ev .ss").forEach(s=>{
+      if (s.textContent.indexOf("サルベイビー") > -1) s.textContent = window.__OPENING_TXT || "サルベイビー vs あしざるFCジュニア";
+    });
+    // 当日スケジュールのオープニングマッチ表記も発表後に切替(発表前は「（サルベイビー）」のまま)
+    document.querySelectorAll("#tt-list .tt-label").forEach(s=>{
+      if (s.textContent.indexOf("オープニングマッチ（サルベイビー）") > -1)
+        s.textContent = "オープニングマッチ（サルベイビー vs あしざるFCジュニア）";
+    });
+    const mi = document.getElementById("mi-junior");
+    if (mi) mi.hidden = false; // メニューに下層ページを開放
+    const jc = document.getElementById("junior-cta");
+    if (jc) jc.hidden = false; // TOPに導線カードを出す
+  }
+  function render(){
+    const now = new Date();
+    if (now >= REVEAL2){ el.hidden = true; applyJuniorReveal(); return false; }
+    if (now < SHOW_FROM){ el.hidden = true; return true; } // 世界選抜発表までは出さない
+    el.hidden = false;
+    const diff = REVEAL2 - now;
+    if (diff > 86400000){
+      // 24時間以上前は 日+時間+分 で表示
+      const days = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      line.innerHTML = '<span class="vc-cap">サルベイビー 対戦相手発表まで あと</span>'
+        + '<span class="vc-nums"><b>' + days + '</b><i>日</i><b>' + h + '</b><i>時間</i><b>' + pad(m) + '</b><i>分</i></span>';
+    } else {
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      line.innerHTML = '<span class="vc-cap">サルベイビー 対戦相手発表まで あと</span>'
+        + '<span class="vc-nums">' + (h > 0 ? '<b>' + h + '</b><i>時間</i>' : '')
+        + '<b>' + pad(m) + '</b><i>分</i><b>' + pad(s) + '</b><i>秒</i></span>';
+    }
+    return true;
+  }
+  if (render()){
+    const tm = setInterval(()=>{ if (!render()) clearInterval(tm); }, 1000);
+  } else {
+    applyJuniorReveal();
+  }
+})();
+
 /* KV: 対戦相手発表(8/10 18:00)と同時に「世界最強、降臨。」版へ自動切替 */
 window.__applyRevealKV = function(){
   const s = document.getElementById("kv-src");
@@ -1509,8 +2220,8 @@ window.__applyRevealKV = function(){
         <div class="opp-box">
           <div class="opp-box-lbl">主な出場選手</div>
           <div class="opp-players">
-            <div class="opp-p"><img src="assets/player_ortiz.jpg" alt="ORTIZ"><span class="opp-pt"><b>ORTIZ</b><i>オルティス／元スペイン代表</i></span></div>
             <div class="opp-p"><img src="assets/player_ricardinho.jpg" alt="RICARDINHO"><span class="opp-pt"><b>RICARDINHO</b><i>リカルジーニョ／元ポルトガル代表</i></span></div>
+            <div class="opp-p"><img src="assets/player_ortiz.jpg" alt="ORTIZ"><span class="opp-pt"><b>ORTIZ</b><i>オルティス／元スペイン代表</i></span></div>
           </div>
         </div>`;
   // オープニングマッチの対戦相手表記
@@ -1663,13 +2374,19 @@ addEventListener("scroll", ()=>hd.classList.toggle("scrolled", scrollY > 24), {p
 
 // 緊急お知らせ + 当日スケジュール
 (function(){
-  if (CONFIG.notice && CONFIG.notice.show && CONFIG.notice.text){
+  window.renderNotice = function(){
     const nb = document.getElementById("notice-bar");
-    document.getElementById("notice-text").textContent = CONFIG.notice.text;
-    nb.hidden = false;
+    if (!nb) return;
+    const n = CONFIG.notice || {};
+    nb.hidden = !(n.show && n.text);
+    document.getElementById("notice-text").textContent = n.text || "";
+  };
+  renderNotice();
+  {
+    const nb = document.getElementById("notice-bar");
     // タップで該当セクションへ（CONFIG.notice.href で変更可）
     nb.addEventListener("click", ()=>{
-      const tgt = document.querySelector((CONFIG.notice && CONFIG.notice.href) || "#events");
+      const tgt = document.querySelector((CONFIG.notice && CONFIG.notice.href) || "#ticket-news");
       if (tgt) tgt.scrollIntoView({ behavior:"smooth", block:"start" });
     });
     // バー表示時はヒーロー上部の余白を詰める（固定ヘッダー分はバー側のmarginで確保済み）
@@ -1687,6 +2404,7 @@ addEventListener("scroll", ()=>hd.classList.toggle("scrolled", scrollY > 24), {p
 })();
 
 function renderAll(){
+  renderStockNotes();
   const target = CONFIG.targetAttendance || 10000;
   const totalSold = CONFIG.tiers.reduce((s,t)=>s+t.sold,0);
   // 実座席(9,368席)を「10,000人」に換算して表示: 完売時に 10,000 / 100% になる
@@ -1709,7 +2427,8 @@ function renderAll(){
       <div class="ev-cap">
         <span class="ev-tag">${e.tag}</span>
         <span class="ev-t">${e.title}</span>
-        <span class="ev-d">${e.desc}</span>
+        ${e.desc ? `<span class="ev-d">${e.desc}</span>` : ``}
+        ${e.link ? `<a class="ev-link" href="${e.link.url}" target="_blank" rel="noopener">${e.link.label} →</a>` : ``}
       </div>
     </div>`).join("");
   const sl = document.getElementById("event-list");
@@ -1844,13 +2563,13 @@ function renderAll(){
         const w = c.x1-c.x0, h = c.y1-c.y0;
         let size = Math.max(12, Math.min(h*0.66, 24));
         size = Math.max(9.5, Math.min(size, (w-6)/6.2)); // ゾーン幅に収める
-        mkBadge(svgRoot, (c.x0+c.x1)/2, (c.y0+c.y1)/2, size); // 最前面に描画（隣接ゾーンに隠れない）
+        mkBadge(svgRoot, (c.x0+c.x1)/2, 780 - (c.y0+c.y1)/2, size); // 反転後の座標系(y'=780-y)で最前面に描画
       });
     } else {
       // スタンド: 上下バンドのラベル位置に大きめで
       zones.forEach(z=>{
         [...z.querySelectorAll(":scope > text")].forEach(lb=>{
-          mkBadge(svgRoot, +lb.getAttribute("x"), +lb.getAttribute("y") - 9, 23); // ラベルに被せて表示
+          mkBadge(svgRoot, +lb.getAttribute("x"), 780 + (+lb.getAttribute("y")) - 9, 23); // ラベル(反転座標)に被せて表示
         });
       });
     }
@@ -2004,6 +2723,9 @@ async function fetchLive(){
     const res = await fetch(CONFIG.DATA_URL, {cache:"no-store"});
     const data = await res.json();
     if(data.updatedAt) CONFIG.updatedAt = data.updatedAt;
+    if(Array.isArray(data.stockNotes)) CONFIG.stockNotes = data.stockNotes;
+    if(data.notice){ CONFIG.notice = Object.assign({}, CONFIG.notice, data.notice); if (window.renderNotice) renderNotice(); }
+    if(data.content && window.applyCMS) applyCMS(data.content);
     if(data.tiers) CONFIG.tiers.forEach(t=>{
       const d = data.tiers[t.id];
       if(!d) return;
