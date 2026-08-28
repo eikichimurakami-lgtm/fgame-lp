@@ -528,7 +528,7 @@ button{font-family:inherit;cursor:pointer}
 .jv-tag::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg, transparent 30%, rgba(255,255,255,.28) 48%, transparent 62%);
   transform:translateX(-100%);animation:nbShine 3.4s ease-in-out infinite;pointer-events:none}
 .jv-en{font-family:var(--font-disp);font-style:normal;font-size:11px;letter-spacing:.42em;text-indent:.42em;color:rgba(255,255,255,.85)}
-.jv-jp{font-size:clamp(10.5px,3.2vw,16px);font-weight:900;letter-spacing:0;white-space:nowrap;max-width:100%;
+.jv-jp{font-size:clamp(9.8px,3vw,15px);font-weight:900;letter-spacing:0;white-space:nowrap;max-width:100%;
   text-shadow:0 2px 10px rgba(0,0,0,.4)}
 .jv-row{display:flex;align-items:center;justify-content:center;gap:clamp(14px,5vw,38px);padding:12px 14px 11px}
 .jv-side{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 1 auto;min-width:0}
@@ -544,6 +544,7 @@ button{font-family:inherit;cursor:pointer}
 }
 .jr-photo{display:block;width:100%;height:auto;border-radius:16px;margin:4px 0 24px;border:1px solid rgba(255,255,255,.14)}
 .jr-apply-top{justify-content:center;font-size:14px;padding:12px 22px;margin:0 0 18px;width:auto;display:inline-flex}
+.sel-fee{margin:2px 0 0;font-size:12.5px;font-weight:800;color:var(--mist)}
 .rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
 .notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;
   padding:12px 18px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.07em;color:#fff;
@@ -1266,7 +1267,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     <span class="sec-en">ASHISAL FC JUNIOR</span>
     <h2 class="sec-jp">あしざるFCジュニア<br>セレクション</h2>
     <div class="jr-vs">
-      <span class="jv-tag"><b class="jv-jp">『F GAME.7』オープニングマッチ 対戦カードが決定！</b></span>
+      <span class="jv-tag"><b class="jv-jp">F GAME.7に出場するあしざるFCジュニアの選手を募集！</b></span>
       <div class="jv-row">
         <div class="jv-side"><img src="assets/emblem_salbaby_sq.png" alt="サルベイビー"><b>サルベイビー</b></div>
         <span class="jv-x">VS</span>
@@ -1274,39 +1275,40 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       </div>
     </div>
     <p class="sp-lead"><b>あしざるFCジュニアチームが新設！</b></p>
-    <p class="sp-sub">年間でのチーム活動に参加し、11月に代々木で試合に出場します。<br>毎年開催されるバーモントカップへの出場も検討しております。</p>
+    <p class="sp-sub">年間でのチーム活動に参加し、11月に代々木で試合に出場します。<br>毎年開催されるバーモントカップへの出場も検討しております。<br>※サッカーチームに在籍している状態での入団も受け付けております。</p>
     <a class="btn btn-gold jr-apply-top" href="https://docs.google.com/forms/d/e/1FAIpQLScSmBP_Bw5AVpnXC8EtargczmmLe6v7t206RhpYkePjxc1e6A/viewform" target="_blank" rel="noopener">セレクション応募はこちら<span class="arrow">→</span></a>
     <div class="jr-grid">
       <div class="sp-block">
         <h3>募集締め切り</h3>
-        <p id="cms-jr-deadline"><b>9月30日（水）</b></p>
+        <p id="cms-jr-deadline"><b>9月28日（月）</b></p>
       </div>
       <div class="sp-block">
         <h3>募集年齢</h3>
-        <p id="cms-jr-age"><b>小学3年生〜6年生</b></p>
+        <p id="cms-jr-age"><b>小学 現3年生〜現6年生</b></p>
       </div>
     </div>
     <div class="sp-block">
       <h3>セレクション日程</h3>
       <div id="cms-jr-selection" class="sel-wrap">
         <div class="sel-venue"><b>フットボールパーク東山田</b>
-          <div class="sel-days"><span>9/1</span><span>9/7</span><span>9/8</span><span>9/14</span><span>9/15</span><span>9/28</span><span>9/29</span></div>
+          <div class="sel-days"><span>9/7</span><span>9/14</span><span>9/15</span><span>9/28</span></div>
         </div>
         <div class="sel-venue"><b>銀座deフットサル 多摩センタースタジアム</b>
-          <div class="sel-days"><span>9/3</span><span>9/4</span><span>9/10</span><span>9/11</span><span>9/17</span><span>9/18</span><span>9/24</span><span>9/25</span></div>
+          <div class="sel-days"><span>9/11</span><span>9/17</span><span>9/18</span><span>9/24</span></div>
         </div>
         <div class="sel-time">各日 18:50〜20:10</div>
+        <p class="sel-fee">参加費：初回無料（2回目以降のご参加は 3,300円/回）</p>
       </div>
     </div>
     <div class="sp-block">
       <h3>活動日程</h3>
-      <div id="cms-jr-schedule"><p>土日の活動（練習試合など／神奈川・東京・埼玉エリア予定）＋あしざるFCフットサルスクール上級者クラス 週4回通い放題</p>
+      <div id="cms-jr-schedule"><p>土日いずれかの活動（練習試合など／神奈川・東京・埼玉エリア予定）＋あしざるFCフットサルスクール上級者クラス 週4回通い放題</p>
       <p>※全ての日程に参加できなくてもOKです</p></div>
     </div>
     <div class="sp-block">
       <h3>主な活動場所（練習）</h3>
-      <div id="cms-jr-place">      <p><b>フットボールパーク東山田</b>（月・火）<br>住所：神奈川県横浜市都筑区早渕3-46（横浜市営地下鉄グリーンライン「東山田駅」徒歩3分）</p>
-      <p><b>銀座deフットサル 多摩センタースタジアム</b>（木・金）<br>住所：東京都多摩市落合1-46-1 ココリア多摩センター7F・屋上（「多摩センター駅」徒歩5分）</p></div>
+      <div id="cms-jr-place">      <p><b>フットボールパーク東山田</b>（月・火 18:50〜20:10）<br>住所：神奈川県横浜市都筑区早渕3-46（横浜市営地下鉄グリーンライン「東山田駅」徒歩3分）</p>
+      <p><b>銀座deフットサル 多摩センタースタジアム</b>（木・金 18:50〜20:10）<br>住所：東京都多摩市落合1-46-1 ココリア多摩センター7F・屋上（「多摩センター駅」徒歩5分）</p></div>
     </div>
     <a class="btn btn-gold sp-cta" href="https://docs.google.com/forms/d/e/1FAIpQLScSmBP_Bw5AVpnXC8EtargczmmLe6v7t206RhpYkePjxc1e6A/viewform" target="_blank" rel="noopener" id="junior-apply-btn">セレクション応募はこちら<span class="arrow">→</span></a>
   </div>
