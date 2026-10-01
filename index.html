@@ -211,6 +211,9 @@ button{font-family:inherit;cursor:pointer}
 #loader{position:fixed;inset:0;z-index:9999;background:#0a0a0e;display:grid;place-items:center;overflow:hidden;
   transition:opacity .55s ease,visibility .55s}
 #loader.done{opacity:0;visibility:hidden;pointer-events:none}
+/* JS無効環境でもローダーが残らないようCSSで自動退場 */
+#loader{animation:ldBye .5s ease 3s forwards}
+@keyframes ldBye{to{opacity:0;visibility:hidden;pointer-events:none}}
 #loader::before{content:"";position:absolute;inset:-20%;
   background:radial-gradient(50% 40% at 50% 46%, rgba(230,0,18,.14), transparent 70%)}
 .ld-box{display:flex;flex-direction:column;align-items:center;gap:14px;position:relative}
@@ -545,6 +548,735 @@ button{font-family:inherit;cursor:pointer}
 .jr-photo{display:block;width:100%;height:auto;border-radius:16px;margin:4px 0 24px;border:1px solid rgba(255,255,255,.14)}
 .jr-apply-top{justify-content:center;font-size:14px;padding:12px 22px;margin:0 0 18px;width:auto;display:inline-flex}
 .sel-fee{margin:2px 0 0;font-size:12.5px;font-weight:800;color:var(--mist)}
+
+
+/* ===== 集客ミッション ===== */
+#mission{padding:56px 0 40px}
+.ms-lead{color:var(--mist);font-size:12.5px;font-weight:700;margin:14px 0 18px}
+.ms-track{margin-bottom:18px}
+.ms-now{display:flex;align-items:baseline;gap:4px;margin-bottom:10px}
+.ms-now b{font-family:var(--font-disp);font-size:clamp(34px,9vw,52px);color:var(--gold);line-height:1;letter-spacing:.02em}
+.ms-now small{font-size:14px;font-weight:900;color:var(--gold)}
+.ms-now span{font-size:12px;font-weight:800;color:var(--mist);margin-left:6px}
+.ms-bar{position:relative;height:14px;border-radius:99px;background:rgba(255,255,255,.08);overflow:visible}
+.ms-bar i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:99px;background:linear-gradient(90deg,var(--red),var(--gold));transition:width 1.2s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 16px rgba(245,193,90,.5)}
+.ms-ticks{position:absolute;inset:0}
+.ms-tick{position:absolute;top:-4px;width:2px;height:22px;background:rgba(255,255,255,.35);transform:translateX(-1px)}
+.ms-tick.done{background:var(--gold);box-shadow:0 0 8px rgba(245,193,90,.8)}
+.ms-tick::after{content:attr(data-k);position:absolute;top:24px;left:50%;transform:translateX(-50%);font-family:var(--font-disp);font-size:10px;color:var(--mist);letter-spacing:.04em;white-space:nowrap}
+.ms-tick.done::after{color:var(--gold)}
+.ms-list{display:grid;gap:8px;margin-top:38px}
+.ms{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:.25s}
+.ms .at{flex:none;font-family:var(--font-disp);font-size:18px;color:#c9c9d4;width:78px;letter-spacing:.02em}
+.ms .at small{font-size:10px;margin-left:2px}
+.ms .lb{flex:1;font-size:14px;font-weight:900;color:#e6e6ee}
+.ms .st{flex:none;font-size:10.5px;font-weight:900;letter-spacing:.1em;padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.2);color:var(--mist)}
+.ms.done{border-color:rgba(245,193,90,.55);background:linear-gradient(135deg, rgba(245,193,90,.14), rgba(16,14,12,.9) 60%)}
+.ms.done .at{color:var(--gold)}.ms.done .lb{color:#fff}
+.ms.done .st{background:var(--gold);color:#1a1206;border-color:var(--gold)}
+.ms.next{border-color:rgba(230,0,18,.65);box-shadow:0 0 22px rgba(230,0,18,.2);animation:msNext 2.2s ease-in-out infinite}
+@keyframes msNext{0%,100%{box-shadow:0 0 14px rgba(230,0,18,.2)}50%{box-shadow:0 0 28px rgba(230,0,18,.45)}}
+.ms.next .st{background:var(--red);color:#fff;border-color:var(--red)}
+.ms.lock .lb{color:#b0b0bc}
+@media(max-width:560px){.ms{gap:9px;padding:11px 12px}.ms .at{width:66px;font-size:16px}.ms .lb{font-size:12.5px}.ms .st{font-size:9.5px;padding:4px 8px}}
+.hl-unit{font-size:.42em;margin-left:2px;font-weight:900}
+/* ===== PLAYERS 対抗図 ===== */
+.players-cta{margin-top:18px;width:100%;justify-content:center}
+.players-cta[hidden]{display:none!important}
+.pv-lead{margin-top:10px}
+.pv-lead{color:var(--mist);font-size:12.5px;font-weight:700;margin:14px 0 22px}
+.pv-arena{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:start}
+.pv-tname{font-size:clamp(15px,4.2vw,24px);font-weight:900;letter-spacing:.04em;margin-bottom:10px;white-space:nowrap;
+  transform:skewX(-8deg);display:inline-block;padding:2px 10px 3px;border-left:4px solid var(--red)}
+.pv-l .pv-tname{color:#fff;text-shadow:0 0 16px rgba(230,0,18,.55)}
+.pv-r{text-align:right}
+.pv-r .pv-tname{color:var(--gold);border-left:0;border-right:4px solid var(--gold);text-shadow:0 0 16px rgba(245,193,90,.5)}
+.pv-notes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.pv-note{border-radius:14px;padding:13px 14px 12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.pv-note.l{border-top:3px solid var(--red)}.pv-note.r{border-top:3px solid var(--gold)}
+.pv-ntag{display:inline-block;font-size:9.5px;letter-spacing:.24em;font-weight:900;color:var(--mist);margin-bottom:6px}
+.pv-nname{display:block;font-size:clamp(17px,4.6vw,21px);font-weight:900;letter-spacing:.04em;line-height:1.2;margin-bottom:3px}
+.pv-note b{display:block;font-size:12.5px;font-weight:900;margin-bottom:7px;line-height:1.4}
+.pv-note.l b{color:#ff4b5c}.pv-note.r b{color:var(--gold)}
+.pv-note p{font-size:12px;line-height:1.85;color:#dcdce4;font-weight:600}
+@media(max-width:560px){.pv-notes{grid-template-columns:1fr}}
+.pv-cards{display:grid;gap:8px}
+.pv-card{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:14px;cursor:pointer;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);transition:.25s;position:relative;overflow:hidden}
+.pv-r .pv-card{flex-direction:row-reverse;text-align:right}
+.pv-card img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none;border:2px solid rgba(255,255,255,.25)}
+.pv-card b{display:block;font-size:13.5px;font-weight:900}
+.pv-card i{display:block;font-style:normal;font-size:10px;color:var(--mist);letter-spacing:.12em;font-weight:800}
+.pv-card u{text-decoration:none;font-family:var(--font-disp);font-size:20px;color:var(--gold);margin-left:auto}
+.pv-r .pv-card u{margin-left:0;margin-right:auto}
+.pv-l .pv-card.on{border-color:var(--red);background:rgba(230,0,18,.16);box-shadow:0 0 22px rgba(230,0,18,.35)}
+.pv-r .pv-card.on{border-color:var(--gold);background:rgba(245,193,90,.14);box-shadow:0 0 22px rgba(245,193,90,.35)}
+.pv-card.on img{border-color:currentColor}
+.pv-l .pv-card.on img{border-color:var(--red)}.pv-r .pv-card.on img{border-color:var(--gold)}
+.pv-vs{align-self:center;font-family:var(--font-disp);font-size:clamp(22px,6vw,34px);color:var(--gold);
+  text-shadow:0 0 18px rgba(245,193,90,.6);padding:0 2px;animation:pvVs 2.4s ease-in-out infinite}
+@keyframes pvVs{0%,100%{transform:scale(1)}50%{transform:scale(1.12);text-shadow:0 0 28px rgba(245,193,90,.9)}}
+.pv-detail{margin-top:22px;border-radius:20px;padding:18px 14px 16px;position:relative;overflow:hidden;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.12)}
+.pv-heads{display:flex;justify-content:space-between;gap:10px;margin-bottom:4px}
+.pv-head{display:flex;align-items:center;gap:9px;min-width:0}
+.pv-head img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
+.pv-head-l img{border:2px solid var(--red);box-shadow:0 0 18px rgba(230,0,18,.45)}
+.pv-head-r img{border:2px solid var(--gold);box-shadow:0 0 18px rgba(245,193,90,.45)}
+.pv-head-r{text-align:right;flex-direction:row}
+.pv-hname{font-weight:900;font-size:clamp(13px,3.6vw,17px);white-space:nowrap}
+.pv-hpos{font-size:10px;color:var(--mist);letter-spacing:.14em;font-weight:800}
+.pv-ovr{display:flex;flex-direction:column;align-items:center;line-height:1}
+.pv-ovr small{font-size:9px;color:var(--mist);letter-spacing:.2em;font-weight:800}
+.pv-ovr b{font-family:var(--font-disp);font-size:clamp(24px,6.5vw,32px)}
+.pv-head-l .pv-ovr b{color:#ff4b5c}.pv-head-r .pv-ovr b{color:var(--gold)}
+.pv-radar{display:block;width:min(360px,92%);margin:2px auto 6px}
+.pv-rows{display:grid;gap:7px;max-width:560px;margin:0 auto}
+.pv-row{display:grid;grid-template-columns:34px 1fr 62px 1fr 34px;align-items:center;gap:8px}
+.pv-row .v{font-family:var(--font-disp);font-size:16px;text-align:center}
+.pv-row .v.l{color:#ff4b5c}.pv-row .v.r{color:var(--gold)}
+.pv-row .k{text-align:center;font-size:10.5px;letter-spacing:.06em;color:#c9c9d4;font-weight:900;white-space:nowrap}
+.pv-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;position:relative}
+.pv-bar i{position:absolute;top:0;bottom:0;width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.pv-bar.l i{right:0;background:linear-gradient(270deg,#ff4b5c,var(--red));border-radius:99px 0 0 99px}
+.pv-bar.r i{left:0;background:linear-gradient(90deg,var(--gold),#c9962e);border-radius:0 99px 99px 0}
+.pv-row.win-l .v.l, .pv-row.win-r .v.r{text-shadow:0 0 12px currentColor}
+@media(max-width:560px){
+  .pv-arena{gap:6px}
+  .pv-card{padding:7px 8px;gap:7px}.pv-card img{width:38px;height:38px}
+  .pv-card b{font-size:12px}.pv-card i{font-size:9px}.pv-card u{font-size:17px}
+  .pv-row{grid-template-columns:28px 1fr 54px 1fr 28px;gap:6px}.pv-row .v{font-size:14px}
+}
+
+/* ヒーロー内 集客ボーナス(グラフィック版・全メダルが画面内に収まる) */
+.ms-box{position:relative;margin:14px 0 4px;padding:18px 14px 14px;border-radius:20px;cursor:pointer;overflow:hidden;
+  background:
+    radial-gradient(420px 160px at 15% 0%, rgba(230,0,18,.28), transparent 60%),
+    radial-gradient(420px 180px at 90% 100%, rgba(245,193,90,.22), transparent 60%),
+    linear-gradient(180deg,#141219,#0b0a0f);
+  border:1.5px solid rgba(245,193,90,.5);box-shadow:0 12px 40px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);transition:.25s}
+.ms-box::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:linear-gradient(115deg, transparent 0 46%, rgba(255,255,255,.05) 46% 48%, transparent 48% 60%, rgba(255,255,255,.04) 60% 61%, transparent 61%)}
+.ms-box::after{content:"BONUS";position:absolute;top:14px;right:-34px;transform:rotate(38deg);width:130px;text-align:center;
+  font-family:var(--font-disp);font-size:11px;letter-spacing:.24em;text-indent:.24em;color:#fff;background:var(--red);padding:4px 0;
+  box-shadow:0 4px 12px rgba(230,0,18,.5);pointer-events:none}
+.ms-box:hover{border-color:var(--gold)}
+.ms-head{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px;white-space:nowrap}
+.ms-tag{display:none}
+.ms-ttl{font-size:clamp(16px,4.6vw,21px);font-weight:900;color:#fff;letter-spacing:.02em;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.ms-ttl b{color:var(--gold);font-weight:900;text-shadow:0 0 16px rgba(245,193,90,.5)}
+/* メダル帯: 7個を必ず画面幅に収める(スクロールなし) */
+.ms-strip{position:relative;display:flex;justify-content:space-between;gap:4px;padding:10px 0 4px;overflow:visible}
+.ms-strip::before{content:"";position:absolute;left:8%;right:8%;top:calc(10px + 50% - 14px);height:6px;border-radius:99px;
+  background:repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 6px, transparent 6px 10px)}
+.ms-strip::after{content:"";position:absolute;left:8%;top:calc(10px + 50% - 14px);height:6px;border-radius:99px;width:calc(84% * var(--ms-line, 0) / 100);
+  background:linear-gradient(90deg,var(--red),#ff8a3d,var(--gold));box-shadow:0 0 14px rgba(245,193,90,.8)}
+.ms-med{position:relative;z-index:1;flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.ms-strip{gap:3px}
+.ms-coin{position:relative;width:clamp(34px,9.8vw,58px);height:clamp(34px,9.8vw,58px);display:grid;place-items:center;
+  clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);background:#22212a}
+.ms-coin::before{content:"";position:absolute;inset:3px;clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);background:#15141b;z-index:0}
+.ms-coin b{position:relative;z-index:1;font-family:var(--font-disp);font-size:clamp(10px,2.9vw,16px);color:#cfcfda;letter-spacing:.02em}
+.ms-med span{font-size:clamp(8.5px,2.3vw,12px);font-weight:900;color:#c9c9d4;letter-spacing:.01em;white-space:nowrap}
+.ms-med.done .ms-coin{background:linear-gradient(160deg,#fff3c4,#f5c15a 45%,#a8761f);box-shadow:0 0 18px rgba(245,193,90,.65)}
+.ms-med.done .ms-coin::before{background:linear-gradient(160deg,#f7d98c,#d9a63c 60%,#b8862b)}
+.ms-med.done .ms-coin b{color:#1a1206;text-shadow:0 1px 0 rgba(255,255,255,.35)}
+.ms-med.done span{color:var(--gold)}
+.ms-chk{position:absolute;top:-6px;right:-4px;z-index:2;width:18px;height:18px;border-radius:50%;background:#22c55e;color:#fff;font-size:11px;font-weight:900;display:grid;place-items:center;border:2px solid #0b0a0f;font-style:normal}
+.ms-med.next .ms-coin{background:linear-gradient(160deg,#ff5c6a,var(--red) 55%,#7a000a);animation:msPop 1.6s ease-in-out infinite}
+.ms-med.next .ms-coin::before{background:#2a0a0f}
+.ms-med.next .ms-coin b{color:#fff}.ms-med.next span{color:#ff6b78}
+.ms-med.next::before{content:"NEXT";position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-family:var(--font-disp);font-size:9px;letter-spacing:.2em;text-indent:.2em;color:#fff;background:var(--red);padding:2px 6px 1px;border-radius:4px;box-shadow:0 0 10px rgba(230,0,18,.7);animation:msBounce 1.2s ease-in-out infinite}
+@keyframes msBounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-3px)}}
+@keyframes msPop{0%,100%{filter:drop-shadow(0 0 4px rgba(230,0,18,.6))}50%{filter:drop-shadow(0 0 14px rgba(230,0,18,1))}}
+.ms-med.lock{opacity:.5}
+.ms-next{position:relative;margin-top:14px;font-size:clamp(14px,4vw,17px);font-weight:900;color:#fff;text-align:center;letter-spacing:.02em}
+.ms-next em{font-style:normal;color:var(--gold);font-weight:900;font-size:1.3em;text-shadow:0 0 14px rgba(245,193,90,.5)}
+.ms-cta{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;margin:12px auto 0;width:100%;
+  padding:13px 16px;border-radius:999px;font-size:15px;font-weight:900;color:#1a1206;letter-spacing:.04em;
+  background:linear-gradient(135deg,#f7d98c,var(--gold) 55%,#c9962e);box-shadow:0 8px 22px rgba(245,193,90,.4)}
+.ms-cta span{display:inline-block;animation:msCta 1.4s ease-in-out infinite}
+@keyframes msCta{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+/* ミッション詳細モーダル */
+.ms-modal{position:fixed;inset:0;z-index:500;display:grid;place-items:end center}
+.ms-modal[hidden]{display:none}
+.ms-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(6px)}
+.ms-sheet{position:relative;width:min(640px,100%);max-height:88vh;overflow:auto;background:#101016;border:1px solid rgba(255,255,255,.14);
+  border-radius:22px 22px 0 0;padding:22px 18px 28px;animation:msUp .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes msUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+@media(min-width:700px){.ms-modal{place-items:center}.ms-sheet{border-radius:22px}}
+.ms-close{position:absolute;top:10px;right:12px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font-size:20px;cursor:pointer}
+.ms-title{font-size:22px;font-weight:900;margin:2px 0 4px}
+.road-player .rp-kicker,.road-player .rp-title,.road-player .rp-ep{text-shadow:0 2px 12px rgba(0,0,0,.85)}
+.road-player .rp-play{box-shadow:0 0 30px rgba(230,0,18,.6)}
+.ms-link{display:inline-flex;align-items:center;gap:8px;margin:12px 0 4px;padding:10px 18px;border-radius:999px;font-size:13.5px;font-weight:900;color:#1a1206;text-decoration:none;
+  background:linear-gradient(135deg,#f7d98c,var(--gold) 55%,#c9962e);box-shadow:0 6px 18px rgba(245,193,90,.35)}
+.ms-link span{display:inline-block;animation:msCta 1.4s ease-in-out infinite}
+.subpage .ms-box{cursor:default;margin:18px 0 20px}
+.subpage .ms-track{margin:8px 0 18px}
+.subpage .ms-list{margin-top:34px}
+.subpage .ms-lead{margin-top:14px}
+
+/* ===== 集客ランキング ===== */
+#fanrank{padding:60px 0 40px}
+.fr-lead{color:var(--mist);font-size:13px;font-weight:700;margin:14px 0 18px}
+.fr-lead b{color:var(--gold)}
+.fr-board{display:grid;gap:8px;max-width:640px}
+.fr-row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;
+  background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.fr-row .rk{font-family:var(--font-disp);font-size:22px;color:#c9c9d4;text-align:center;letter-spacing:.02em}
+.fr-row .nm{font-size:15px;font-weight:900;color:#fff}
+.fr-row .ct{font-family:var(--font-disp);font-size:22px;color:var(--gold)}
+.fr-row .ct small{font-size:11px;margin-left:3px;color:#c9c9d4;font-family:inherit;font-weight:800}
+.fr-row.r1{border-color:rgba(245,193,90,.7);background:linear-gradient(135deg, rgba(245,193,90,.18), rgba(16,14,12,.9) 60%);box-shadow:0 0 24px rgba(245,193,90,.25)}
+.fr-row.r1 .rk{color:var(--gold);font-size:26px}
+.fr-row.r2{border-color:rgba(220,220,230,.5)}.fr-row.r2 .rk{color:#e6e6ee}
+.fr-row.r3{border-color:rgba(205,127,50,.6)}.fr-row.r3 .rk{color:#e0a060}
+.fr-empty{padding:18px 14px;border-radius:14px;border:1px dashed rgba(255,255,255,.2);color:var(--mist);font-size:13px;font-weight:800;text-align:center}
+.fr-cta{margin-top:16px;width:100%;max-width:640px;justify-content:center}
+.fr-note{margin:12px 0 22px;font-size:12px;font-weight:800;color:var(--mist)}
+.fr-note b{color:#ff5563}
+.fr-steps{display:grid;gap:10px;margin:6px 0 16px}
+.fr-step{display:flex;gap:12px;align-items:flex-start}
+.fr-step > b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#fff;font-family:var(--font-disp);font-size:15px}
+.fr-step p b{display:inline;width:auto;height:auto;border-radius:0;background:none;font-family:inherit;font-size:inherit;color:var(--gold)}
+.fr-step p{margin:0;font-size:13px;line-height:1.8;color:#dcdce4}
+.fr-step strong{color:#fff;font-size:14px}
+.fr-step p b{color:var(--gold)}
+.fr-prizes{display:grid;gap:10px}
+.fr-prize{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.fr-prize .fp-rank{flex:none;min-width:78px;text-align:center;font-family:inherit;font-size:13.5px;font-weight:900;letter-spacing:.02em;color:#fff;background:rgba(255,255,255,.1);border-radius:8px;padding:7px 8px;white-space:nowrap}
+.fr-prize.gold{border-color:rgba(245,193,90,.7);background:linear-gradient(135deg, rgba(245,193,90,.16), rgba(16,14,12,.9) 60%)}
+.fr-prize.gold .fp-rank{background:linear-gradient(135deg,#f7d98c,var(--gold) 55%,#c9962e);color:#1a1206}
+.fr-prize.silver .fp-rank{background:linear-gradient(135deg,#f0f0f4,#b9b9c6);color:#1a1a22}
+.fr-prize p{margin:0;font-size:12.5px;line-height:1.8;color:#dcdce4}
+.fr-prize p b{display:block;color:#fff;font-size:14.5px;line-height:1.5;margin-bottom:4px}
+.fr-sub{margin:10px 0 0;font-size:11.5px;font-weight:800;color:var(--mist);line-height:1.8}
+.fr-prize.tier .fp-rank{background:rgba(245,193,90,.16);color:var(--gold);border:1px solid rgba(245,193,90,.4)}
+.fr-mission{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.fr-mission .ms-box{margin:12px 0 18px}
+.fr-mission .ms-list{margin-top:30px}
+.fr-hero{margin:14px 0 4px;padding:16px 14px 14px;border-radius:18px;text-align:center;
+  background:linear-gradient(180deg,#141219,#0b0a0f);border:1.5px solid rgba(245,193,90,.55);box-shadow:0 0 26px rgba(245,193,90,.18)}
+.fh-tag{display:inline-block;font-size:14px;font-weight:900;letter-spacing:.14em;color:#fff;background:var(--red);padding:5px 12px;border-radius:999px;box-shadow:0 0 12px rgba(230,0,18,.6)}
+.fh-ttl{margin:10px 0 12px;white-space:nowrap;font-size:clamp(15px,4.6vw,23px);font-weight:900;letter-spacing:.02em;line-height:1.35;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.fh-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px 16px;border-radius:999px;font-size:15px;font-weight:900;color:#1a1206;text-decoration:none;letter-spacing:.04em;
+  background:linear-gradient(135deg,#f7d98c,var(--gold) 55%,#c9962e);box-shadow:0 8px 22px rgba(245,193,90,.4)}
+.fh-btn span{display:inline-block;animation:msCta 1.4s ease-in-out infinite}
+@media(min-width:561px){.fr-hero .sp-only{display:none}}
+.fr-prize{display:block;padding:0;overflow:hidden}
+.fp-head{display:flex;align-items:center;gap:12px;padding:13px 14px;background:rgba(255,255,255,.04)}
+.fp-head b{white-space:nowrap;font-size:clamp(14px,3.9vw,16px);font-weight:900;color:#fff;line-height:1.45}
+.fr-prize.gold .fp-head{background:linear-gradient(135deg, rgba(245,193,90,.22), rgba(16,14,12,.6) 70%)}
+.fr-prize.silver .fp-head{background:linear-gradient(135deg, rgba(220,220,230,.16), rgba(16,14,12,.6) 70%)}
+.fp-list{list-style:none;margin:0;padding:10px 14px 12px;display:grid;gap:6px}
+.fp-list:empty{display:none}
+.fp-list li{position:relative;padding-left:20px;font-size:13px;font-weight:700;color:#e0e0e8;line-height:1.6}
+.fp-list li::before{content:"";position:absolute;left:0;top:.55em;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px rgba(245,193,90,.6)}
+.junior-cta{max-width:560px;margin-top:10px}
+.jc-body{gap:5px;padding:12px 16px 11px}
+.jc-main{font-size:clamp(14px,4vw,20px);gap:6px}
+.jc-main .jc-emb{width:clamp(22px,5.5vw,30px);height:clamp(22px,5.5vw,30px)}
+.jc-vs{font-style:normal;font-family:var(--font-disp);color:var(--gold);font-size:.85em;margin:0 2px}
+.junior-cta .jc-go{font-size:12.5px;padding:7px 16px;margin-top:2px}
+/* TOPランキング: 表彰台 */
+.fr-podium{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:8px;align-items:end;margin-bottom:10px}
+.pd{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);text-align:center}
+.pd-rk{position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-family:var(--font-disp);font-size:13px;color:#1a1206;background:#c9c9d4;padding:2px 10px;border-radius:999px}
+.pd-av{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:17px;color:#fff;
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.18), rgba(255,255,255,.04) 60%);border:2px solid rgba(255,255,255,.3);margin-top:6px}
+.pd-nm{font-size:13px;font-weight:900;color:#fff;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pd-ct{font-family:var(--font-disp);font-size:20px;color:#c9c9d4;line-height:1}
+.pd-ct small{font-size:10px;margin-left:2px;font-family:inherit;font-weight:800;color:#b9b9c6}
+.pd1{padding-top:18px;padding-bottom:16px;border-color:rgba(245,193,90,.75);background:linear-gradient(180deg, rgba(245,193,90,.2), rgba(16,14,12,.92) 70%);box-shadow:0 0 28px rgba(245,193,90,.3)}
+.pd1 .pd-rk{background:linear-gradient(135deg,#f7d98c,var(--gold) 55%,#c9962e);font-size:15px}
+.pd1 .pd-av{width:64px;height:64px;font-size:21px;border-color:var(--gold);box-shadow:0 0 18px rgba(245,193,90,.5)}
+.pd1 .pd-ct{color:var(--gold);font-size:26px}
+.pd2{border-color:rgba(220,220,230,.45)}.pd2 .pd-rk{background:#e6e6ee}.pd2 .pd-av{border-color:#e6e6ee}
+.pd3{border-color:rgba(205,127,50,.55)}.pd3 .pd-rk{background:#e0a060}.pd3 .pd-av{border-color:#e0a060}
+#fanrank .fr-row{grid-template-columns:40px 1fr auto;padding:10px 14px}
+#fanrank .fr-row .rk{font-size:18px}#fanrank .fr-row .ct{font-size:18px}
+.hero-buy{margin-top:10px;width:100%;max-width:560px;justify-content:center}
+.fr-prize-btn{width:100%;justify-content:center;margin:4px 0 18px;font-size:clamp(18px,5.4vw,22px);padding:16px 16px}
+.fr-notes{display:grid;gap:8px;margin:14px 0 24px}
+.fr-note-item{display:flex;gap:10px;align-items:flex-start;padding:11px 13px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.fr-note-item i{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:900;font-size:13px;background:var(--red);color:#fff}
+.fr-note-item.ok i{background:#22c55e}
+.fr-note-item p{margin:0;font-size:13px;line-height:1.75;color:#e0e0e8;font-weight:700}
+.fr-note-item p b{color:#fff}
+.fr-steps{gap:10px}
+.fr-step{padding:12px 13px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);align-items:center}
+.fr-step > b{width:34px;height:34px;font-size:17px}
+.fr-step p{font-size:13px;line-height:1.7}
+.fr-step strong{display:block;font-size:15px;margin-bottom:2px}
+.jc-main{gap:4px}
+/* ===== ヒーロー導線の統一(購入→ランキング→ジュニア) ===== */
+.hero-buy{display:flex;width:100%;max-width:560px;margin:14px 0 0;justify-content:center;font-size:15px;padding:14px 16px;border-radius:999px}
+.fr-hero{max-width:560px;margin:10px 0 0;padding:16px 14px 14px;border:1.5px solid rgba(245,193,90,.7);box-shadow:0 0 30px rgba(245,193,90,.25)}
+.fh-tag{display:inline-block;font-size:13.5px;font-weight:900;letter-spacing:.18em;text-indent:.18em;color:#fff;background:linear-gradient(120deg,#ff2233,var(--red) 60%,#a3000d);
+  padding:6px 18px 5px;border-radius:0;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);box-shadow:0 0 14px rgba(230,0,18,.5)}
+.fh-btn{font-size:15px;padding:14px 16px}
+.junior-cta{max-width:560px;margin:10px 0 0;border:1px solid rgba(255,255,255,.18);box-shadow:none;animation:none;background:rgba(255,255,255,.04)}
+.junior-cta::before{display:none}
+.jc-body{padding:11px 14px 10px;gap:4px}
+.jc-main{font-size:clamp(13.5px,3.8vw,18px);text-shadow:none}
+.junior-cta .jc-go{background:none;color:var(--gold);padding:0;font-size:12.5px;border-bottom:1px solid rgba(245,193,90,.5);border-radius:0}
+.hero-grid.one{grid-template-columns:1fr;gap:0}
+.hero-grid.one > div{max-width:560px}
+.fr-hero{margin:14px 0 0;padding:14px 14px 13px}
+.fh-ttl{margin:8px 0 10px}
+.fh-btn{padding:13px 16px}
+.junior-cta{margin:8px 0 0}
+.d6{transition-delay:.5s}
+.kv-note{display:none!important} /* FVの無料席注記はKVの「小学生無料！」に集約(座席詳細・モーダル・案内には残存) */
+.hero-ctas{max-width:560px}
+.hero-buy{width:100%;justify-content:center;font-size:15.5px;padding:15px 16px}
+.fr-hero{padding:0 0 14px;overflow:hidden}
+.fh-tag{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;clip-path:none;border-radius:0;
+  font-size:clamp(16px,4.6vw,20px);font-weight:900;letter-spacing:.12em;text-indent:0;padding:11px 12px 10px;
+  background:linear-gradient(120deg,#ff2233,var(--red) 55%,#a3000d);color:#fff;box-shadow:0 6px 18px rgba(230,0,18,.45);
+  animation:fhPulse 1.8s ease-in-out infinite}
+.fh-tag i{font-style:normal;color:var(--gold);font-size:.9em;animation:fhStar 1.2s ease-in-out infinite}
+@keyframes fhPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.18)}}
+@keyframes fhStar{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.7}}
+.fh-ttl{margin:12px 12px 10px}
+.fh-btn{width:calc(100% - 28px);margin:0 auto}
+.hero-live.in-seats{margin:6px 0 22px;max-width:none}
+.fr-hero{padding:14px 14px 14px;background:linear-gradient(180deg,#141219,#0b0a0f)}
+.fh-tag{width:auto;display:inline-block;background:none;box-shadow:none;animation:none;padding:0;margin:0 0 10px;
+  font-size:clamp(14px,4vw,17px);font-weight:900;letter-spacing:.14em;color:var(--gold);text-shadow:0 0 14px rgba(245,193,90,.45)}
+.fh-btn{width:100%;margin:0;font-size:clamp(14px,4.1vw,16.5px);white-space:nowrap}
+.ek-note{display:block;font-style:normal;font-size:11px;font-weight:800;color:#ff5563;margin:2px 0 4px}
+.fh-tag{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin:0 0 8px;padding:0;background:none;box-shadow:none;
+  font-size:clamp(18px,5.4vw,24px);font-weight:900;letter-spacing:.1em;
+  background-image:linear-gradient(135deg,#fff3c4,#f5c15a 45%,#e0a83a);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 12px rgba(245,193,90,.55));animation:fhGlow 2s ease-in-out infinite}
+.fh-tag i{flex:1;max-width:46px;height:2px;background:linear-gradient(90deg,transparent,var(--gold));border-radius:2px;animation:none}
+.fh-tag i:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
+@keyframes fhGlow{0%,100%{filter:drop-shadow(0 0 8px rgba(245,193,90,.4))}50%{filter:drop-shadow(0 0 18px rgba(245,193,90,.85))}}
+.fh-ttl{margin:0 0 12px;font-size:clamp(15px,4.4vw,20px);color:#fff}
+.fh-btn{width:100%;margin:0;white-space:nowrap}
+.junior-cta{border:1.5px solid rgba(230,0,18,.55);background:linear-gradient(135deg, rgba(230,0,18,.16), rgba(20,10,12,.92) 60%);box-shadow:0 0 18px rgba(230,0,18,.18)}
+.jc-main{color:#fff}
+.jc-vs{color:var(--gold)}
+/* KV下端を背景へ自然に溶かす(SP) + KV〜ボタンの間隔を詰める */
+@media(max-width:900px){
+  .kv-base{-webkit-mask-image:linear-gradient(180deg,#000 84%,rgba(0,0,0,.6) 93%,transparent 100%);mask-image:linear-gradient(180deg,#000 84%,rgba(0,0,0,.6) 93%,transparent 100%)}
+  .hero-grid.one{gap:0;margin-top:-14px}
+}
+.hero-grid.one{gap:0}
+.hero-ctas{margin-top:8px}
+.fh-tag{font-size:clamp(15px,4.6vw,21px);letter-spacing:.06em}
+.kids-free{max-width:560px;margin:0 0 22px}
+.kids-free img{display:block;width:100%;border-radius:16px;border:1px solid rgba(255,255,255,.12)}
+.kf-note{margin:10px 0 0;font-size:13px;font-weight:900;color:#ff5563}
+#events{padding-top:34px;padding-bottom:36px}
+#ticket-news{padding-top:34px}
+#fanrank{padding-top:34px}
+.hero{padding-bottom:22px}
+.fr-visual{display:block;width:100%;border-radius:14px;margin:8px 0 14px;border:1px solid rgba(245,193,90,.4);box-shadow:0 0 26px rgba(245,193,90,.2)}
+.fp-cert{flex:none;width:54px;border-radius:6px;overflow:hidden;border:1px solid rgba(245,193,90,.5);box-shadow:0 4px 14px rgba(0,0,0,.5);transition:.2s}
+.fp-cert img{display:block;width:100%;height:auto}
+.fp-cert:hover{transform:scale(1.04);border-color:var(--gold)}
+.fp-head{gap:10px}
+.fr-prize .fp-rank{min-width:64px;font-size:12.5px;padding:6px 6px}
+.free-alert{display:flex;align-items:center;gap:12px;max-width:560px;margin:-8px 0 24px;padding:13px 16px;border-radius:14px;
+  background:linear-gradient(135deg, rgba(230,0,18,.28), rgba(24,8,11,.96) 60%);border:2px solid #ff2d3f;box-shadow:0 0 24px rgba(230,0,18,.45);animation:kvNotePulse 2s ease-in-out infinite}
+.free-alert i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:900;font-size:17px;
+  background:linear-gradient(135deg,#f7d98c,var(--gold) 60%,#c9962e);color:#1a1206}
+.free-alert p{margin:0;font-size:clamp(14px,4vw,17px);font-weight:900;color:#fff;line-height:1.5}
+.free-alert p b{color:#ffd166}
+.hero-ctas .hero-buy{font-size:clamp(16px,4.8vw,19px);padding:15px 16px;width:100%;max-width:560px;justify-content:center;border-radius:12px;font-weight:900;letter-spacing:.04em;background:var(--red);color:#fff}
+.fp-cert{position:relative}
+.fp-cert::after{content:"SAMPLE";position:absolute;left:0;right:0;bottom:4px;text-align:center;font-family:var(--font-disp);font-size:9px;letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.62);padding:1px 0}
+#fanrank[hidden],#fr-hero[hidden]{display:none!important}
+.hero-ctas{margin-top:0}
+.vs-count.amb-under{margin:16px 0 0!important;max-width:560px;position:relative;z-index:1}
+/* 参加方法: 行間を詰める */
+.fr-step{padding:10px 12px;gap:10px}
+.fr-step p{font-size:12.5px;line-height:1.5}
+.fr-step strong{display:block;font-size:14.5px;margin:0 0 1px;line-height:1.3}
+/* 豪華特典: プレミアム表現 */
+.fr-prizes{gap:14px}
+.fr-prize{position:relative;border-radius:18px;border:1.5px solid rgba(255,255,255,.14);overflow:hidden;
+  background:linear-gradient(160deg,#17151c,#0c0b10);box-shadow:0 12px 30px rgba(0,0,0,.45)}
+.fr-prize::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background:radial-gradient(360px 160px at 100% 0%, rgba(255,255,255,.12), transparent 60%)}
+.fp-head{padding:16px 16px 12px;background:none;gap:12px;align-items:center}
+.fp-head b{font-size:clamp(15px,4.3vw,18px);white-space:nowrap;line-height:1.35}
+.fr-prize .fp-rank{min-width:auto;padding:7px 12px;font-size:13px;border-radius:999px;letter-spacing:.06em}
+.fp-cert{width:64px;border-radius:8px;border:1.5px solid rgba(255,255,255,.35);box-shadow:0 8px 20px rgba(0,0,0,.6)}
+.fp-list{padding:0 16px 16px;gap:8px}
+.fp-list li{font-size:13.5px;font-weight:800;color:#f0f0f6;padding-left:24px;line-height:1.55}
+.fp-list li::before{content:"✦";width:auto;height:auto;border-radius:0;background:none;box-shadow:none;top:.05em;font-size:14px;color:var(--gold)}
+/* 1位: 金 */
+.fr-prize.gold{border-color:rgba(245,193,90,.85);background:linear-gradient(160deg,#2a2210,#0c0b10 55%);box-shadow:0 0 36px rgba(245,193,90,.35),0 14px 30px rgba(0,0,0,.5)}
+.fr-prize.gold::before{opacity:.8;background:radial-gradient(420px 200px at 100% 0%, rgba(245,193,90,.35), transparent 60%)}
+.fr-prize.gold .fp-rank{background:linear-gradient(135deg,#fff3c4,#f5c15a 50%,#c9962e);color:#1a1206;font-size:14px}
+.fr-prize.gold .fp-head b{background-image:linear-gradient(135deg,#fff3c4,#f5c15a 45%,#e0a83a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fr-prize.gold .fp-cert{width:78px;border-color:var(--gold);box-shadow:0 0 22px rgba(245,193,90,.6)}
+/* 2〜5位: プラチナ */
+.fr-prize.silver{border-color:rgba(230,232,240,.7);background:linear-gradient(160deg,#24252c,#0c0b10 55%);box-shadow:0 0 26px rgba(220,224,235,.22),0 14px 30px rgba(0,0,0,.5)}
+.fr-prize.silver .fp-rank{background:linear-gradient(135deg,#ffffff,#c9ccd6 55%,#9fa3b0);color:#1a1a22}
+.fr-prize.silver .fp-head b{color:#f4f4f8}
+.fr-prize.silver .fp-list li::before{color:#e6e8f0}
+/* 6〜10位・達成枠 */
+.fr-prize.tier .fp-rank{background:rgba(245,193,90,.16);color:var(--gold);border:1px solid rgba(245,193,90,.5)}
+.fr-prize.tier .fp-head b{color:#fff}
+/* 豪華特典 見出し */
+.fp-block{position:relative;padding-top:8px}
+.fp-title{text-align:center;margin:6px 0 16px}
+.fp-en{display:block;font-family:var(--font-disp);font-size:12px;letter-spacing:.5em;text-indent:.5em;color:rgba(245,193,90,.85);margin-bottom:2px}
+.fp-h{margin:0;font-size:clamp(30px,9vw,44px);font-weight:900;letter-spacing:.08em;line-height:1.15;
+  background-image:linear-gradient(180deg,#fff6d6 0%,#f5c15a 45%,#c9962e 70%,#ffe9a8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 14px rgba(245,193,90,.5)) drop-shadow(0 4px 0 rgba(0,0,0,.35))}
+.fp-block .fp-h::before{display:none}
+.fp-deco{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:6px}
+.fp-deco i{width:min(120px,26vw);height:1.5px;background:linear-gradient(90deg,transparent,var(--gold));display:block}
+.fp-deco i:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
+.fp-deco b{color:var(--gold);font-size:11px;text-shadow:0 0 10px rgba(245,193,90,.8)}
+.fp-block .fp-h{display:block!important;text-align:center!important;width:100%;padding:0;gap:0;justify-content:center;margin:0}
+.fp-block .fp-title{text-align:center;width:100%}
+.fp-en{text-align:center}
+.fp-head{flex-wrap:wrap}
+.fp-head b{white-space:normal!important;overflow-wrap:anywhere;flex:1 1 150px;min-width:0;font-size:clamp(14px,4vw,18px)}
+.fr-prize{overflow:visible}
+/* KV直下に購入ボタンを密着 */
+@media(max-width:900px){ .hero-grid.one{margin-top:-46px} }
+@media(min-width:901px){ .hero-grid.one{margin-top:-6px} }
+.hero-ctas{margin-top:0}
+.fr-step strong{font-size:16px;margin:0}
+.fr-step p{line-height:1.3}
+.fr-prize .fp-list li::before{background:none!important;box-shadow:none!important;color:var(--gold)}
+/* 上部ボタン大・TOPカード枠太 */
+.subpage .fr-prize-btn{font-size:clamp(15px,4.4vw,18px)!important;padding:13px 16px!important;letter-spacing:.04em}
+.fr-hero{border:3px solid var(--gold)!important;box-shadow:0 0 0 3px rgba(245,193,90,.22),0 0 40px rgba(245,193,90,.45)!important;border-radius:20px}
+.fh-tag{font-size:clamp(15px,4.3vw,20px);line-height:1.3;text-align:center}
+.fh-tag i{display:none}
+@media(min-width:561px){.fh-tag br.sp-only{display:none}}
+.fr-form-btn2{margin-top:18px;font-size:clamp(16px,4.8vw,19px);padding:15px 16px}
+.fr-btns{display:grid;gap:10px;margin-top:6px}
+.fr-btns .sp-cta{margin:0;font-size:clamp(15px,4.4vw,18px)}
+.fr-lead2{margin-bottom:10px}
+.fr-points{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:7px}
+.fr-points li{position:relative;padding-left:22px;font-size:14px;font-weight:700;color:#e0e0e8;line-height:1.6}
+.fr-points li::before{content:"✦";position:absolute;left:0;top:.05em;color:var(--gold)}
+.fr-points li b{color:#fff}
+.fr-podium.ghost{opacity:.55;filter:saturate(.6)}
+.fr-podium.ghost .pd-av{border-style:dashed}
+.fr-podium.ghost + .fr-empty{margin-top:10px}
+.guest[hidden]{display:none!important}
+.guests-mc{grid-template-columns:repeat(2,1fr);max-width:760px}
+@media(max-width:720px){.guests-mc{grid-template-columns:1fr}}
+/* ===== 出場選手情報 ===== */
+.ro-team{margin:8px 0 34px}
+.ro-head{display:flex;align-items:center;gap:10px;padding-bottom:10px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.ro-head img{width:34px;height:34px;object-fit:contain}
+.ro-head b{font-size:clamp(17px,4.4vw,22px);font-weight:900;color:#fff;white-space:nowrap}
+.ro-head span{font-family:var(--font-disp);font-size:10px;letter-spacing:.2em;color:var(--gold);margin-left:auto;white-space:nowrap}
+.ro-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.ro-p{display:flex;align-items:center;gap:9px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03)}
+.ro-p b{font-family:var(--font-disp);font-size:20px;min-width:30px;text-align:center;color:var(--red);line-height:1}
+.ro-p.gk b{color:var(--gold)}
+.ro-p span{font-size:13.5px;font-weight:800;color:#fff;flex:1}
+.ro-p i{font-style:normal;font-size:10px;font-weight:900;color:var(--mist);letter-spacing:.08em}
+.ro-staff{margin:12px 0 0;font-size:13px;font-weight:800;color:var(--mist)}
+.ro-note{margin:0 0 14px;font-size:13px;line-height:1.8;font-weight:700;color:#c9c9d4}
+.ro-w{padding:15px 16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(160deg,var(--ink2),#0e0e13);margin-bottom:10px}
+.ro-wh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-bottom:6px}
+.ro-wh b{font-family:var(--font-disp);font-size:20px;letter-spacing:.05em;color:#fff;line-height:1.1}
+.ro-wh span{font-size:13px;font-weight:900;color:var(--gold)}
+.ro-wh em{font-style:normal;font-size:11px;font-weight:900;color:var(--mist);width:100%;letter-spacing:.06em}
+.ro-w p{margin:0;font-size:13px;line-height:1.85;font-weight:700;color:#d6d6e0}
+.ro-ig{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:800;color:var(--gold);text-decoration:none;opacity:.85}
+/* ===== ヒーロー: スポンサー募集 ===== */
+.hero-sponsor{display:flex;width:100%;max-width:560px;margin:10px 0 0;justify-content:center;font-size:14px;padding:12px 16px;border-radius:12px;
+  background:transparent;border:1.5px solid rgba(232,196,106,.7);color:var(--gold);font-weight:900;text-decoration:none;gap:8px;align-items:center}
+.hero-sponsor:hover{background:rgba(232,196,106,.12)}
+/* 出場選手: ピックアップ / 箱の統一 */
+.ro-pk{padding:14px 15px;border:1px solid rgba(232,196,106,.35);border-radius:14px;background:linear-gradient(160deg,#1a1a22,#0e0e13);margin-bottom:10px}
+.ro-pkh{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.ro-pkh>b{font-family:var(--font-disp);font-size:30px;line-height:1;color:var(--red);min-width:36px;text-align:center}
+.ro-pkh>div{display:flex;flex-direction:column;min-width:0;flex:1}
+.ro-pkn{font-size:19px;font-weight:900;color:#fff;line-height:1.2}
+.ro-pke{font-family:var(--font-disp);font-size:11px;letter-spacing:.2em;color:var(--gold)}
+.ro-pkh em{font-style:normal;display:flex;flex-direction:column;align-items:flex-end;font-family:var(--font-disp);font-size:13px;letter-spacing:.08em;color:#fff}
+.ro-pkh em i{font-style:normal;font-family:var(--font-jp);font-size:10px;font-weight:800;color:var(--mist);letter-spacing:0}
+.ro-pk p{margin:0;font-size:13px;line-height:1.85;font-weight:700;color:#d6d6e0}
+.ro-sub{font-family:var(--font-disp);font-size:11px;letter-spacing:.3em;color:var(--gold);margin:14px 0 8px}
+.ro-grid{grid-template-columns:repeat(2,1fr)}
+@media(min-width:561px){.ro-grid{grid-template-columns:repeat(3,1fr)}}
+.ro-p{height:46px;padding:0 11px;box-sizing:border-box}
+.ro-p span{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ro-p b{font-size:19px;min-width:28px}
+/* MC ラベルの書体統一 */
+.guests-mc .guest .no{font-family:var(--font-jp);font-weight:900;font-size:12px;letter-spacing:.2em}
+/* ヒーロー: クラファン画像 / 協賛 / ユニフォーム */
+.cf-img{display:block;width:100%;max-width:560px;margin:14px 0 0;border-radius:12px;border:1px solid rgba(232,196,106,.35)}
+.cf-img[hidden]{display:none!important}
+a.cf-img{padding:0}
+.hero-sponsor{gap:10px;font-size:15px;padding:11px 16px}
+.hero-sponsor .hs-logo{height:22px;width:auto;display:block}
+.uni-banner{position:relative;display:block;width:100%;max-width:560px;margin:14px 0 22px;border-radius:12px;overflow:visible;text-decoration:none}
+.uni-banner img{display:block;width:100%;border-radius:12px;border:1px solid rgba(232,196,106,.35)}
+.uni-btn{position:absolute;left:50%;bottom:-16px;transform:translateX(-50%);white-space:nowrap;padding:10px 22px;border-radius:999px;background:var(--red);color:#fff;font-size:14px;font-weight:900;box-shadow:0 8px 22px rgba(230,0,18,.45);letter-spacing:.04em}
+.uni-banner[hidden],.hero-sponsor[hidden]{display:none!important}
+/* ===== 出場選手: チップ / 余白 ===== */
+.ro-tags{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 8px}
+.ro-tags span{display:inline-block;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:900;line-height:1.3;color:var(--gold);background:rgba(232,196,106,.1);border:1px solid rgba(232,196,106,.35);white-space:nowrap}
+.ro-pk p,.ro-w p{font-size:13px;line-height:1.75}
+.ro-w{padding:13px 15px}
+.ro-w .ro-ig{display:inline-block;margin:0 0 0 8px;font-size:11px}
+.ro-w .ro-wh{margin-bottom:6px}
+.ro-w .ro-wh em{width:auto;margin-left:auto}
+#page-roster .sp-lead{margin:12px 0 22px;font-size:13px;line-height:1.8;color:var(--mist)}
+.ro-note{font-size:12.5px;color:var(--mist);margin-bottom:12px}
+/* ===== 見どころ v4（シンプル） ===== */
+.hl-list{display:grid;gap:14px;margin:22px 0 28px}
+.hl{min-width:0;overflow:hidden;padding:16px 16px 16px;border:1px solid var(--line);border-radius:16px;background:#131318}
+.hl-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line);background:none;border-left:0;border-radius:0}
+.hl-num{font-family:var(--font-disp);font-size:22px;line-height:1;color:var(--red);letter-spacing:.02em;flex:none}
+.hl h3{margin:0;font-size:clamp(13px,3.75vw,20px);font-weight:900;line-height:1.3;color:#fff;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hl-vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:10px 8px;border-radius:12px;background:rgba(255,255,255,.04)}
+.hl-vs span{display:flex;flex-direction:column;align-items:center;gap:6px}
+.hl-vs img{width:60px;height:60px;object-fit:contain}
+.hl-vs small{font-size:11px;font-weight:900;color:#e0e0e8;white-space:nowrap}
+.hl-vs i{font-family:var(--font-disp);font-style:normal;font-size:20px;color:var(--gold);letter-spacing:.06em}
+.hl-p{margin:12px 0 0;font-size:14px;line-height:1.8;font-weight:700;color:#e8e8ee}
+.hl-p b{color:var(--gold)}
+.hl-sub{margin:4px 0 0;font-size:12px;line-height:1.7;font-weight:700;color:#8e8e9a}
+.hl-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;padding:12px 14px;border-radius:11px;font-size:14px;font-weight:900;color:#1a1206;text-decoration:none;background:linear-gradient(135deg,#f7d98c,var(--gold) 45%,#c9962e)}
+.hl-btn span{transition:.2s}.hl-btn:hover span{transform:translateX(3px)}
+.hl-img{display:block;width:100%;border-radius:12px}
+.hl-buy{width:100%;justify-content:center;font-size:17px;padding:16px}
+/* ゲスト写真タイル */
+.hl-gg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hl-gc{position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#0b0b0f;border:1px solid rgba(232,196,106,.35)}
+.hl-gc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hl-gc span{position:absolute;left:0;right:0;bottom:0;padding:34px 12px 11px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.88));display:flex;flex-direction:column}
+.hl-gc b{font-family:var(--font-disp);font-size:24px;letter-spacing:.06em;color:#fff;line-height:1.1}
+.hl-gc small{font-size:10.5px;font-weight:800;color:var(--gold);margin-top:2px}
+.hl-gc.secret{display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#1e1e28,#0b0b0f)}
+.hl-gc.secret i{font-family:var(--font-disp);font-style:normal;font-size:72px;color:rgba(232,196,106,.35);line-height:1;transform:translateY(-14px)}
+.hl-gc.secret b{font-size:16px;letter-spacing:.2em}
+.hl-gc[hidden]{display:none!important}
+.mp-links .mp-logo{height:22px;margin-right:2px;vertical-align:middle}
+.mp-links .mp-logo7{height:24px;width:auto}
+/* ===== 出場選手: チーム別アコーディオン ===== */
+.ro-tc{margin:18px 0 16px;padding:14px 12px 12px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,#17171e,#0e0e13)}
+.ro-tc.world{border-color:rgba(232,196,106,.35)}
+.ro-tch{display:flex;align-items:center;gap:12px;padding:0 4px 12px}
+.ro-tch img{width:56px;height:56px;object-fit:contain;flex:none}
+.ro-tch b{display:block;font-size:clamp(18px,4.8vw,22px);font-weight:900;color:#fff;line-height:1.2}
+.ro-tch span{font-family:var(--font-disp);font-size:11px;letter-spacing:.25em;color:var(--gold)}
+.ro-acc{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:8px;padding:14px 16px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:rgba(255,255,255,.05);color:#fff;font-family:inherit;font-size:15px;font-weight:900;letter-spacing:.04em;text-align:left;transition:.2s}
+.ro-acc i{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--gold);position:relative;flex:none;transition:.25s}
+.ro-acc i::before,.ro-acc i::after{content:"";position:absolute;left:50%;top:50%;background:var(--gold);transform:translate(-50%,-50%)}
+.ro-acc i::before{width:10px;height:1.5px}.ro-acc i::after{width:1.5px;height:10px;transition:.25s}
+.ro-acc.open{background:rgba(232,196,106,.12);border-color:rgba(232,196,106,.5)}
+.ro-acc.open i::after{transform:translate(-50%,-50%) scaleY(0)}
+.ro-panel{padding:10px 2px 4px}
+.ro-panel[hidden]{display:none!important}
+.ro-pk,.ro-w{margin-bottom:8px}
+.ro-ig{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 10px;border-radius:999px;font-size:11.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#f58529,#dd2a7b 55%,#8134af);text-decoration:none;opacity:1}
+.ro-ig svg{flex:none}
+.ro-wl{display:grid;gap:6px}
+.ro-wr{display:grid;grid-template-columns:1fr auto;grid-template-areas:"n c" "n i";align-items:center;gap:2px 10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03)}
+.ro-wr>div{grid-area:n;display:flex;flex-direction:column;min-width:0}
+.ro-wr b{font-family:var(--font-disp);font-size:15px;letter-spacing:.05em;color:#fff;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ro-wr span{font-size:11.5px;font-weight:800;color:var(--gold)}
+.ro-wr em{grid-area:c;font-style:normal;font-size:10.5px;font-weight:900;color:var(--mist);white-space:nowrap;text-align:right}
+.ro-wr .ro-ig{grid-area:i;margin:0;padding:3px 8px;font-size:10.5px;justify-self:end}
+.ro-wr .ro-ig svg{width:11px;height:11px}
+/* 見どころ: 畳み */
+.hl{padding:0;overflow:hidden}
+.hl-head{margin:0;padding:14px 16px;cursor:pointer;user-select:none}
+.hl-head .hl-num{font-size:22px}
+.hl-head h3{flex:1;min-width:0;white-space:normal;overflow:visible;text-overflow:clip;font-size:clamp(14px,4.1vw,20px)}
+.hl-head .acc-i{margin-left:auto}
+.hl-head .acc-i{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--gold);position:relative;flex:none}
+.hl-head .acc-i::before,.hl-head .acc-i::after{content:"";position:absolute;left:50%;top:50%;background:var(--gold);transform:translate(-50%,-50%)}
+.hl-head .acc-i::before{width:10px;height:1.5px}.hl-head .acc-i::after{width:1.5px;height:10px;transition:.25s}
+.hl-head.open .acc-i::after{transform:translate(-50%,-50%) scaleY(0)}
+.hl-head.open{background:rgba(232,196,106,.08)}
+.hl-body{padding:4px 14px 16px}
+.hl-body[hidden]{display:none!important}
+/* ===== ヒーロー: 2タイル（ユニフォーム / 協賛） ===== */
+.hero-tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:560px;margin:10px 0 0}
+.hero-tiles[hidden]{display:none!important}
+.htile{position:relative;display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;border:1px solid rgba(232,196,106,.45);background:linear-gradient(160deg,#1a1a22,#0f0f14);text-decoration:none;min-height:66px}
+.htile[hidden]{display:none!important}
+.htile>img{width:48px;height:48px;border-radius:9px;object-fit:cover;flex:none}
+.htile>img.hs-logo{width:auto;height:22px;border-radius:0;object-fit:contain;flex:none;max-width:76px}
+.htile span{display:flex;flex-direction:column;min-width:0;flex:1}
+.htile small{font-family:var(--font-disp);font-size:9px;letter-spacing:.14em;color:var(--gold);line-height:1.2}
+.htile b{font-size:13px;font-weight:900;color:#fff;line-height:1.25;margin-top:2px}
+.htile i{position:absolute;right:9px;bottom:7px;font-style:normal;font-size:12px;color:var(--gold)}
+.htile-sp{flex-direction:column;align-items:flex-start;justify-content:center;gap:4px}
+.htile-sp>img.hs-logo{height:18px}
+@media(min-width:561px){.htile b{font-size:14px}.htile>img{width:56px;height:56px}}
+/* 見どころ見出し: 小さく・シェブロン */
+.hl-head{padding:11px 14px}
+.hl-head .hl-num{font-size:17px}
+.hl-head h3{font-size:clamp(13.5px,3.9vw,17px);font-weight:800}
+.hl-head .acc-i{width:20px;height:20px;border:0;display:grid;place-items:center}
+.hl-head .acc-i::before,.hl-head .acc-i::after{display:none}
+.hl-chev{width:9px;height:9px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:translateY(-2px) rotate(45deg);transition:.25s}
+.hl-head.open .hl-chev{transform:translateY(2px) rotate(-135deg)}
+.hl-head .nb{white-space:nowrap}
+/* ===== v6 ===== */
+.ttl-logo7{width:clamp(130px,36vw,220px);transform:translateY(2px)}
+.mp-links .mp-logo,.mp-links .mp-logo7{width:96px;height:auto;vertical-align:middle;margin-right:4px}
+.hl-btn{font-weight:800;font-size:15px;letter-spacing:0;color:#120d04;background:linear-gradient(135deg,#f3dc9a,#e2bd63);-webkit-font-smoothing:antialiased;text-shadow:none}
+.hero-sponsor{gap:10px;font-size:15px;padding:12px 12px;white-space:nowrap}
+.hero-sponsor .hs-logo{height:30px}
+@media(max-width:380px){.hero-sponsor{font-size:14px}.hero-sponsor .hs-logo{height:26px}}
+.nav-cta{margin-right:118px}
+@media(max-width:720px){.nav-cta{font-size:12px;padding:8px 12px;letter-spacing:.02em;margin-left:auto;margin-right:112px}.nav{gap:10px;padding:0 14px}}
+.uni-banner{margin:14px 0 0}
+.uni-banner img{border-radius:12px 12px 0 0}
+.uni-btn{position:static;display:flex;justify-content:center;transform:none;width:100%;box-sizing:border-box;border-radius:0 0 12px 12px;padding:12px 16px;box-shadow:none;font-size:15px}
+.hero-ctas .hero-buy{display:none!important}
+/* カウントダウン: 大きく・派手に */
+.cf-big{margin:30px 0 0;max-width:560px;width:100%;padding:40px 16px 16px;border-radius:16px;box-sizing:border-box;
+  background:radial-gradient(120% 90% at 50% 0%,#3a0008 0%,#12040a 55%,#08080b 100%);border:2px solid var(--red);
+  box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 0 44px rgba(230,0,18,.55),0 12px 40px rgba(0,0,0,.6);animation:cfPulse 2.4s ease-in-out infinite}
+.cf-big::before{content:"COMING SOON";position:absolute;top:10px;left:50%;transform:translateX(-50%);padding:3px 12px;border-radius:999px;background:var(--red);color:#fff;font-family:var(--font-disp);font-size:11px;letter-spacing:.24em}
+.cf-big::after{background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%)}
+.cf-big .vc-line{color:#fff;gap:4px}
+.cf-big .vc-cap{font-size:clamp(16px,4.6vw,22px);letter-spacing:.06em;color:#fff;text-shadow:0 0 14px rgba(230,0,18,.8)}
+.cf-big .vc-nums b{font-size:clamp(44px,13vw,72px);color:var(--gold);text-shadow:0 0 18px rgba(232,196,106,.45)}
+.cf-big .vc-nums i{font-size:clamp(13px,3.6vw,17px);color:#ffd5d9;margin:0 7px 0 3px}
+.cf-big .vc-sub{font-size:clamp(13px,3.4vw,15px);color:#ff8a94;margin-top:4px}
+@keyframes cfPulse{0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 0 30px rgba(230,0,18,.45),0 12px 40px rgba(0,0,0,.6)}50%{box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 0 60px rgba(230,0,18,.85),0 12px 40px rgba(0,0,0,.6)}}
+/* 登録選手: 詳細トグル */
+.ro-p.has{cursor:pointer;font-family:inherit;text-align:left;color:#fff;border-color:rgba(232,196,106,.4);position:relative}
+.ro-p.has .ro-chev{position:absolute;right:9px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:translateY(-70%) rotate(45deg);transition:.2s}
+.ro-p.has i{margin-right:12px}
+.ro-p.has.open{background:rgba(232,196,106,.12);border-color:var(--gold)}
+.ro-p.has.open .ro-chev{transform:translateY(-20%) rotate(-135deg)}
+.ro-pd{grid-column:1/-1;padding:10px 12px 12px;border:1px solid rgba(232,196,106,.35);border-radius:10px;background:rgba(232,196,106,.05);margin:-2px 0 4px}
+.ro-pd[hidden]{display:none!important}
+.ro-pdh{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.ro-pdh em{font-style:normal;font-family:var(--font-disp);font-size:12px;letter-spacing:.12em;color:var(--gold)}
+.ro-pdh small{font-size:11px;font-weight:800;color:var(--mist)}
+.ro-pd p{margin:0;font-size:13px;line-height:1.75;font-weight:700;color:#e8e8ee}
+.ro-pd .ro-ig{margin-top:8px}
+.tt-cta{margin:18px auto 0;display:flex;width:100%;max-width:560px;justify-content:center;box-sizing:border-box}
+.tt-cta .inl-logo{filter:drop-shadow(0 0 1.5px rgba(0,0,0,.9)) drop-shadow(0 0 4px rgba(0,0,0,.6))}
+/* ===== v7 ===== */
+.inl-logo{height:1.15em;width:auto;vertical-align:-0.18em;display:inline-block;margin-right:2px}
+.tt-cta .inl-logo{height:1.4em;margin-right:6px}
+.hl-head h3 .inl-logo{height:1.25em;margin-right:4px}
+.sticky-buy a{font-size:17px;padding:17px 16px;border-radius:14px;letter-spacing:.04em}
+@media(max-width:720px){body{padding-bottom:70px}}
+/* ルール */
+.rl .rl-en{display:block;font-family:var(--font-disp);font-size:9.5px;letter-spacing:.24em;color:var(--gold);margin-bottom:1px}
+.rl .hl-num{color:var(--gold);text-shadow:0 0 14px rgba(232,196,106,.45)}
+.rl .rphoto{width:100%;border-radius:10px;display:block;aspect-ratio:16/7;object-fit:cover;border:1px solid rgba(255,255,255,.12);margin-top:10px}
+.rl svg.rphoto{aspect-ratio:auto;height:auto}
+/* 戦績 */
+.hs .hl-head h3 em{display:block;font-style:normal;font-size:10.5px;color:var(--mist);font-weight:800;margin-top:1px}
+.hs .hs-res{flex:none;text-decoration:none;font-size:12px;font-weight:900;color:rgba(255,255,255,.55);white-space:nowrap;margin-left:6px}
+.hs .hs-res.win{color:#7ee08a}.hs .hs-res.gold{color:var(--gold)}
+.hs .hkv{display:block;width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+.hs-meta{margin-top:10px}.hs-meta b{display:block;font-size:14px;color:#fff;font-weight:900}.hs-meta span{display:block;font-size:12px;color:var(--mist);font-weight:800;margin-top:2px}.hs-meta span.gold{color:var(--gold)}
+.hs.now{border-color:rgba(230,0,18,.65)}.hs.now .hl-num{color:var(--red)}
+/* 世界選抜 登録選手 詳細 */
+.ro-wr.has{cursor:pointer;font-family:inherit;text-align:left;width:100%;border-color:rgba(232,196,106,.35);grid-template-columns:1fr auto 18px;grid-template-areas:"n c v" "n i v"}
+.ro-wr.has .ro-chev{grid-area:v;width:7px;height:7px;border-right:1.5px solid var(--gold);border-bottom:1.5px solid var(--gold);transform:translateY(-2px) rotate(45deg);justify-self:center;transition:.2s}
+.ro-wr.has.open{background:rgba(232,196,106,.1);border-color:var(--gold)}
+.ro-wr.has.open .ro-chev{transform:translateY(2px) rotate(-135deg)}
+.ro-wl .ro-pd{margin:-4px 0 2px}
+/* v8 */
+.sticky-buy a{font-size:19px;padding:18px 16px}
+.uni-btn{background:linear-gradient(135deg,#ff2a3c,#b3000f);border:1.5px solid rgba(232,196,106,.85);border-top:0;font-size:16px;font-weight:900;letter-spacing:.06em;box-shadow:0 10px 26px rgba(230,0,18,.45);position:relative;left:0;bottom:auto;transform:none;overflow:hidden}
+.uni-btn::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.28) 50%,transparent 60%);transform:translateX(-100%);animation:nbShine 3.2s ease-in-out infinite;pointer-events:none}
+.uni-banner img{border:1.5px solid rgba(232,196,106,.85);border-bottom:0}
+.hs .hl-head h3 .hs-t{display:inline-flex;align-items:baseline;gap:2px}
+.hs .hl-head h3 .hs-t .inl-logo{height:1.15em;margin:0}
+.hs .hl-head h3 .hs-t b{font-family:var(--font-disp);font-size:1.15em;color:#fff;line-height:1}
+.hs .hl-head h3 em{font-size:11.5px;margin-top:2px}
+/* 固定購入ボタン v11: ミニマル */
+.sticky-buy{background:rgba(8,8,11,.86);backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,.08);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.sticky-buy a{gap:10px;height:54px;padding:0 20px;border-radius:999px;background:linear-gradient(180deg,#ff1f31,#d9000f);border:0;
+  box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 8px 24px rgba(230,0,18,.35);animation:none;text-decoration:none}
+.sticky-buy a::after{display:none}
+.sticky-buy a b{font-size:21px;font-weight:900;letter-spacing:.08em;color:#fff;line-height:1}
+.sticky-buy a i{font-style:normal;font-size:20px;font-weight:900;color:#fff;line-height:1;transform:translateY(-1px)}
+@media(max-width:720px){body{padding-bottom:76px}}
+.ro-tags span{white-space:normal}
+.ro-p.st b{font-size:11px;letter-spacing:.06em;color:var(--gold);min-width:34px;font-family:var(--font-jp);font-weight:900}
+/* 対抗図: 左右均等 */
+.pv-arena{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:6px}
+.pv-tname{white-space:nowrap;font-size:clamp(12px,3.4vw,24px);letter-spacing:.02em;line-height:1.25;overflow:hidden;text-overflow:clip}
+.pv-vs{font-size:clamp(18px,5vw,34px)}
+.pv-card{padding:8px 8px;gap:8px}
+.pv-card>div{min-width:0}
+.pv-card b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pv-card i{white-space:nowrap}
+.pv-card img{width:42px;height:42px}
+.pv-head{flex:1 1 0;min-width:0}
+.pv-hname{overflow:hidden;text-overflow:ellipsis}
+.pv-hpos{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pv-ovr{flex:none}
+.pv-heads{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;align-items:center}
+.pv-head{display:flex;align-items:center;gap:7px;min-width:0}
+.pv-head>div:not(.pv-ovr){flex:1 1 0;min-width:0}
+.pv-head-r{justify-content:flex-end}
+.pv-hname{white-space:nowrap;font-size:clamp(11px,3.1vw,16px);line-height:1.2;overflow:hidden;text-overflow:clip}
+.pv-hpos{font-size:9px}
+.pv-head img{width:40px;height:40px}
+.pv-ovr b{font-size:clamp(22px,6vw,32px)}
+.pv-head img{width:44px;height:44px}
+.pv-ovr{padding:0 4px}
+.pv-card i{overflow:hidden;text-overflow:ellipsis;min-width:0}
+.pv-card u{flex:none}
+.pv-card img{flex:none}
+.pv-card>span{flex:1 1 0;min-width:0;display:block}
+.pv-card b{font-size:12.5px}
+.pv-card i{font-size:9px;letter-spacing:.06em}
+.pv-card u{font-size:18px}
+.pv-hname{font-size:clamp(10.5px,2.9vw,16px);letter-spacing:0}
+.pv-head img{width:36px;height:36px}
+.pv-ovr b{font-size:clamp(20px,5.4vw,30px)}
+.pv-ovr{padding:0 2px}
+.pv-heads{gap:4px}
+.pv-card{padding:7px 7px;gap:6px}
+.pv-card img{width:34px;height:34px}
+.pv-card b{font-size:11px;letter-spacing:0}
+.pv-card i{font-size:8.5px;letter-spacing:.04em}
+.pv-card u{font-size:17px}
+.pv-arena{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;position:relative}
+.pv-vs{position:absolute;left:50%;top:6px;transform:translateX(-50%);font-size:15px;line-height:1;padding:0;background:none;z-index:2}
+.cf-big .vc-nums b{font-size:clamp(30px,9vw,56px)}
+.cf-big .vc-nums i{font-size:clamp(11px,3vw,15px);margin:0 5px 0 2px}
+/* PC: KV・ヒーロー幅の上限 */
+@media(min-width:900px){
+  .kv{max-width:1100px}
+  .kv img{width:100%;height:auto;display:block}
+}
+@media(min-width:1500px){.kv-stage,.kv{max-width:1200px}}
+/* ===== PC幅調整 ===== */
+.guests.guests-mc{grid-template-columns:repeat(2,1fr);max-width:760px;margin-top:0}
+@media(min-width:900px){
+  .hero-grid.one > div{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px}
+  .hero-grid.one > div > .hero-ctas{display:none}
+  .hero-grid.one > div > .cf-big,.hero-grid.one > div > .cf-img,.hero-grid.one > div > .uni-banner{flex:1 1 440px;max-width:540px;margin:0}
+  .hero-grid.one > div > .cf-big{display:flex;flex-direction:column;justify-content:center}
+  .hero-grid.one > div > .cf-img{align-self:center}
+  .hero-grid.one > div > .cf-img img{width:100%;height:auto}
+  .tt{max-width:760px}
+  .tt-cta{max-width:760px;margin-left:auto;margin-right:auto}
+  .goods-cta{max-width:760px}
+  .hero-grid.one > div{max-width:1100px;width:100%;margin:0 auto}
+  .wrap .faq{max-width:none}
+  .wrap .tn-list{max-width:none}
+  .wrap .tt-cta{display:flex;margin-left:auto;margin-right:auto}
+}
+/* 下層ページのゴールドボタン＝購入ボタンと同サイズ */
+.sp-cta.btn-gold{display:flex;width:100%;justify-content:center;font-size:17px;padding:16px;box-sizing:border-box}
 .rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
 .notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;
   padding:12px 18px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.07em;color:#fff;
@@ -614,6 +1346,8 @@ header.scrolled{background:rgba(8,8,11,.88);border-color:var(--line)}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>")}
 .kv-stage{width:100vw;margin-left:calc(50% - 50vw);display:flex;justify-content:center;margin-bottom:40px}
+@media(min-width:900px){.kv-stage{width:100%;max-width:1100px;margin-left:auto;margin-right:auto}}
+@media(min-width:1500px){.kv-stage{max-width:1200px}}
 .kv{width:100%}
 .kv-tilt{width:100%;min-width:0}
 @media(min-width:901px){.kv-tilt{width:100%}}
@@ -1021,7 +1755,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
 
 /* ---------- mobile sticky buy bar ---------- */
 .sticky-buy{position:fixed;left:0;right:0;bottom:0;z-index:99;display:none;background:rgba(8,8,11,.9);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
-.sticky-buy a{display:flex;justify-content:center;align-items:center;gap:10px;background:var(--red);color:#fff;font-weight:900;font-size:15px;border-radius:12px;padding:14px}
+.sticky-buy a{display:flex;justify-content:center;align-items:center;gap:10px;background:var(--red);color:#fff;font-weight:900;font-size:21px;line-height:1;letter-spacing:.04em;border-radius:12px;padding:13px 16px}
 @media(max-width:720px){.sticky-buy{display:block}body{padding-bottom:70px}}
 
 /* buy button + modal */
@@ -1086,7 +1820,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       <a href="#info">ご案内</a>
       <a href="#faq">FAQ</a>
     </div>
-    <a class="nav-cta" href="#seats">座席を確認する</a>
+    <a class="nav-cta" href="#seats">チケットを購入する</a>
     <button class="menu-btn" id="menu-btn" type="button" aria-label="メニューを開く"><i class="mb-lines"><span></span><span></span></i>メニュー</button>
   </nav>
 </header>
@@ -1102,9 +1836,11 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     <div class="mp-head"><span class="mp-ttl">MENU</span><button class="mp-close" id="mp-close" type="button" aria-label="閉じる">✕</button></div>
     <nav class="mp-links">
       <a href="#" data-page="page-about"><b>01</b><img class="mp-logo" src="assets/logo_fgame_en.png" alt="F GAME">とは<span class="mp-go">→</span></a>
-      <a href="#" data-page="page-rules"><b>02</b>特別ルール<span class="mp-go">→</span></a>
-      <a href="#" data-page="page-history"><b>03</b>過去の戦績<span class="mp-go">→</span></a>
-      <a href="#" data-page="page-junior" id="mi-junior" hidden><b>04</b>あしざるFCジュニアセレクション<span class="mp-go">→</span></a>
+      <a href="#" data-page="page-highlights"><b>02</b><img class="mp-logo mp-logo7" src="assets/logo_fgame7.png" alt="F GAME.7">の見どころ<span class="mp-go">→</span></a>
+      <a href="#" data-page="page-roster"><b>03</b>出場選手情報<span class="mp-go">→</span></a>
+      <a href="#" data-page="page-rules"><b>04</b>特別ルール<span class="mp-go">→</span></a>
+      <a href="#" data-page="page-players" id="mi-players" hidden><b>05</b>対抗図（選手能力）<span class="mp-go">→</span></a>
+      <a href="#" data-page="page-history"><b>06</b>過去の戦績<span class="mp-go">→</span></a>
     </nav>
   </div>
 </div>
@@ -1137,182 +1873,432 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
   </div>
 </div>
 
+
+<!-- ================= 下層: F GAME.7の見どころ ================= -->
+<div class="subpage" id="page-highlights" hidden>
+  <div class="sp-inner">
+    <button class="sp-back" type="button" data-spclose>← 戻る</button>
+    <span class="sec-en">HIGHLIGHTS</span>
+    <h2 class="sec-jp sec-logo-ttl"><img class="ttl-logo ttl-logo7" src="assets/logo_fgame7.png" alt="F GAME.7">の見どころ</h2>
+    <div class="hl-list">
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-1"><b class="hl-num">01</b><h3><span class="nb">あしざるFC vs</span> <span class="nb">フットサル世界選抜</span></h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-1" hidden>
+        <div class="hl-vs"><span><img src="assets/emblem_ashisal_sq.png" alt="あしざるFC"><small>あしざるFC</small></span><i>VS</i><span><img src="assets/emblem_world_sq.png" alt="フットサル世界選抜"><small>世界選抜</small></span></div>
+        <p class="hl-p">世界最優秀選手6回受賞 <b>リカルジーニョ</b> 来日！</p>
+        <p class="hl-sub">かにゃがプレーヤーとして初めてピッチに立つかも!?</p>
+        <a class="hl-btn" href="#" data-swpage="page-roster">出場選手情報はこちら<span>→</span></a>
+        </div>
+      </article>
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-2"><b class="hl-num">02</b><h3><span class="nb">サルベイビー vs</span> <span class="nb">あしざるFCジュニア</span></h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-2" hidden>
+        <div class="hl-vs"><span><img src="assets/emblem_salbaby_sq.png" alt="サルベイビー"><small>サルベイビー</small></span><i>VS</i><span><img src="assets/emblem_ashisal_sq.png" alt="あしざるFCジュニア"><small>あしざるFCジュニア</small></span></div>
+        <p class="hl-p">あしざるFCジュニア発足。<b>過去最大の壁</b>としてサルベイビーを迎え撃つ！</p>
+        </div>
+      </article>
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-3"><b class="hl-num">03</b><h3><img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME">特別ルール</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-3" hidden>
+        <p class="hl-p">4ピリオド制・アドバンテージゲームなど、<img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME">だけのルール</p>
+        <a class="hl-btn" href="#" data-swpage="page-rules">特別ルールを見る<span>→</span></a>
+        </div>
+      </article>
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-4"><b class="hl-num">04</b><h3>豪華ゲストが出演！</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-4" hidden>
+        <div class="hl-gg">
+          <div class="hl-gc"><img src="assets/guest_hippy.jpg" alt="HIPPY"><b>HIPPY</b><small>シンガーソングライター</small></div>
+          <div class="hl-gc rv-pre secret"><span class="q">?</span><b>SECRET</b><small>近日発表</small></div>
+          <div class="hl-gc rv-post" hidden><img src="assets/guest_tee.jpg" alt="TEE"><b>TEE</b><small>シンガーソングライター</small></div>
+        </div>
+        </div>
+      </article>
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-5"><b class="hl-num">05</b><h3>楽曲ライブ</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-5" hidden>
+        <p class="hl-p">試合後はあしざるFCのスペシャルライブ！<br>「<b>YOYOGI feat. HIPPY</b>」も披露予定！</p>
+        </div>
+      </article>
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-6"><b class="hl-num">06</b><h3>メンバーおすすめのグルメ</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-6" hidden>
+        <p class="hl-p">メンバーおすすめのキッチンカーで購入すると<b>特別コースターがもらえる！</b></p>
+        </div>
+      </article>
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-7"><b class="hl-num">07</b><h3>新曲MVに映れるかも!?</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-7" hidden>
+        <p class="hl-p">当日、<b>あしざるFCユニフォーム着用者限定</b>！</p>
+        <p class="hl-sub">会場でもユニフォームを販売しています</p>
+        </div>
+      </article>
+    </div>
+    <a class="btn btn-red sp-cta hl-buy" href="#" data-spbuy>チケットを購入する<span class="arrow">→</span></a>
+  </div>
+</div>
+
+<!-- ================= 下層: 出場選手情報 ================= -->
+<div class="subpage" id="page-roster" hidden>
+  <div class="sp-inner">
+    <button class="sp-back" type="button" data-spclose>← 戻る</button>
+    <span class="sec-en">PLAYERS</span>
+    <h2 class="sec-jp">出場選手情報</h2>
+    <p class="sp-lead">※出場メンバー・背番号は変更となる場合があります。</p>
+
+    <div class="ro-tc">
+      <div class="ro-tch"><img src="assets/emblem_ashisal_sq.png" alt=""><div><b>あしざるFC ファースト</b><span>ASHISAL FC</span></div></div>
+      <button class="ro-acc" type="button" data-acc="acc-a-pick">ピックアップメンバー<i></i></button>
+      <div class="ro-panel" id="acc-a-pick" hidden>
+        <div class="ro-pk">
+          <div class="ro-pkh"><b>4</b><div><span class="ro-pkn">のぶくん</span><span class="ro-pke">NOBUKUN</span></div><em>ALA / FIXO<i>大阪府</i></em></div>
+          <div class="ro-tags"><span>元Fリーガー</span><span>あしざるFC創設者</span><span>F GAME発起人</span></div>
+          <p>攻守ともに高水準で完結するオールラウンダー。最大の武器は一撃必殺の「ボレーシュート」。キャプテンとしてチームを勝利へ導けるか。</p>
+          <a class="ro-ig" href="https://www.instagram.com/ashisalfc_nobu" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_nobu</a>
+        </div>
+        <div class="ro-pk">
+          <div class="ro-pkh"><b>9</b><div><span class="ro-pkn">レイン</span><span class="ro-pke">REIN</span></div><em>ALA<i>山形県</i></em></div>
+          <div class="ro-tags"><span>元Fリーガー</span><span>Fリーグ選抜</span></div>
+          <p>キレ味鋭いドリブルで相手を切り裂くアタッカー。ボールを持った瞬間、ゴールの匂いが立ちこめる。</p>
+          <a class="ro-ig" href="https://www.instagram.com/ashisalfc_rein" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_rein</a>
+        </div>
+        <div class="ro-pk">
+          <div class="ro-pkh"><b>10</b><div><span class="ro-pkn">かにゃ</span><span class="ro-pke">KANYA</span></div><em>ALA<i>岡山県</i></em></div>
+          <div class="ro-tags"><span>エリートプログラム選出経験</span><span>高校全国大会出場</span></div>
+          <p>女性選手として初めてF GAMEのピッチに立つ挑戦者。基礎技術は男子以上。屈強な世界選抜に、どう立ち向かうか。</p>
+          <a class="ro-ig" href="https://www.instagram.com/ashisalfc_kanya" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_kanya</a>
+        </div>
+        <div class="ro-pk">
+          <div class="ro-pkh"><b>63</b><div><span class="ro-pkn">星 翔太</span><span class="ro-pke">SHOTA HOSHI</span></div><em>PIVO<i>東京都</i></em></div>
+          <div class="ro-tags"><span>元フットサル日本代表</span><span>W杯 2012・2021 出場</span></div>
+          <p>元フットサル日本代表。2012年・2021年のW杯に出場し、名古屋オーシャンズ、バルドラール浦安などで活躍。2021年W杯は弟・龍太と日本初の兄弟同時選出。</p>
+          <a class="ro-ig" href="https://www.instagram.com/shotahoshi11" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@shotahoshi11</a>
+        </div>
+        <div class="ro-pk">
+          <div class="ro-pkh"><b>5</b><div><span class="ro-pkn">星 龍太</span><span class="ro-pke">RYUTA HOSHI</span></div><em>FIXO<i>東京都</i></em></div>
+          <div class="ro-tags"><span>元フットサル日本代表</span><span>W杯 2021 出場</span><span>AFCクラブ選手権 優勝</span></div>
+          <p>元フットサル日本代表。2021年W杯に出場し、名古屋オーシャンズでFリーグ優勝・AFCクラブ選手権制覇を重ねた守備の要。</p>
+          <a class="ro-ig" href="https://www.instagram.com/ryutahoshi5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ryutahoshi5</a>
+          
+        </div>
+      </div>
+      <button class="ro-acc" type="button" data-acc="acc-a-squad">登録選手<i></i></button>
+      <div class="ro-panel" id="acc-a-squad" hidden>
+        <p class="ro-note">▼ 名前をタップで選手詳細</p>
+        <div class="ro-grid"><button type="button" class="ro-p has gk" data-acc="pd-1"><b>1</b><span>伊藤 鳳起</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-1" hidden><div class="ro-pdh"><em>GK</em></div><p>ゴールマウスを守る若き守護神。大舞台での躍動に期待。</p></div><button type="button" class="ro-p has gk" data-acc="pd-2"><b>2</b><span>勝谷 広文</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-2" hidden><div class="ro-pdh"><em>GK</em><small>岐阜県</small></div><p>岐阜出身のゴレイロ。安定感のあるセービングでチームを支える。</p></div><button type="button" class="ro-p has" data-acc="pd-3"><b>3</b><span>池田 洋介</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-3" hidden><div class="ro-pdh"><em>ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>選手兼コーチ</span></div><p>2026年は選手兼コーチとして登録。合言葉は「攻守ハイクオリティ！」。</p></div><button type="button" class="ro-p has" data-acc="pd-4"><b>4</b><span>のぶくん</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-4" hidden><div class="ro-pdh"><em>ALA / FIXO</em><small>大阪府</small></div><div class="ro-tags"><span>元Fリーガー</span><span>あしざるFC創設者</span><span>F GAME発起人</span></div><p>攻守ともに高水準で完結するオールラウンダー。最大の武器は一撃必殺の「ボレーシュート」。キャプテンとしてチームを勝利へ導けるか。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_nobu" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_nobu</a></div><button type="button" class="ro-p has" data-acc="pd-5"><b>5</b><span>星 龍太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-5" hidden><div class="ro-pdh"><em>FIXO</em><small>東京都</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>W杯 2021 出場</span><span>AFCクラブ選手権 優勝</span></div><p>元フットサル日本代表。2021年W杯に出場し、名古屋オーシャンズでFリーグ優勝・AFCクラブ選手権制覇を重ねた守備の要。</p><a class="ro-ig" href="https://www.instagram.com/ryutahoshi5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ryutahoshi5</a></div><button type="button" class="ro-p has" data-acc="pd-6"><b>6</b><span>田村 佳翔</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-6" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>元Fリーガー（すみだ／長野／Y.S.C.C.横浜）</span><span>ソサイチ日本代表</span></div><p>元フットサル日本代表。Fリーグではフウガドールすみだ、ボアルース長野、Y.S.C.C.横浜でプレー。豊富な経験で試合の流れを読み、チームに落ち着きをもたらす。</p><a class="ro-ig" href="https://www.instagram.com/tamura.kasho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@tamura.kasho</a></div><button type="button" class="ro-p has" data-acc="pd-7"><b>7</b><span>北野 聖夜</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-7" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>岐阜県</small></div><div class="ro-tags"><span>元Fリーガー（Y.S.C.C.横浜）</span><span>名古屋オーシャンズ サテライト出身</span></div><p>名古屋サテライト・Y.S.C.C.横浜で主将を務めた勝負強いフィクソ。</p><a class="ro-ig" href="https://www.instagram.com/seiyha_7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@seiyha_7</a></div><button type="button" class="ro-p has" data-acc="pd-8"><b>8</b><span>藤巻 光司</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-8" hidden><div class="ro-pdh"><em>PIVO</em><small>神奈川県</small></div><div class="ro-tags"><span>神奈川選抜</span></div><p>神奈川選抜にも選ばれた実力派ピヴォ。前線で体を張り、ゴール前の起点となる。</p></div><button type="button" class="ro-p has" data-acc="pd-9"><b>9</b><span>レイン</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-9" hidden><div class="ro-pdh"><em>ALA</em><small>山形県</small></div><div class="ro-tags"><span>元Fリーガー</span><span>Fリーグ選抜</span></div><p>キレ味鋭いドリブルで相手を切り裂くアタッカー。ボールを持った瞬間、ゴールの匂いが立ちこめる。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_rein" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_rein</a></div><button type="button" class="ro-p has" data-acc="pd-10"><b>10</b><span>かにゃ</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-10" hidden><div class="ro-pdh"><em>ALA</em><small>岡山県</small></div><div class="ro-tags"><span>エリートプログラム選出経験</span><span>高校全国大会出場</span></div><p>女性選手として初めてF GAMEのピッチに立つ挑戦者。基礎技術は男子以上。屈強な世界選抜に、どう立ち向かうか。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_kanya" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_kanya</a></div><button type="button" class="ro-p has" data-acc="pd-11"><b>11</b><span>鈴木 幹太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-11" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>東京都</small></div><p>フィクソとアラをこなすユーティリティ。運動量でチームを助ける。</p></div><button type="button" class="ro-p has" data-acc="pd-14"><b>14</b><span>本多 亘</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-14" hidden><div class="ro-pdh"><em>ALA</em><small>千葉県</small></div><div class="ro-tags"><span>元Fリーガー（マルバ水戸FC）</span></div><p>Fリーグでの経験を持つアラ。的確なポジショニングと運動量で攻守に貢献する。</p></div><button type="button" class="ro-p has" data-acc="pd-15"><b>15</b><span>渡辺 大輔</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-15" hidden><div class="ro-pdh"><em>ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>元Fリーガー（ボアルース長野）</span></div><p>Fリーグ通算100試合超の経験を持つアラ。落ち着いたプレーで攻守をつなぐ。</p></div><button type="button" class="ro-p has" data-acc="pd-17"><b>17</b><span>柳内 崇佑</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-17" hidden><div class="ro-pdh"><em>ALA</em><small>東京都</small></div><p>東京出身のアラ。座右の銘は「不撓不屈」。粘り強さが持ち味。</p></div><button type="button" class="ro-p has" data-acc="pd-18"><b>18</b><span>杉田 魁聖</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-18" hidden><div class="ro-pdh"><em>PIVO</em><small>神奈川県</small></div><p>攻守共に違いをもたらすキーマン。前線で体を張り、ゴール前の起点となる。</p></div><button type="button" class="ro-p has" data-acc="pd-21"><b>21</b><span>磯崎 良太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-21" hidden><div class="ro-pdh"><em>PIVO</em><small>東京都</small></div><div class="ro-tags"><span>元ファイルフォックス八王子</span><span>パーソナルトレーナー</span></div><p>栃木シティ、ファイルフォックス八王子を経て加入したベテランピヴォ。</p></div><button type="button" class="ro-p has gk" data-acc="pd-22"><b>22</b><span>太田 剛司</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-22" hidden><div class="ro-pdh"><em>GK</em><small>神奈川県</small></div><p>神奈川出身のゴレイロ。鋭い反応で最後の砦を担う。</p></div><button type="button" class="ro-p has" data-acc="pd-23"><b>23</b><span>宗像 紘輝</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-23" hidden><div class="ro-pdh"><em>ALA</em><small>東京都</small></div><div class="ro-tags"><span>元Fリーガー（しながわシティ）</span><span>元ファイルフォックス八王子</span></div><p>ボディフェイントとダブルタッチを武器にするドリブラー。</p></div><button type="button" class="ro-p has" data-acc="pd-25"><b>25</b><span>上福元 俊哉</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-25" hidden><div class="ro-pdh"><em>PIVO</em><small>千葉県</small></div><div class="ro-tags"><span>元Fリーガー（府中／大分／すみだ）</span><span>元バサジィ大分 主将</span></div><p>府中・大分・すみだでプレーしたピヴォ職人。弟はJリーガー上福元直人。</p></div><button type="button" class="ro-p has" data-acc="pd-27"><b>27</b><span>高橋 明弘</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-27" hidden><div class="ro-pdh"><em>FIXO</em><small>神奈川県</small></div><div class="ro-tags"><span>元Fリーガー（湘南ベルマーレ）</span><span>選手兼コーチ</span></div><p>2026年は選手兼コーチとしてチームを支える。</p></div><button type="button" class="ro-p has" data-acc="pd-31"><b>31</b><span>坂井 佑駿</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-31" hidden><div class="ro-pdh"><em>ALA</em><small>石川県</small></div><div class="ro-tags"><span>元Fリーガー（ボアルース長野）</span><span>名古屋オーシャンズ サテライト出身</span><span>星稜高校出身</span></div><p>星稜高校サッカー部からフットサルへ転向。アパレルブランド「REVOLOTA」も展開する。</p></div><button type="button" class="ro-p has gk" data-acc="pd-52"><b>52</b><span>山﨑 総徳</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-52" hidden><div class="ro-pdh"><em>GK</em><small>東京都</small></div><div class="ro-tags"><span>元Fリーガー（しながわシティ）</span></div><p>Fリーグでのプレー経験を持つゴレイロ。冷静な判断と反応速度でゴールを守る。</p></div><button type="button" class="ro-p has" data-acc="pd-63"><b>63</b><span>星 翔太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-63" hidden><div class="ro-pdh"><em>PIVO</em><small>東京都</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>W杯 2012・2021 出場</span></div><p>元フットサル日本代表。2012年・2021年のW杯に出場し、名古屋オーシャンズ、バルドラール浦安などで活躍。2021年W杯は弟・龍太と日本初の兄弟同時選出。</p><a class="ro-ig" href="https://www.instagram.com/shotahoshi11" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@shotahoshi11</a></div><button type="button" class="ro-p has" data-acc="pd-80"><b>80</b><span>吉田 瑶希</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-80" hidden><div class="ro-pdh"><em>ALA</em><small>岩手県</small></div><p>岩手出身のアラ。スピードを活かした縦への推進力が武器。</p></div><button type="button" class="ro-p has gk" data-acc="pd-96"><b>96</b><span>北村 悠翔</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-96" hidden><div class="ro-pdh"><em>GK</em><small>東京都</small></div><p>東京出身の若手ゴレイロ。将来を担う存在として期待される。</p></div></div>
+        <div class="ro-sub" style="margin-top:14px">STAFF</div>
+        <div class="ro-grid">
+          <div class="ro-p st"><b>監督</b><span>荻窪 孝</span></div>
+          <div class="ro-p st"><b>TR</b><span>水野 舜</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ro-tc world">
+      <div class="ro-tch"><img src="assets/emblem_world_sq.png" alt=""><div><b>フットサル世界選抜</b><span>WORLD SELECTION</span></div></div>
+      <button class="ro-acc" type="button" data-acc="acc-w-pick">ピックアップメンバー<i></i></button>
+      <div class="ro-panel" id="acc-w-pick" hidden>
+        <div class="ro-w">
+          <div class="ro-wh"><b>RICARDINHO</b><span>リカルジーニョ</span><em>ポルトガル／ALA</em></div>
+          <div class="ro-tags"><span>世界最優秀選手 6回</span><span>W杯 2021 優勝</span><span>EURO 2018 優勝</span></div>
+          <p>「O Mágico（魔術師）」。ポルトガル代表188試合142得点。左足の1対1とドリブルは唯一無二。</p>
+          <a class="ro-ig" href="https://www.instagram.com/ricardinho10oficial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ricardinho10oficial</a>
+        </div>
+        <div class="ro-w">
+          <div class="ro-wh"><b>CARLOS ORTIZ</b><span>カルロス・オルティス</span><em>スペイン／FIXO</em></div>
+          <div class="ro-tags"><span>元スペイン代表主将</span><span>EURO 4度優勝</span><span>UEFA杯 4度制覇</span></div>
+          <p>代表歴代最多215試合出場。戦術眼と守備組織でチームに背骨を通す欧州最高峰のリーダー。</p>
+          <a class="ro-ig" href="https://www.instagram.com/ortiz23futsal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ortiz23futsal</a>
+        </div>
+        <div class="ro-w">
+          <div class="ro-wh"><b>SUPHAWUT THUEANKLANG</b><span>スパウット・トゥアンクラン</span><em>タイ／PIVO</em></div>
+          <div class="ro-tags"><span>AFC年間最優秀選手 2013</span><span>AFC選手権 得点王</span><span>元名古屋オーシャンズ</span></div>
+          <p>アジア最高峰のピヴォ。Fリーグ優勝経験を持つゴール前の起点。「F GAME.5」ではタイリーグ選抜として出場しゴールも記録。</p>
+          <a class="ro-ig" href="https://www.instagram.com/suphawut_9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@suphawut_9</a>
+        </div>
+      </div>
+      <button class="ro-acc" type="button" data-acc="acc-w-squad">登録選手<i></i></button>
+      <div class="ro-panel" id="acc-w-squad" hidden>
+        <p class="ro-note">ASEAN・欧州・豪州の代表経験者・プロ選手による多国籍セレクション</p>
+        <div class="ro-wl">
+          <button type="button" class="ro-wr has" data-acc="wd-1"><div><b>RICARDINHO</b><span>リカルジーニョ</span></div><em>ポルトガル／ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-1" hidden><div class="ro-tags"><span>世界最優秀選手 6回</span><span>W杯 2021 優勝</span><span>EURO 2018 優勝</span></div><p>「O Mágico（魔術師）」。ポルトガル代表188試合142得点。左足の1対1とドリブルは唯一無二。</p><a class="ro-ig" href="https://www.instagram.com/ricardinho10oficial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ricardinho10oficial</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-2"><div><b>CARLOS ORTIZ</b><span>カルロス・オルティス</span></div><em>スペイン／FIXO</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-2" hidden><div class="ro-tags"><span>元スペイン代表主将</span><span>EURO 4度優勝</span><span>UEFA杯 4度制覇</span></div><p>代表歴代最多215試合出場。戦術眼と守備組織でチームに背骨を通す欧州最高峰のリーダー。</p><a class="ro-ig" href="https://www.instagram.com/ortiz23futsal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ortiz23futsal</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-3"><div><b>SUPHAWUT THUEANKLANG</b><span>スパウット・トゥアンクラン</span></div><em>タイ／PIVO</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-3" hidden><div class="ro-tags"><span>AFC年間最優秀選手 2013</span><span>AFC選手権 得点王</span><span>元名古屋オーシャンズ</span></div><p>アジア最高峰のピヴォ。Fリーグ優勝経験を持つゴール前の起点。「F GAME.5」ではタイリーグ選抜として出場しゴールも記録。</p><a class="ro-ig" href="https://www.instagram.com/suphawut_9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@suphawut_9</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-4"><div><b>SCOTT ROGAN</b><span>スコット・ローガン</span></div><em>オーストラリア／ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-4" hidden><div class="ro-tags"><span>オーストラリア代表</span><span>AFCアジアカップ 2024・2026</span></div><p>フィッツロイ・タイガース主将。運動量でサイドを支配する。</p><a class="ro-ig" href="https://www.instagram.com/scotty_rogan" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@scotty_rogan</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-5"><div><b>SYAHIR MANTINO</b><span>シャヒル・マンティノ</span></div><em>マレーシア／ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-5" hidden><div class="ro-tags"><span>マレーシア代表</span><span>SEA Games 2025 銅</span><span>マレーシア杯 2025 MVP</span></div><p>セランゴールFC所属。スピードに乗ったドリブルで守備を切り裂く。</p><a class="ro-ig" href="https://www.instagram.com/syahirmantino_" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@syahirmantino_</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-6"><div><b>YAZID KAMARUZUAN</b><span>ヤジッド・カマルズアン</span></div><em>マレーシア／ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-6" hidden><div class="ro-tags"><span>マレーシア代表</span><span>AFC選手権 2018 出場</span></div><p>国内プレミアリーグの強豪を渡り歩いた技巧派アラ。</p><a class="ro-ig" href="https://www.instagram.com/ya21dddddddd" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ya21dddddddd</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-7"><div><b>JAWAAD</b><span>ジャワード</span></div><em>マレーシア／ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-7" hidden><div class="ro-tags"><span>パハン・レンジャーズ</span><span>国内王者 2023</span></div><p>素早いコンビネーションを支えるクリエイター。</p><a class="ro-ig" href="https://www.instagram.com/jawaadinho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@jawaadinho</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-8"><div><b>HABIBI</b><span>ハビビ</span></div><em>マレーシア／ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-8" hidden><div class="ro-tags"><span>JDTフットサル ほか</span><span>マレーシア杯 準優勝</span></div><p>国内プロクラブを渡り歩くエネルギッシュな技巧派。</p><a class="ro-ig" href="https://www.instagram.com/elobib_" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@elobib_</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-9"><div><b>ROZAIMI</b><span>ロザイミ</span></div><em>マレーシア／FIXO / ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-9" hidden><div class="ro-tags"><span>JDT II</span><span>プレミアリーグ優勝 2022</span></div><p>複数ポジションをこなすユーティリティ。</p><a class="ro-ig" href="https://www.instagram.com/rosezaimii27" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@rosezaimii27</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-10"><div><b>ZRIN</b><span>ズリン</span></div><em>シンガポール／ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-10" hidden><div class="ro-tags"><span>3v3ストリート 世界大会MVP</span><span>ISFA W杯 2026 代表</span></div><p>足元のトリッキーな技で相手を翻弄するストリートフットボーラー。</p><a class="ro-ig" href="https://www.instagram.com/zrinofficial" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@zrinofficial</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-11"><div><b>MOHD NOR AZIZAM</b><span>モハマド・ノル・アジザム</span></div><em>ブルネイ／FIXO</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-11" hidden><div class="ro-tags"><span>ブルネイ代表</span><span>国内リーグ優勝 2度</span></div><p>AFF選手権を長年戦った守備の要。</p><a class="ro-ig" href="https://www.instagram.com/mdnor.azizamrxhm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@mdnor.azizamrxhm</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-12"><div><b>AMRL HAZQ</b><span>アムル・ハズク</span></div><em>ブルネイ／ALA</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-12" hidden><div class="ro-tags"><span>ブルネイ代表</span><span>AFCアジアカップ予選</span></div><p>運動能力の高さでローテーションに厚みを加える。</p><a class="ro-ig" href="https://www.instagram.com/amrl.hazq" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@amrl.hazq</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-13"><div><b>FAKHRUL AKRAM</b><span>ファクルル・アクラム</span></div><em>マレーシア／GK</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-13" hidden><div class="ro-tags"><span>Geng Tam FC</span><span>国内リーグ王者 2023</span></div><p>州・全国大会で活躍する守護神。</p><a class="ro-ig" href="https://www.instagram.com/fakhrulakram17" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@fakhrulakram17</a></div>
+          <button type="button" class="ro-wr has" data-acc="wd-14"><div><b>KENNETH KWANG</b><span>ケネス・クワン</span></div><em>シンガポール／GK</em><u class="ro-chev"></u></button>
+          <div class="ro-pd" id="wd-14" hidden><div class="ro-tags"><span>海外リーグ経験</span><span>招待大会 多数出場</span></div><p>反応速度とコーチングでチームを組織する守護神。</p><a class="ro-ig" href="https://www.instagram.com/papakenneth333_futsal" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@papakenneth333_futsal</a></div>
+        </div>
+      </div>
+    </div>
+
+    <a class="btn btn-gold sp-cta" href="#" data-swpage="page-players">対抗図（選手能力）を見る<span class="arrow">→</span></a>
+    <a class="btn btn-red sp-cta hl-buy" href="#" data-spbuy>チケットを購入する<span class="arrow">→</span></a>
+  </div>
+</div>
+
 <!-- ================= 下層: 特別ルール ================= -->
 <div class="subpage" id="page-rules" hidden>
   <div class="sp-inner">
     <button class="sp-back" type="button" data-spclose>← 戻る</button>
     <span class="sec-en">SPECIAL RULES</span>
     <h2 class="sec-jp">特別ルール</h2>
-    <p class="sp-lead">F GAME.7は、通常のフットサルルールをベースにした特別ルールで開催します。</p>
-    <div class="rule-list">
-      <div class="rule"><div><b>4ピリオド制</b><p>12分×4ピリオド制で試合を実施。</p></div><svg class="rphoto r-ill" viewBox="0 74 640 156" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="12分×4ピリオド制">
-  <rect width="640" height="280" rx="0" fill="#101016"/>
-  <g font-family="sans-serif" text-anchor="middle">
-    <g>
-      <rect x="34" y="96" width="128" height="110" rx="14" fill="rgba(230,0,18,.14)" stroke="#e60012" stroke-width="2"/>
-      <text x="98" y="146" fill="#ffffff" font-size="30" font-weight="900">1st</text>
-      <text x="98" y="180" fill="#c9c9d4" font-size="16" font-weight="800">12分</text>
-    </g>
-    <g>
-      <rect x="182" y="96" width="128" height="110" rx="14" fill="rgba(230,0,18,.14)" stroke="#e60012" stroke-width="2"/>
-      <text x="246" y="146" fill="#ffffff" font-size="30" font-weight="900">2nd</text>
-      <text x="246" y="180" fill="#c9c9d4" font-size="16" font-weight="800">12分</text>
-    </g>
-    <g>
-      <rect x="330" y="96" width="128" height="110" rx="14" fill="rgba(230,0,18,.14)" stroke="#e60012" stroke-width="2"/>
-      <text x="394" y="146" fill="#ffffff" font-size="30" font-weight="900">3rd</text>
-      <text x="394" y="180" fill="#c9c9d4" font-size="16" font-weight="800">12分</text>
-    </g>
-    <g>
-      <rect x="478" y="96" width="128" height="110" rx="14" fill="rgba(245,193,90,.2)" stroke="#f5c15a" stroke-width="2.5"/>
-      <circle cx="542" cy="130" r="14" fill="#f5c15a"/>
-      <path d="M542 121 l3 6 6 1-4.5 4.5 1 6-5.5-3-5.5 3 1-6L533 118l6-1z" fill="#8a6511"/>
-      <text x="542" y="170" fill="#ffffff" font-size="26" font-weight="900">4th</text>
-      <text x="542" y="194" fill="#f5c15a" font-size="13" font-weight="900">ゴールドボール</text>
-    </g>
-    <path d="M166 151 h12 m-4 -4 4 4 -4 4" stroke="#5a5a66" stroke-width="2.5" fill="none"/>
-    <path d="M314 151 h12 m-4 -4 4 4 -4 4" stroke="#5a5a66" stroke-width="2.5" fill="none"/>
-    <path d="M462 151 h12 m-4 -4 4 4 -4 4" stroke="#f5c15a" stroke-width="2.5" fill="none"/>
-  </g>
-</svg></div>
-      <div class="rule"><div><b>アドバンテージゲーム</b><p>2nd or 3rdピリオドで各チーム1回ずつ、相手の選手を2分間・1人減らすことが可能。</p></div><img class="rphoto" src="assets/rule_advantage.jpg" alt="アドバンテージゲーム" loading="lazy"><!-- ILLUST版(イラストに戻す時はこのコメントを外してimg行を消す): <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="アドバンテージゲーム"><rect width="640" height="280" fill="#101016"/>
-<text x="320" y="46" text-anchor="middle" fill="#9a9aa8" font-size="15" font-weight="800" letter-spacing="3" font-family="sans-serif">2分間、相手コートは 5 vs 4</text>
-<g>
-<rect x="52" y="72" width="230" height="130" rx="16" fill="rgba(230,0,18,.12)" stroke="#e60012" stroke-width="2"/>
-<text x="167" y="152" text-anchor="middle" fill="#fff" font-size="58" font-weight="900" font-family="sans-serif">5<tspan font-size="20" fill="#c9c9d4">人</tspan></text>
-</g>
-<text x="320" y="148" text-anchor="middle" fill="#f5c15a" font-size="26" font-weight="900" font-family="sans-serif">VS</text>
-<g>
-<rect x="358" y="72" width="230" height="130" rx="16" fill="rgba(255,255,255,.05)" stroke="#5a5a66" stroke-width="2"/>
-<text x="455" y="152" text-anchor="middle" fill="#fff" font-size="58" font-weight="900" font-family="sans-serif">4<tspan font-size="20" fill="#c9c9d4">人</tspan></text>
-<g transform="translate(536,118)"><circle r="20" fill="none" stroke="#e60012" stroke-width="3.5"/><path d="M-11-11 L11 11 M11-11 L-11 11" stroke="#e60012" stroke-width="3.5"/></g>
-</g>
-<text x="320" y="248" text-anchor="middle" fill="#8a8a96" font-size="13.5" font-weight="700" font-family="sans-serif">2nd or 3rd ピリオドで各チーム1回、相手を2分間・1人減らせる</text>
-</svg> --></div>
-      <div class="rule"><div><b>アディショナルPK</b><p>得点時に1試合に2回、PKを追加で蹴ることが可能。（女子選手 or 登録外スタッフがキッカー）</p></div><img class="rphoto" src="assets/rule_addpk.jpg" alt="アディショナルPK" loading="lazy"><!-- ILLUST版(イラストに戻す時はこのコメントを外してimg行を消す): <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="アディショナルPK"><rect width="640" height="280" fill="#101016"/>
-<text x="320" y="46" text-anchor="middle" fill="#9a9aa8" font-size="15" font-weight="800" letter-spacing="3" font-family="sans-serif">ゴールしたら、もう1本。</text>
-<g stroke="#c9c9d4" stroke-width="5" fill="none"><path d="M180 190 V88 H460 V190"/></g>
-<path d="M180 190 V110 M460 190 V110" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
-<circle cx="320" cy="196" r="17" fill="#fff"/><path d="M320 185 l3.5 7 7.5 1-5.5 5.5 1.3 7.5-6.8-3.6-6.8 3.6 1.3-7.5-5.5-5.5 7.5-1z" fill="#101016"/>
-<g transform="translate(430,60)"><rect x="-40" y="-24" width="84" height="46" rx="10" fill="#f5c15a"/><text x="2" y="10" text-anchor="middle" fill="#1a1206" font-size="26" font-weight="900" font-family="sans-serif">＋1</text></g>
-<text x="320" y="248" text-anchor="middle" fill="#8a8a96" font-size="13.5" font-weight="700" font-family="sans-serif">1試合2回まで／キッカーは女子選手 or 登録外スタッフ</text>
-</svg> --></div>
-      <div class="rule"><div><b>ダブルゲーム</b><p>第4ピリオドはゴールドボールを使用し、得点が倍になる。</p></div><img class="rphoto" src="assets/rule_double.jpg" alt="ゴールドボール" loading="lazy"><!-- ILLUST版(イラストに戻す時はこのコメントを外してimg行を消す): <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ダブルゲーム"><rect width="640" height="280" fill="#101016"/>
-<text x="320" y="46" text-anchor="middle" fill="#9a9aa8" font-size="15" font-weight="800" letter-spacing="3" font-family="sans-serif">第4ピリオドはゴールドボール</text>
-<circle cx="230" cy="148" r="58" fill="#f5c15a"/>
-<circle cx="230" cy="148" r="58" fill="none" stroke="#c9962e" stroke-width="3"/>
-<path d="M230 118 l8 16 18 2.5-13 12.7 3 18-16-8.6-16 8.6 3-18-13-12.7 18-2.5z" fill="#8a6511"/>
-<text x="395" y="168" text-anchor="middle" fill="#fff" font-size="64" font-weight="900" font-family="sans-serif">得点<tspan fill="#f5c15a">×2</tspan></text>
-<text x="320" y="248" text-anchor="middle" fill="#8a8a96" font-size="13.5" font-weight="700" font-family="sans-serif">最終ピリオドは1ゴールが2点。最後まで逆転がある。</text>
-</svg> --></div>
-      <div class="rule"><div><b>2ファール制</b><p>各ピリオド3つ目以降のファールから、第2PKが与えられる。</p></div><img class="rphoto" src="assets/rule_2foul.jpg" alt="2ファール制" loading="lazy"><!-- ILLUST版(イラストに戻す時はこのコメントを外してimg行を消す): <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2ファール制"><rect width="640" height="280" fill="#101016"/>
-<text x="320" y="46" text-anchor="middle" fill="#9a9aa8" font-size="15" font-weight="800" letter-spacing="3" font-family="sans-serif">各ピリオドのファールカウント</text>
+    <p class="sp-lead"><img class="inl-logo" src="assets/logo_fgame7.png" alt="F GAME.7">は、通常のフットサルルールをベースにした特別ルールで開催します。</p>
+    <div class="hl-list">
+      <article class="hl rl">
+        <div class="hl-head" data-acc="rl-1"><b class="hl-num">01</b><h3><span class="rl-en">FOUR PERIODS</span>4ピリオド制</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="rl-1" hidden>
+          <p class="hl-p">12分×4ピリオド制で試合を実施。</p>
+          <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="12分×4ピリオド制">
+<defs>
+<linearGradient id="pgR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff1a2e"/><stop offset="1" stop-color="#8a0010"/></linearGradient>
+<linearGradient id="pgG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset=".5" stop-color="#e8c46a"/><stop offset="1" stop-color="#9c7420"/></linearGradient>
+<linearGradient id="pgBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17171f"/><stop offset="1" stop-color="#090910"/></linearGradient>
+<filter id="pglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="640" height="280" fill="url(#pgBg)"/>
+<g opacity=".08" stroke="#fff" stroke-width="1"><path d="M0 40H640M0 240H640"/><path d="M-40 280L120 0M100 280L260 0M240 280L400 0M380 280L540 0M520 280L680 0"/></g>
+<text x="320" y="30" text-anchor="middle" fill="#9a9aa8" font-size="13" font-weight="800" letter-spacing="4" font-family="sans-serif">12 MIN × 4 PERIODS ＝ 48 MIN</text>
 <g font-family="sans-serif" text-anchor="middle" font-weight="900">
-<g><circle cx="150" cy="140" r="34" fill="rgba(255,255,255,.07)" stroke="#5a5a66" stroke-width="2"/><text x="150" y="152" fill="#c9c9d4" font-size="30">1</text></g>
-<g><circle cx="250" cy="140" r="34" fill="rgba(255,255,255,.07)" stroke="#5a5a66" stroke-width="2"/><text x="250" y="152" fill="#c9c9d4" font-size="30">2</text></g>
-<g><circle cx="350" cy="140" r="38" fill="rgba(230,0,18,.2)" stroke="#e60012" stroke-width="3"/><text x="350" y="153" fill="#fff" font-size="32">3</text></g>
-<path d="M406 140 h44 m-12 -10 12 10 -12 10" stroke="#f5c15a" stroke-width="4" fill="none"/>
-<rect x="466" y="108" width="122" height="64" rx="12" fill="rgba(245,193,90,.16)" stroke="#f5c15a" stroke-width="2.5"/>
-<text x="527" y="149" fill="#f5c15a" font-size="27">第2PK</text>
+<g transform="translate(22,70)"><path d="M18 0H150L132 130H0Z" fill="url(#pgR)" opacity=".92"/><text x="78" y="62" fill="#fff" font-size="40">1st</text><text x="76" y="100" fill="#ffd0d4" font-size="17">12分</text></g>
+<g transform="translate(166,70)"><path d="M18 0H150L132 130H0Z" fill="url(#pgR)" opacity=".92"/><text x="78" y="62" fill="#fff" font-size="40">2nd</text><text x="76" y="100" fill="#ffd0d4" font-size="17">12分</text></g>
+<g transform="translate(310,70)"><path d="M18 0H150L132 130H0Z" fill="url(#pgR)" opacity=".92"/><text x="78" y="62" fill="#fff" font-size="40">3rd</text><text x="76" y="100" fill="#ffd0d4" font-size="17">12分</text></g>
+<g transform="translate(454,58)" filter="url(#pglow)"><path d="M20 0H164L144 154H0Z" fill="url(#pgG)"/><text x="86" y="62" fill="#1a1206" font-size="44">4th</text><text x="84" y="96" fill="#3a2a06" font-size="16">12分</text><rect x="10" y="110" width="140" height="30" rx="15" fill="#1a1206"/><text x="80" y="131" fill="#f5c15a" font-size="13" letter-spacing=".5">GOLD BALL ×2</text></g>
 </g>
-<text x="320" y="248" text-anchor="middle" fill="#8a8a96" font-size="13.5" font-weight="700" font-family="sans-serif">各ピリオド3つ目以降のファールから、第2PKが与えられる</text>
-</svg> --></div>
+<text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">最終ピリオドはゴールドボールで得点2倍。最後まで逆転がある。</text>
+</svg>
+        </div>
+      </article>
+      <article class="hl rl">
+        <div class="hl-head" data-acc="rl-2"><b class="hl-num">02</b><h3><span class="rl-en">ADVANTAGE GAME</span>アドバンテージゲーム</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="rl-2" hidden>
+          <p class="hl-p">2nd or 3rdピリオドで各チーム1回ずつ、相手の選手を2分間・1人減らすことが可能。</p>
+          <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img">
+<defs>
+<linearGradient id="adR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff1a2e"/><stop offset="1" stop-color="#8a0010"/></linearGradient>
+<linearGradient id="adG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset=".5" stop-color="#e8c46a"/><stop offset="1" stop-color="#9c7420"/></linearGradient>
+<linearGradient id="adBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17171f"/><stop offset="1" stop-color="#090910"/></linearGradient>
+<filter id="adglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="640" height="280" fill="url(#adBg)"/>
+<g opacity=".08" stroke="#fff" stroke-width="1"><path d="M0 40H640M0 240H640"/><path d="M-40 280L120 0M100 280L260 0M240 280L400 0M380 280L540 0M520 280L680 0"/></g>
+<text x="320" y="30" text-anchor="middle" fill="#9a9aa8" font-size="13" font-weight="800" letter-spacing="4" font-family="sans-serif">2ND OR 3RD PERIOD ／ ONCE PER TEAM</text>
+<g transform="translate(0,0)">
+<path d="M36 80H262L246 190H20Z" fill="url(#adR)" opacity=".92"/><circle cx="70" cy="116" r="9" fill="#fff"/><path d="M57 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="104" cy="116" r="9" fill="#fff"/><path d="M91 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="138" cy="116" r="9" fill="#fff"/><path d="M125 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="172" cy="116" r="9" fill="#fff"/><path d="M159 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="206" cy="116" r="9" fill="#fff"/><path d="M193 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/>
+<text x="141" y="180" text-anchor="middle" fill="#ffd0d4" font-size="15" font-weight="900" font-family="sans-serif">5人</text>
+</g>
+<g filter="url(#adglow)"><text x="320" y="146" text-anchor="middle" fill="url(#adG)" font-size="34" font-weight="900" font-family="sans-serif">VS</text></g>
+<g>
+<path d="M394 80H620L604 190H378Z" fill="rgba(255,255,255,.06)" stroke="#5a5a66" stroke-width="2"/><circle cx="396" cy="116" r="9" fill="#c9c9d4"/><path d="M383 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="430" cy="116" r="9" fill="#c9c9d4"/><path d="M417 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="464" cy="116" r="9" fill="#c9c9d4"/><path d="M451 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="498" cy="116" r="9" fill="#c9c9d4"/><path d="M485 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="532" cy="116" r="9" fill="#4a4a55"/><path d="M519 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#4a4a55"/><g stroke="#ff1a2e" stroke-width="4" stroke-linecap="round"><path d="M516 108 L548 146 M548 108 L516 146"/></g>
+<text x="499" y="180" text-anchor="middle" fill="#c9c9d4" font-size="15" font-weight="900" font-family="sans-serif">4人</text>
+</g>
+
+<text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">相手の選手を2分間・1人減らせる。数的優位で一気に畳みかけろ。</text>
+</svg>
+        </div>
+      </article>
+      <article class="hl rl">
+        <div class="hl-head" data-acc="rl-3"><b class="hl-num">03</b><h3><span class="rl-en">ADDITIONAL PK</span>アディショナルPK</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="rl-3" hidden>
+          <p class="hl-p">得点時に1試合に2回、PKを追加で蹴ることが可能。（女子選手 or 登録外スタッフがキッカー）</p>
+          <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img">
+<defs>
+<linearGradient id="pkR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff1a2e"/><stop offset="1" stop-color="#8a0010"/></linearGradient>
+<linearGradient id="pkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset=".5" stop-color="#e8c46a"/><stop offset="1" stop-color="#9c7420"/></linearGradient>
+<linearGradient id="pkBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17171f"/><stop offset="1" stop-color="#090910"/></linearGradient>
+<filter id="pkglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="640" height="280" fill="url(#pkBg)"/>
+<g opacity=".08" stroke="#fff" stroke-width="1"><path d="M0 40H640M0 240H640"/><path d="M-40 280L120 0M100 280L260 0M240 280L400 0M380 280L540 0M520 280L680 0"/></g>
+<text x="320" y="30" text-anchor="middle" fill="#9a9aa8" font-size="13" font-weight="800" letter-spacing="4" font-family="sans-serif">SCORE, THEN KICK AGAIN</text>
+<g stroke="#e8e8ee" stroke-width="6" fill="none" stroke-linejoin="round"><path d="M150 200 V78 H490 V200"/></g>
+<g stroke="rgba(255,255,255,.14)" stroke-width="1.5"><path d="M170 78 V200 M190 78 V200 M210 78 V200 M230 78 V200 M250 78 V200 M270 78 V200 M290 78 V200 M310 78 V200 M330 78 V200 M350 78 V200 M370 78 V200 M390 78 V200 M410 78 V200 M430 78 V200 M450 78 V200 M470 78 V200 M150 98 H490 M150 118 H490 M150 138 H490 M150 158 H490 M150 178 H490"/></g>
+<line x1="60" y1="200" x2="580" y2="200" stroke="#5a5a66" stroke-width="2"/>
+<g filter="url(#pkglow)"><circle cx="320" cy="186" r="20" fill="#fff"/><path d="M320 173 l4 8 9 1.2-6.5 6.3 1.6 9-8.1-4.3-8.1 4.3 1.6-9-6.5-6.3 9-1.2z" fill="#101016"/></g>
+<g transform="translate(320,120)" filter="url(#pkglow)"><rect x="-96" y="-30" width="192" height="60" rx="14" fill="url(#pkG)"/><text x="0" y="-2" text-anchor="middle" fill="#1a1206" font-size="15" font-weight="900" letter-spacing="2" font-family="sans-serif">GOAL → ONE MORE</text><text x="0" y="22" text-anchor="middle" fill="#1a1206" font-size="24" font-weight="900" font-family="sans-serif">＋1 PK</text></g>
+<g><rect x="512" y="60" width="98" height="30" rx="15" fill="url(#pkR)"/><text x="561" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="900" letter-spacing="1" font-family="sans-serif">×2 / GAME</text></g>
+<text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">キッカーは女子選手 or 登録外スタッフ。1試合2回まで。</text>
+</svg>
+        </div>
+      </article>
+      <article class="hl rl">
+        <div class="hl-head" data-acc="rl-4"><b class="hl-num">04</b><h3><span class="rl-en">DOUBLE GAME</span>ダブルゲーム</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="rl-4" hidden>
+          <p class="hl-p">第4ピリオドはゴールドボールを使用し、得点が倍になる。</p>
+          <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img">
+<defs>
+<linearGradient id="dbR" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff1a2e"/><stop offset="1" stop-color="#8a0010"/></linearGradient>
+<linearGradient id="dbG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset=".5" stop-color="#e8c46a"/><stop offset="1" stop-color="#9c7420"/></linearGradient>
+<linearGradient id="dbBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17171f"/><stop offset="1" stop-color="#090910"/></linearGradient>
+<filter id="dbglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="640" height="280" fill="url(#dbBg)"/>
+<g opacity=".08" stroke="#fff" stroke-width="1"><path d="M0 40H640M0 240H640"/><path d="M-40 280L120 0M100 280L260 0M240 280L400 0M380 280L540 0M520 280L680 0"/></g>
+<text x="320" y="30" text-anchor="middle" fill="#9a9aa8" font-size="13" font-weight="800" letter-spacing="4" font-family="sans-serif">GOLD BALL ／ FINAL PERIOD</text>
+<g filter="url(#dbglow)"><circle cx="200" cy="140" r="62" fill="url(#dbG)"/><circle cx="200" cy="140" r="62" fill="none" stroke="#fff3c4" stroke-width="2" opacity=".6"/>
+<path d="M200 106 l9 18 20 3-14.5 14 3.5 20-18-9.5-18 9.5 3.5-20-14.5-14 20-3z" fill="#6b4d0c"/>
+<path d="M150 118 q-12 22 0 44 M250 118 q12 22 0 44" stroke="#6b4d0c" stroke-width="3" fill="none"/></g>
+<g font-family="sans-serif" font-weight="900" text-anchor="middle">
+<text x="420" y="118" fill="#fff" font-size="26">4TH PERIOD</text>
+<text x="420" y="196" fill="url(#dbG)" font-size="78" filter="url(#dbglow)">×2</text>
+</g>
+<g><rect x="290" y="204" width="260" height="26" rx="13" fill="url(#dbR)"/><text x="420" y="222" text-anchor="middle" fill="#fff" font-size="13" font-weight="900" letter-spacing="2" font-family="sans-serif">1 GOAL ＝ 2 POINTS</text></g>
+<text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">最終ピリオドは1ゴールが2点。</text>
+</svg>
+        </div>
+      </article>
+      <article class="hl rl">
+        <div class="hl-head" data-acc="rl-5"><b class="hl-num">05</b><h3><span class="rl-en">2 FOULS RULE</span>2ファール制</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="rl-5" hidden>
+          <p class="hl-p">各ピリオド3つ目以降のファールから、第2PKが与えられる。</p>
+          <svg class="rphoto r-ill" viewBox="0 0 640 280" xmlns="http://www.w3.org/2000/svg" role="img">
+<defs>
+<linearGradient id="f2R" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff1a2e"/><stop offset="1" stop-color="#8a0010"/></linearGradient>
+<linearGradient id="f2G" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset=".5" stop-color="#e8c46a"/><stop offset="1" stop-color="#9c7420"/></linearGradient>
+<linearGradient id="f2Bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#17171f"/><stop offset="1" stop-color="#090910"/></linearGradient>
+<filter id="f2glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="640" height="280" fill="url(#f2Bg)"/>
+<g opacity=".08" stroke="#fff" stroke-width="1"><path d="M0 40H640M0 240H640"/><path d="M-40 280L120 0M100 280L260 0M240 280L400 0M380 280L540 0M520 280L680 0"/></g>
+<text x="320" y="30" text-anchor="middle" fill="#9a9aa8" font-size="13" font-weight="800" letter-spacing="4" font-family="sans-serif">2 FOULS RULE</text>
+<circle cx="110" cy="140" r="34" fill="rgba(255,255,255,.07)" stroke="#5a5a66" stroke-width="2"/><text x="110" y="152" text-anchor="middle" fill="#c9c9d4" font-size="30" font-weight="900" font-family="sans-serif">1</text><circle cx="210" cy="140" r="34" fill="rgba(255,255,255,.07)" stroke="#5a5a66" stroke-width="2"/><text x="210" y="152" text-anchor="middle" fill="#c9c9d4" font-size="30" font-weight="900" font-family="sans-serif">2</text><g filter="url(#f2glow)"><circle cx="320" cy="140" r="40" fill="url(#f2R)"/><text x="320" y="154" text-anchor="middle" fill="#fff" font-size="38" font-weight="900" font-family="sans-serif">3</text></g>
+<path d="M378 140 h48 m-14 -12 14 12 -14 12" stroke="url(#f2G)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<g filter="url(#f2glow)"><rect x="444" y="104" width="160" height="72" rx="16" fill="url(#f2G)"/><text x="524" y="134" text-anchor="middle" fill="#1a1206" font-size="13" font-weight="900" letter-spacing="2" font-family="sans-serif">FROM 3RD FOUL</text><text x="524" y="162" text-anchor="middle" fill="#1a1206" font-size="26" font-weight="900" font-family="sans-serif">第2PK</text></g>
+<text x="215" y="206" text-anchor="middle" fill="#8a8a96" font-size="12.5" font-weight="800" letter-spacing="2" font-family="sans-serif">FOUL COUNT ／ EACH PERIOD</text>
+<text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">各ピリオド3つ目以降のファールから第2PK。ピリオドごとにリセット。</text>
+</svg>
+        </div>
+      </article>
     </div>
+    <a class="btn btn-gold sp-cta" href="#" data-swpage="page-roster">出場選手情報を見る<span class="arrow">→</span></a>
+    <a class="btn btn-red sp-cta hl-buy" href="#" data-spbuy>チケットを購入する<span class="arrow">→</span></a>
   </div>
 </div>
 
-<!-- ================= 下層: これまでのF GAME ================= -->
+<!-- ================= 下層: 過去の戦績 ================= -->
 <div class="subpage" id="page-history" hidden>
   <div class="sp-inner">
     <button class="sp-back" type="button" data-spclose>← 戻る</button>
     <span class="sec-en">HISTORY</span>
     <h2 class="sec-jp">過去の戦績</h2>
-    <div class="hist-list">
-      <div class="hist">
-        <img class="hkv" src="assets/history_fg1.jpg" alt="F GAME.1 キービジュアル" loading="lazy">
-        <div class="hrow"><span class="hn">01</span><div class="hd"><i>vs ファイルフォックス八王子<em>（日本）</em></i><b>エスフォルタアリーナ八王子</b><span class="crowd">動員 約2,500人</span><u class="win">1-0 ○</u></div></div>
+    <div class="hl-list">
+      <article class="hl hs">
+        <div class="hl-head" data-acc="hs-01"><b class="hl-num">01</b><h3><span class="hs-t"><img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME"><b>.1</b></span><em>vs ファイルフォックス八王子（日本）</em></h3><u class="hs-res win">1-0 ○</u><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hs-01" hidden>
+          <img class="hkv" src="assets/history_fg1.jpg" alt="F GAME.1 キービジュアル" loading="lazy">
+          <div class="hs-meta"><b>エスフォルタアリーナ八王子</b><span>動員 約2,500人</span></div>
+        </div>
+      </article>
+      <article class="hl hs">
+        <div class="hl-head" data-acc="hs-02"><b class="hl-num">02</b><h3><span class="hs-t"><img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME"><b>.2</b></span><em>vs カフリンガ東久留米（日本）</em></h3><u class="hs-res win">4-2 ○</u><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hs-02" hidden>
+          <img class="hkv" src="assets/history_fg2.jpg" alt="F GAME.2 キービジュアル" loading="lazy">
+          <div class="hs-meta"><b>アリーナ立川立飛</b><span>動員 約2,500人</span></div>
+        </div>
+      </article>
+      <article class="hl hs">
+        <div class="hl-head" data-acc="hs-03"><b class="hl-num">03</b><h3><span class="hs-t"><img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME"><b>.3</b></span><em>vs ゾット早稲田FC（日本）</em></h3><u class="hs-res ">4-5 ×<br>5-5 △</u><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hs-03" hidden>
+          <img class="hkv" src="assets/history_fg3.jpg" alt="F GAME.3 キービジュアル" loading="lazy">
+          <div class="hs-meta"><b>アリーナ立川立飛（2DAYS）</b><span>動員 約5,000人（2日間）</span></div>
+        </div>
+      </article>
+      <article class="hl hs">
+        <div class="hl-head" data-acc="hs-04"><b class="hl-num">04</b><h3><span class="hs-t"><img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME"><b>.4</b></span><em>vs ZD SPORTS（韓国）</em></h3><u class="hs-res win">4-3 ○</u><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hs-04" hidden>
+          <img class="hkv" src="assets/history_fg4.jpg" alt="F GAME.4 キービジュアル" loading="lazy">
+          <div class="hs-meta"><b>おおきにアリーナ舞洲</b><span>動員 約4,500人</span></div>
+        </div>
+      </article>
+      <article class="hl hs">
+        <div class="hl-head" data-acc="hs-05"><b class="hl-num">05</b><h3><span class="hs-t"><img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME"><b>.5</b></span><em>vs タイリーグ選抜連合軍（タイ）</em></h3><u class="hs-res win">24-6 ○</u><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hs-05" hidden>
+          <img class="hkv" src="assets/history_fg5.jpg" alt="F GAME.5 キービジュアル" loading="lazy">
+          <div class="hs-meta"><b>名古屋金城ふ頭アリーナ</b><span>動員 約2,500人</span></div>
+        </div>
+      </article>
+      <article class="hl hs">
+        <div class="hl-head" data-acc="hs-06"><b class="hl-num">06</b><h3><span class="hs-t"><img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME"><b>.6</b></span><em>vs フットサル台湾選抜（台湾）</em></h3><u class="hs-res win">6-2 ○</u><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hs-06" hidden>
+          <img class="hkv" src="assets/history_fg6.jpg" alt="F GAME.6 キービジュアル" loading="lazy">
+          <div class="hs-meta"><b>香陵アリーナ（沼津）</b><span>動員 約2,000人</span></div>
+        </div>
+      </article>
+      <article class="hl hs now">
+        <div class="hl-head" data-acc="hs-07"><b class="hl-num">07</b><h3><span class="hs-t"><img class="inl-logo" src="assets/logo_fgame_en.png" alt="F GAME"><b>.7</b></span><em>vs フットサル世界選抜</em></h3><u class="hs-res gold">2026.11.1</u><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hs-07" hidden>
+          <img class="hkv" src="assets/history_fg7.jpg" alt="F GAME.7 キービジュアル" loading="lazy">
+          <div class="hs-meta"><b>国立代々木競技場第一体育館</b><span class="gold">目標動員 10,000人満員</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 下層: 対抗図（選手能力） ================= -->
+<div class="subpage" id="page-players" hidden>
+  <div class="sp-inner">
+    <button class="sp-back" type="button" data-spclose>← 戻る</button>
+    <span class="sec-en">PLAYERS</span>
+    <h2 class="sec-jp">対抗図（選手能力）</h2>
+    <p class="pv-lead">選手をタップすると、左右の選手の能力が重なって比較できます。</p>
+
+    <div class="pv-arena">
+      <div class="pv-team pv-l">
+        <div class="pv-tname">あしざるFC</div>
+        <div class="pv-cards" id="pv-cards-l"></div>
       </div>
-      <div class="hist">
-        <img class="hkv" src="assets/history_fg2.jpg" alt="F GAME.2 キービジュアル" loading="lazy">
-        <div class="hrow"><span class="hn">02</span><div class="hd"><i>vs カフリンガ東久留米<em>（日本）</em></i><b>アリーナ立川立飛</b><span class="crowd">動員 約2,500人</span><u class="win">4-2 ○</u></div></div>
+      <div class="pv-vs"><span>VS</span></div>
+      <div class="pv-team pv-r">
+        <div class="pv-tname">フットサル世界選抜</div>
+        <div class="pv-cards" id="pv-cards-r"></div>
       </div>
-      <div class="hist">
-        <img class="hkv" src="assets/history_fg3.jpg" alt="F GAME.3 キービジュアル" loading="lazy">
-        <div class="hrow"><span class="hn">03</span><div class="hd"><i>vs ゾット早稲田FC<em>（日本）</em></i><b>アリーナ立川立飛（2DAYS）</b><span class="crowd">動員 約5,000人（2日間）</span><u>1st leg 4-5 ×　2nd leg 5-5 △</u></div></div>
+    </div>
+
+    <div class="pv-detail">
+      <div class="pv-heads">
+        <div class="pv-head pv-head-l">
+          <img id="pv-face-l" src="" alt="">
+          <div><div class="pv-hname" id="pv-name-l">–</div><div class="pv-hpos" id="pv-pos-l">–</div></div>
+          <div class="pv-ovr"><small>総合</small><b id="pv-ovr-l">–</b></div>
+        </div>
+        <div class="pv-head pv-head-r">
+          <div class="pv-ovr"><small>総合</small><b id="pv-ovr-r">–</b></div>
+          <div><div class="pv-hname" id="pv-name-r">–</div><div class="pv-hpos" id="pv-pos-r">–</div></div>
+          <img id="pv-face-r" src="" alt="">
+        </div>
       </div>
-      <div class="hist">
-        <img class="hkv" src="assets/history_fg4.jpg" alt="F GAME.4 キービジュアル" loading="lazy">
-        <div class="hrow"><span class="hn">04</span><div class="hd"><i>vs ZD SPORTS<em>（韓国）</em></i><b>おおきにアリーナ舞洲</b><span class="crowd">動員 約4,500人</span><u class="win">4-3 ○</u></div></div>
-      </div>
-      <div class="hist">
-        <img class="hkv" src="assets/history_fg5.jpg" alt="F GAME.5 キービジュアル" loading="lazy">
-        <div class="hrow"><span class="hn">05</span><div class="hd"><i>vs タイリーグ選抜連合軍<em>（タイ）</em></i><b>名古屋金城ふ頭アリーナ</b><span class="crowd">動員 約2,500人</span><u class="win">24-6 ○</u></div></div>
-      </div>
-      <div class="hist">
-        <img class="hkv" src="assets/history_fg6.jpg" alt="F GAME.6 キービジュアル" loading="lazy">
-        <div class="hrow"><span class="hn">06</span><div class="hd"><i>vs フットサル台湾選抜<em>（台湾）</em></i><b>香陵アリーナ（沼津）</b><span class="crowd">動員 約2,000人</span><u class="win">6-2 ○</u></div></div>
-      </div>
-      <div class="hist now">
-        <img class="hkv" src="assets/history_fg7.jpg" alt="F GAME.7 キービジュアル" loading="lazy">
-        <div class="hrow"><span class="hn">07</span><div class="hd"><i>vs フットサル世界選抜</i><b>国立代々木競技場第一体育館</b><span class="crowd gold">目標動員 10,000人満員</span><u class="gold">2026.11.1 SUN — 代々木満員へ</u></div></div>
+      <svg class="pv-radar" id="pv-radar" viewBox="0 0 320 300"></svg>
+      <div class="pv-rows" id="pv-rows"></div>
+      <div class="pv-notes">
+        <div class="pv-note l"><span class="pv-ntag">注目ポイント</span><strong class="pv-nname" id="pv-nname-l"></strong><b id="pv-catch-l"></b><p id="pv-note-l"></p></div>
+        <div class="pv-note r"><span class="pv-ntag">注目ポイント</span><strong class="pv-nname" id="pv-nname-r"></strong><b id="pv-catch-r"></b><p id="pv-note-r"></p></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ================= 下層: あしざるFCジュニア（8/25公開） ================= -->
-<div class="subpage" id="page-junior" hidden>
-  <div class="sp-inner">
-    <button class="sp-back" type="button" data-spclose>← 戻る</button>
-    <span class="sec-en">ASHISAL FC JUNIOR</span>
-    <h2 class="sec-jp">あしざるFCジュニア<br>セレクション</h2>
-    <div class="jr-vs">
-      <span class="jv-tag"><b class="jv-jp">F GAME.7に出場するあしざるFCジュニアの選手を募集！</b></span>
-      <div class="jv-row">
-        <div class="jv-side"><img src="assets/emblem_salbaby_sq.png" alt="サルベイビー"><b>サルベイビー</b></div>
-        <span class="jv-x">VS</span>
-        <div class="jv-side"><img src="assets/emblem_ashisal_sq.png" alt="あしざるFCジュニア"><b>あしざるFCジュニア</b></div>
-      </div>
-    </div>
-    <p class="sp-lead"><b>あしざるFCジュニアチームが新設！</b></p>
-    <p class="sp-sub">年間でのチーム活動に参加し、11月に代々木で試合に出場します。<br>毎年開催されるバーモントカップへの出場も検討しております。<br>※サッカーチームに在籍している状態での入団も受け付けております。</p>
-    <a class="btn btn-gold jr-apply-top" href="https://docs.google.com/forms/d/e/1FAIpQLScSmBP_Bw5AVpnXC8EtargczmmLe6v7t206RhpYkePjxc1e6A/viewform" target="_blank" rel="noopener">セレクション応募はこちら<span class="arrow">→</span></a>
-    <div class="jr-grid">
-      <div class="sp-block">
-        <h3>募集締め切り</h3>
-        <p id="cms-jr-deadline"><b>9月28日（月）</b></p>
-      </div>
-      <div class="sp-block">
-        <h3>募集年齢</h3>
-        <p id="cms-jr-age"><b>小学 現3年生〜現6年生</b></p>
-      </div>
-    </div>
-    <div class="sp-block">
-      <h3>セレクション日程</h3>
-      <div id="cms-jr-selection" class="sel-wrap">
-        <div class="sel-venue"><b>フットボールパーク東山田</b>
-          <div class="sel-days"><span>9/7</span><span>9/14</span><span>9/15</span><span>9/28</span></div>
-        </div>
-        <div class="sel-venue"><b>銀座deフットサル 多摩センタースタジアム</b>
-          <div class="sel-days"><span>9/11</span><span>9/17</span><span>9/18</span><span>9/24</span></div>
-        </div>
-        <div class="sel-time">各日 18:50〜20:10</div>
-        <p class="sel-fee">参加費：初回無料（2回目以降のご参加は 3,300円/回）</p>
-      </div>
-    </div>
-    <div class="sp-block">
-      <h3>活動日程</h3>
-      <div id="cms-jr-schedule"><p>土日いずれかの活動（練習試合など／神奈川・東京・埼玉エリア予定）＋あしざるFCフットサルスクール上級者クラス 週4回通い放題</p>
-      <p>※全ての日程に参加できなくてもOKです</p></div>
-    </div>
-    <div class="sp-block">
-      <h3>主な活動場所（練習）</h3>
-      <div id="cms-jr-place">      <p><b>フットボールパーク東山田</b>（月・火 18:50〜20:10）<br>住所：神奈川県横浜市都筑区早渕3-46（横浜市営地下鉄グリーンライン「東山田駅」徒歩3分）</p>
-      <p><b>銀座deフットサル 多摩センタースタジアム</b>（木・金 18:50〜20:10）<br>住所：東京都多摩市落合1-46-1 ココリア多摩センター7F・屋上（「多摩センター駅」徒歩5分）</p></div>
-    </div>
-    <a class="btn btn-gold sp-cta" href="https://docs.google.com/forms/d/e/1FAIpQLScSmBP_Bw5AVpnXC8EtargczmmLe6v7t206RhpYkePjxc1e6A/viewform" target="_blank" rel="noopener" id="junior-apply-btn">セレクション応募はこちら<span class="arrow">→</span></a>
-  </div>
-</div>
 
 <div class="notice-bar" id="notice-bar" hidden role="alert">
   <span class="nb-tag">INFO</span><span id="notice-text"></span><span class="nb-go" aria-hidden="true">→</span>
@@ -1326,8 +2312,8 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       <div class="kv" id="kv">
         <div class="kv-tilt" id="kv-tilt">
           <picture>
-            <source media="(min-width: 900px)" srcset="assets/kv_pc_pre.jpg" id="kv-src">
-            <img class="kv-base" id="kv-img" src="assets/kv_sp_pre.jpg" alt="F GAME.7 待ってろ、代々木。2026.11.1(日) 代々木第一体育館 開演15:00 開場14:00 KICK OFF17:00">
+            <source media="(min-width: 900px)" srcset="assets/kv_pc.jpg" id="kv-src">
+            <img class="kv-base" id="kv-img" src="assets/kv_sp.jpg" alt="F GAME.7 世界最強、降臨。2026.11.1(日) 代々木第一体育館 開演15:00 開場14:00 KICK OFF17:00">
           </picture>
         </div>
       </div>
@@ -1343,40 +2329,24 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
       <div class="vc-line" id="vc-line2"></div>
       <div class="vc-sub">8月28日(金) 18:00発表！</div>
     </div>
-    <!-- 8/25発表後に出現: ジュニアセレクション導線 -->
-    <a class="junior-cta" id="junior-cta" href="#" hidden>
-      <span class="jc-tag">サルベイビー 対戦相手決定！</span>
-      <span class="jc-body">
-        <span class="jc-main">VS <img class="jc-emb" src="assets/emblem_ashisal.png" alt="">あしざるFCジュニア</span>
-        <span class="jc-go">選手応募はこちら →</span>
-      </span>
-    </a>
-    <div class="hero-grid">
+    <div class="hero-grid one">
       <div>
-        <h1 class="statement">
-          <span class="l lb fx d2">「<em>代々木満員</em>」</span>
-          <span class="l lm fx d2">あしざるFC結成からの、最大の目標。</span>
-          <span class="l ls fx d3"><span class="s">1万人の前で大好きなフットサルを届けたい。</span><span class="s">会場でその瞬間を一緒に作りましょう。</span></span>
-        </h1>
-      </div>
-      <div>
-        <div class="hero-live fx d4" aria-label="開催カウントダウンとチケット販売率">
-          <div>
-            <div class="hb-label">開催まで</div>
-            <div class="count"><span class="ato">あと</span><b id="cd-days">–</b><small>日</small></div>
-          </div>
-          <div class="hl-sep"></div>
-          <div class="hl-gauge">
-            <div class="hb-label">チケット販売率</div>
-            <div class="hl-row"><b class="hl-pct" id="total-pct">–</b><div class="gauge"><i id="total-bar"></i></div></div>
-            <div class="hb-upd"><b id="total-count" style="color:#fff">–</b><span id="hero-updated">最終更新 –</span></div>
-            <p class="rate-note">※ チケットの販売率は、更新時点のものでリアルタイム進捗と異なる場合がございます。</p>
-          </div>
-        </div>
         <div class="hero-ctas fx d5">
-          <a class="btn btn-red" href="#seats">座席を確認して購入<span class="arrow">→</span></a>
-          <a class="btn btn-ghost" href="#match">対戦カード・出演情報</a>
+          <a class="btn btn-red hero-buy" href="#seats">チケットを購入する<span class="arrow">→</span></a>
         </div>
+    <!-- クラウドファンディング: 〜10/1 19:00 大型プロジェクト → 〜10/15 19:00 CF開始まで → 10/15 19:00〜 開始 -->
+        <img class="cf-img" id="cf-teaser" src="assets/cf_teaser.jpg" alt="" hidden>
+        <div class="vs-count cf-big" id="cf-count" hidden>
+      <div class="vc-line" id="vc-line-cf"></div>
+      <div class="vc-sub" id="vc-sub-cf">10月1日(木) 19:00 発表！</div>
+    </div>
+        <a class="cf-img" id="cf-start" href="#" target="_blank" rel="noopener" hidden><img src="assets/cf_start.jpg" alt="クラウドファンディング開始！" style="display:block;width:100%;border-radius:12px"></a>
+        <div class="fr-hero fx d6" id="cf-hero" hidden>
+              <span class="fh-tag"><i></i>クラウドファンディング<br class="sp-only">開始！<i></i></span>
+              <a class="fh-btn" id="cf-btn" href="#" target="_blank" rel="noopener">プロジェクトを見る<span>→</span></a>
+            </div>
+        <a class="uni-banner fx d6" id="uni-banner" href="#" target="_blank" rel="noopener"><img src="assets/uniform_banner.jpg" alt="ユニフォーム事前受付開始！ 10/1(水)-10/5(月) 在庫切れの不安なく、F GAME.7会場にて受け取りが可能！"><span class="uni-btn">事前受付はこちら →</span></a>
+
         <div class="fanclub fx d5">
           <p class="fc-lead">ファンクラブ「あしもん」なら、先行販売でひと足早く購入できます。</p>
           <div class="fc-sched">
@@ -1392,6 +2362,29 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
   </div>
 </div>
 
+<!-- ================= EVENTS ================= -->
+<section id="events">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-en">EVENT</span>
+      <h2 class="sec-jp">イベント最新情報</h2>
+    </div>
+    <div class="ev-wrap reveal">
+      <button type="button" class="ev-arrow prev" id="ev-prev" aria-label="前のイベントへ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 L8 12 L14.5 18.5"/></svg></button>
+      <div class="ev-slider" id="event-list" aria-label="イベント情報（左右にスライドできます）"></div>
+      <button type="button" class="ev-arrow next" id="ev-next" aria-label="次のイベントへ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 L16 12 L9.5 18.5"/></svg></button>
+    </div>
+    <a class="goods-cta reveal" href="https://goods.ashisalfc.jp/" target="_blank" rel="noopener">
+      <span class="gc-txt">
+        <span class="gc-en">OFFICIAL GOODS</span>
+        <span class="gc-jp">開催前にあしざるFCグッズをゲットする</span>
+      </span>
+      <span class="gc-arrow" aria-hidden="true">→</span>
+    </a>
+    <p class="gc-note">※発送の関係上、10月上旬までの購入を推奨いたします。</p>
+  </div>
+</section>
+
 <!-- ================= SEATS ================= -->
 <section id="seats">
   <div class="wrap">
@@ -1401,15 +2394,29 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     </div>
 
     <!-- kids free -->
+    <!-- kids free -->
     <div class="mag reveal">
       <div class="mag-bg" aria-hidden="true"><img src="assets/yoyogi_exterior.jpg" alt=""></div>
       <div class="mag-inner">
         <h3 class="mag-title">小学生以下 <em>0円</em></h3>
         <p class="mag-quote">「多くの人にフットサルを見てもらいたい。<br>子供達が夢をもつきっかけになってほしい。」</p>
         <p class="mag-body">そんな思いで、2階席・3階席は小学生以下を無料にしました。<br>家族みんなで、代々木へ。会場で一緒に応援してください！</p>
-        <p class="mag-caution">※ 無料席の場合もチケットサイトでの申込が必要です。</p>
       </div>
     </div>
+    <div class="free-alert reveal"><i>！</i><p>無料席の場合も<b>チケットサイトでの申込が必要です。</b></p></div>
+
+    <div class="hero-live in-seats reveal" aria-label="開催カウントダウンとチケット販売率">
+          <div>
+            <div class="hb-label">開催まで</div>
+            <div class="count"><span class="ato">あと</span><b id="cd-days">–</b><small>日</small></div>
+          </div>
+          <div class="hl-sep"></div>
+          <div class="hl-gauge">
+            <div class="hb-label">来場予定数</div>
+            <div class="hl-row"><b class="hl-pct" id="total-pct">–</b><div class="gauge"><i id="total-bar"></i></div></div>
+            <div class="hb-upd"><b id="total-count" style="color:#fff">–</b><span id="hero-updated">最終更新 –</span></div>
+          </div>
+        </div>
 
     <div class="seat-grid">
       <div class="map-panel reveal">
@@ -1636,6 +2643,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
 </section>
 
 <!-- ================= TICKET UPDATES ================= -->
+
 <section id="ticket-news">
   <div class="wrap">
     <span class="sec-en">TICKET UPDATES</span>
@@ -1644,6 +2652,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     <p class="tn-note">※在庫状況は常に変動します。最新の空席は各プレイガイドにてご確認ください。</p>
   </div>
 </section>
+
 
 <!-- ================= MATCH & GUESTS ================= -->
 <section id="match">
@@ -1697,15 +2706,48 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
           </div>
         </div>
       </div>
-      <div class="guest" data-en="?">
+      <div class="guest rv-pre" data-en="?">
         <span class="no">GUEST 02</span>
         <div class="gn gn-secret">SECRET</div>
         <div class="gr">近日発表</div>
+      </div>
+      <div class="guest guest-photo rv-post" data-en="TEE" hidden>
+        <span class="no">GUEST 02</span>
+        <div class="gp-row">
+          <img class="gp-img" src="assets/guest_tee.jpg" alt="TEE">
+          <div class="gp-txt">
+            <div class="gp-name">TEE</div>
+            <div class="gp-role">シンガーソングライター</div>
+          </div>
+        </div>
       </div>
       <div class="guest" data-en="?">
         <span class="no">GUEST 03</span>
         <div class="gn gn-secret">SECRET</div>
         <div class="gr">近日発表</div>
+      </div>
+    </div>
+    <div class="guest-head">MC</div>
+    <div class="guests guests-mc reveal stagger">
+      <div class="guest guest-photo" data-en="YUMARO">
+        <span class="no">MC</span>
+        <div class="gp-row">
+          <img class="gp-img" src="assets/mc_yumaro.jpg" alt="ゆーまろ">
+          <div class="gp-txt">
+            <div class="gp-name">YUMARO</div>
+            <div class="gp-role">ゆーまろ／MC</div>
+          </div>
+        </div>
+      </div>
+      <div class="guest guest-photo" data-en="TSUNEKI">
+        <span class="no">アシスタントMC</span>
+        <div class="gp-row">
+          <img class="gp-img" src="assets/mc_tsuneki.jpg" alt="恒木真優">
+          <div class="gp-txt">
+            <div class="gp-name">MAYU TSUNEKI</div>
+            <div class="gp-role">恒木真優／アシスタントMC</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1719,32 +2761,12 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     </div>
     <div class="tt reveal" id="tt-list"></div>
     <p class="tt-note">※ 内容・時間は予告なく変更となる場合がございます。</p>
+    <a class="btn btn-gold tt-cta" href="#" data-swpage="page-highlights"><img class="inl-logo" src="assets/logo_fgame7.png" alt="F GAME.7">の見どころを見る<span class="arrow">→</span></a>
 
   </div>
 </section>
 
-<!-- ================= EVENTS ================= -->
-<section id="events">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="sec-en">EVENT</span>
-      <h2 class="sec-jp">イベント情報</h2>
-    </div>
-    <div class="ev-wrap reveal">
-      <button type="button" class="ev-arrow prev" id="ev-prev" aria-label="前のイベントへ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 L8 12 L14.5 18.5"/></svg></button>
-      <div class="ev-slider" id="event-list" aria-label="イベント情報（左右にスライドできます）"></div>
-      <button type="button" class="ev-arrow next" id="ev-next" aria-label="次のイベントへ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 5.5 L16 12 L9.5 18.5"/></svg></button>
-    </div>
-    <a class="goods-cta reveal" href="https://goods.ashisalfc.jp/" target="_blank" rel="noopener">
-      <span class="gc-txt">
-        <span class="gc-en">OFFICIAL GOODS</span>
-        <span class="gc-jp">開催前にあしざるFCグッズをゲットする</span>
-      </span>
-      <span class="gc-arrow" aria-hidden="true">→</span>
-    </a>
-    <p class="gc-note">※発送の関係上、10月上旬までの購入を推奨いたします。</p>
-  </div>
-</section>
+
 
 <!-- ================= ROAD TO YOYOGI ================= -->
 <section id="road">
@@ -1752,13 +2774,13 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     <div class="road-grid">
       <div class="road-copy reveal">
         <div class="big">ROAD TO <span>YOYOGI</span></div>
-        <p>「代々木満員」への道のりを描いた密着映像を近日公開！<br>普段は見せない挑戦の裏側を、お楽しみに。</p>
+        <p>「代々木満員」への道のりを描いた密着ドキュメンタリー。<br>普段は見せない挑戦の裏側を、話数ごとにお届け。</p>
       </div>
       <div class="video-frame reveal">
-        <div class="road-player" id="road-player" data-cur="v-hMbLVi9qc" role="button" tabindex="0" aria-label="ROAD TO YOYOGI 第1話を再生">
+        <div class="road-player" id="road-player" data-cur="d5LOScSPdW4" role="button" tabindex="0" aria-label="ROAD TO YOYOGI 最新話を再生">
           <span class="rp-kicker">DOCUMENTARY</span>
           <span class="rp-title">ROAD TO <b>YOYOGI</b></span>
-          <span class="rp-ep" id="rp-ep">第1話 公開中</span>
+          <span class="rp-ep" id="rp-ep">第3話 公開中</span>
           <span class="rp-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
         </div>
       </div>
@@ -1791,7 +2813,8 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
               <span>募集 9/26(土)〜10/2(金)　抽選 10/4(日)　当落通知 10/5(月)</span>
             </div>
             <div class="ek-blk">
-              <b>【FC2次募集】ノーマル会員以上 <i>※1次にて満員の場合は実施なし</i></b>
+              <b>【FC2次募集】ノーマル会員以上</b>
+              <i class="ek-note">※ゴールド会員の1次募集で満枠となった場合、2次募集は実施しません</i>
               <span>募集 10/9(金)〜10/16(金)　抽選 10/18(日)　当落通知 10/21(水)</span>
             </div>
           </div>
@@ -1863,7 +2886,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
   </div>
   <div class="flash" id="flash" aria-hidden="true"></div>
 
-<div class="sticky-buy"><a href="#seats">座席を確認して購入する →</a></div>
+<div class="sticky-buy"><a href="#seats"><b>チケットを購入する</b><i>→</i></a></div>
 
 <div class="modal" id="buy-modal" role="dialog" aria-modal="true" aria-labelledby="buy-modal-title" aria-hidden="true">
   <div class="modal-card">
@@ -1877,6 +2900,7 @@ footer{background:#000;border-top:1px solid var(--line);padding:52px 0 36px}
     <p class="modal-note" id="modal-note">※ 各プレイガイドの販売ページへ移動します。</p>
   </div>
 </div>
+
 
 <script>
 /* =====================================================================
@@ -1914,8 +2938,29 @@ const CONFIG = {
     { t:"17:00", label:"KICK OFF" },
     { t:"HT",    label:"ハーフタイムショー" },
     { t:"19:15", label:"試合終了&amp;楽曲LIVEスタート" },
-    { t:"20:15", label:"F GAME.7 終演／ドリームシート&amp;VIPシート特典撮影会" },
+    { t:"20:15", label:"<img class=\"inl-logo\" src=\"assets/logo_fgame7.png\" alt=\"F GAME.7\"> 終演／ドリームシート&amp;VIPシート特典撮影会" },
     { t:"21:15", label:"ドリームシート&amp;VIPシート特典撮影会終了" }
+  ],
+  // ▼ 集客ランキング（GAS連携 fanRanking で上書き）。{ name:"表示名", count:人数 }
+  // ▼ クラウドファンディング（10/1 18:00 開始）。URL確定後にここへ
+  // ▼ TEE解禁日時（例 "2026-10-07T18:00:00+09:00"）。空なら非公開のまま。解禁時はイベントカード(revealAt)も同じ日時に
+  teeRevealAt: "",
+  crowdfundingUrl: "https://camp-fire.jp/projects/979431",
+  // ▼ ユニフォーム事前受付（10/1〜10/5）の遷移先URL
+  uniformUrl: "https://goods.ashisalfc.jp/products/list?category_id=18",
+  fanRanking: [],
+  fanRankingFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLScxBD62GvNnEAy4MoxC-aJF8IZFrXzJDJVSTgpzip8Z6trYzQ/viewform",
+  playersUnlockAt: 0, // 対抗図は最初から公開 // 対抗図ページの解放ライン(来場予定数)
+  // ▼ 集客ミッション（来場予定数が到達したら解放）。内容は書き換え自由
+  missions: [
+    { at:4500,  label:"サイトに特別ページ完成" },
+    { at:5000,  label:"重大発表" },
+    { at:5500,  label:"新作グッズ発表" },
+    { at:6000,  label:"スペシャルゲスト発表" },
+    { at:7000,  label:"24時間生ライブ配信決定" },
+    { at:8000,  label:"対戦相手メンバー全員発表" },
+    { at:9000,  label:"来場者全員にハリセン配布決定！" },
+    { at:10000, label:"2027年 視聴者参加型の新曲リリース決定" }
   ],
   updatedAt: "2026-07-21 09:00",
   // ▼ チケット最新情報。新しいお知らせを「上に」追加していく（空配列 [] でセクションごと非表示）。
@@ -1924,7 +2969,14 @@ const CONFIG = {
     { date:"8.10", text:"【シルバー席】mu-mo TICKETにて残り2席" }
   ],
   DATA_URL: "https://script.google.com/macros/s/AKfycbwpjfgwhLprkYa3VvFO7L0vR_yemrkViInOZwfqbSvWxbWc2zLcNLQ4iZhz9HjkWdlV2Q/exec", // 進捗トラッカー(GAS)
-  roadVideoId: "v-hMbLVi9qc", // 第1話。GAS連携時はroadVideos(自動検出)が優先され、2話以降も自動で並ぶ
+  roadVideoId: "XGxwDpfKM3I",
+  // ▼ ROAD TO YOYOGI 話数リスト(古い順)。GAS連携でroadVideosが返ればそちらが優先(自動更新)
+  roadVideos: [
+    { id:"v-hMbLVi9qc", ep:"第1話" },
+    { id:"MjSV5bfSniI", ep:"第2話" },
+    { id:"d5LOScSPdW4", ep:"第3話" },
+    { id:"XGxwDpfKM3I", ep:"第4話" }
+  ],
   links: [
     { label:"チケットぴあ", url:"https://w.pia.jp/t/fgame7-y/" },
     { label:"ローチケ", url:"https://l-tike.com/ashisalfc/" },
@@ -1938,8 +2990,12 @@ const CONFIG = {
   // 表示フェーズの強制切替（デモ用）: "" | "pre" | "fc1" | "fc2" | "ga"
   FORCE_PHASE: "",
   events: [
+    { tag:"LIVE", revealAt:"2099-12-31T00:00:00+09:00", title:"TEE 出演決定！", desc:"シンガーソングライターTEEの出演が決定！HIPPYとのコラボLIVEに加え、その他楽曲のミニライブも開催。", sq:"assets/event_tee_live.jpg" },
+    { tag:"KIDS FREE", title:"小学生以下 チケット無料！（2階席・3階席対象）", desc:"※無料の場合でもチケットの発券が必要です。※数には限りがあります。", link:{ label:"座席を確認して申し込む", url:"#seats", inpage:true }, sq:"assets/event_kidsfree.jpg" },
+    // ▼ 写真撮影会（商品URL確定後に再掲。下の1行を有効化）
+    // { tag:"PHOTO SESSION", title:"リカルジーニョ選手＆オルティス選手 写真撮影会", desc:"先着50名様限定。試合後の2選手との写真撮影会に参加できます。", link:{ label:"撮影会チケットを購入する", url:"#" /* ★商品ページURLに差し替え */ }, sq:"assets/event_photo.jpg" },
     { tag:"ESCORT KIDS", title:"エスコートキッズ募集（ゴールド会員対象）", desc:"", link:{ label:"あしもんに入会する", url:"https://fanclub.ashisalfc.jp/" }, sq:"assets/event_escort_gold.jpg" },
-    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（通常会員対象）", desc:"", link:{ label:"あしもんに入会する", url:"https://fanclub.ashisalfc.jp/" }, sq:"assets/event_escort_normal.jpg" },
+    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（通常会員対象）", desc:"※ゴールド会員の1次募集で満枠となった場合、2次募集は実施しません", link:{ label:"あしもんに入会する", url:"https://fanclub.ashisalfc.jp/" }, sq:"assets/event_escort_normal.jpg" },
     { tag:"LIVE", title:"HIPPY 出演決定！", desc:"あしざるFCと共に制作した「YOYOGI feat. HIPPY」をライブ披露！その他楽曲のミニライブも開催。", sq:"assets/event_hippy_live.jpg" },
     { tag:"GOODS", title:"会場にてグッズ販売実施！", desc:"あしざるFC公式グッズを会場で販売！新作も盛りだくさん。", sq:"assets/event_goods_hanbai.jpg" }
     // ▼ イベント追加はこの形式で行をコピーするだけ（何件でもOK・自動でスライダーに並び、周回します）
@@ -2089,7 +3145,7 @@ window.applyCMS = function(c){
     }
   });
   // ゲスト1〜3
-  const guests = document.querySelectorAll("#match .guest");
+  const guests = document.querySelectorAll("#match .guests:not(.guests-mc) .guest:not(.rv-pre)");
   for (let n = 1; n <= 3; n++) {
     const el = guests[n - 1];
     if (!el) continue;
@@ -2121,6 +3177,170 @@ window.applyCMS = function(c){
   });
 };
 
+
+/* ===== PLAYERS 対抗図 ===== */
+(function(){
+  const AX = ["オフェンス","ドリブル","パス","ディフェンス","フィジカル","スピード"];
+  const AXE = ["OFE","DRI","PAS","DEF","PHY","SPD"];
+  const P = [ // stats: [OFE, DRI, PAS, DEF, PHY, SPD]
+    { side:"l", no:4,  name:"のぶくん",       pos:"ALA / FIXO", catch:"フットサル界を変える情熱の革命児", note:"攻守ともに高水準で完結するオールラウンダー。最大の武器は一撃必殺の「ボレーシュート」。キャプテンとしてチームを勝利へ導けるか。", face:"assets/face_nobu.jpg",       stats:[85,84,85,86,84,86] },
+    { side:"l", no:9,  name:"レイン",         pos:"ALA", catch:"疾風怒濤の稲妻レフティ", note:"キレ味鋭いドリブルで相手を切り裂くアタッカー。ボールを持った瞬間、ゴールの匂いが立ちこめる——ゴールに飢えた稲妻レフティ。",        face:"assets/face_rain.jpg",       stats:[88,89,83,79,80,91] },
+    { side:"l", no:10, name:"かにゃ",         pos:"ALA", catch:"岡山が生んだあしざるFCのワンダーガール", note:"女性選手として初めてF GAMEのピッチに立つ挑戦者。基礎技術は男子以上。屈強な世界選抜に、どう立ち向かうか。",        face:"assets/face_kanya.jpg",      stats:[85,87,83,79,71,75] },
+    { side:"r", no:10, name:"リカルジーニョ", pos:"ALA", catch:"フットサル世界No.1プレーヤー", note:"誰もが認める歴代世界No.1。異次元のスキルで会場を沸かせる、世界最高峰のテクニックをとくとご覧あれ。",        face:"assets/face_ricardinho.jpg", stats:[99,99,99,99,99,99] },
+    { side:"r", no:8,  name:"オルティス",     pos:"FIXO", catch:"スペインの絶対的リーダー", note:"フットサルスペイン代表最多キャップを誇る、世界最高のオールラウンダー。鉄壁の守備と正確無比なパスで、ゲームを完全に支配する。",       face:"assets/face_ortiz.jpg",      stats:[92,95,99,99,99,91] },
+  ];
+  const ovr = s => Math.round(s.reduce((a,b)=>a+b,0)/s.length);
+  const cl = document.getElementById("pv-cards-l"), cr = document.getElementById("pv-cards-r");
+  if (!cl || !cr) return;
+  let sel = { l:0, r:3 };
+  P.forEach((p,i)=>{
+    const d = document.createElement("div"); d.className = "pv-card";
+    d.innerHTML = `<img src="${p.face}" alt=""><span><b>${p.name}</b><i>#${p.no} ${p.pos}</i></span><u>${ovr(p.stats)}</u>`;
+    d.addEventListener("click", ()=>{ sel[p.side] = i; render(); });
+    (p.side==="l"?cl:cr).appendChild(d);
+    p.el = d;
+  });
+  const C=160, CY=150, R=104, N=6;
+  const pt = (i, r) => { const a = -Math.PI/2 + i*2*Math.PI/N; return [C + r*Math.cos(a), CY + r*Math.sin(a)]; };
+  const svg = document.getElementById("pv-radar");
+  let grid = "";
+  for (let g=1; g<=4; g++){
+    const r = R*g/4;
+    grid += `<polygon points="${Array.from({length:N},(_,i)=>pt(i,r).map(v=>v.toFixed(1)).join(",")).join(" ")}" fill="none" stroke="rgba(255,255,255,${g===4?".3":".1"})" stroke-width="${g===4?1.6:1}"/>`;
+  }
+  for (let i=0;i<N;i++){ const [x,y]=pt(i,R); grid += `<line x1="${C}" y1="${CY}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.08)"/>`; }
+  AXE.forEach((lb,i)=>{ const [x,y]=pt(i,R+24); grid += `<text x="${x.toFixed(1)}" y="${(y+5).toFixed(1)}" text-anchor="middle" fill="#c9c9d4" font-size="14" letter-spacing="1.5" font-family="Anton, Impact, sans-serif">${lb}</text>`; });
+  svg.innerHTML = grid + `<polygon id="pv-poly-r" fill="rgba(245,193,90,.28)" stroke="#f5c15a" stroke-width="2.2" stroke-linejoin="round"/>
+    <polygon id="pv-poly-l" fill="rgba(230,0,18,.3)" stroke="#e60012" stroke-width="2.4" stroke-linejoin="round"/>`;
+  const cur = { l: Array(N).fill(0), r: Array(N).fill(0) };
+  let raf = null;
+  function animate(){
+    if (raf && window.cancelAnimationFrame) cancelAnimationFrame(raf);
+    const tgt = { l: P[sel.l].stats, r: P[sel.r].stats };
+    const t0 = performance.now();
+    const from = { l: cur.l.slice(), r: cur.r.slice() };
+    function step(now){
+      const k = Math.min(1, (now - t0)/650), e = 1 - Math.pow(1-k, 3);
+      ["l","r"].forEach(s=>{
+        for (let i=0;i<N;i++) cur[s][i] = from[s][i] + (tgt[s][i]-from[s][i])*e;
+        document.getElementById("pv-poly-"+s).setAttribute("points", cur[s].map((v,i)=>pt(i, R*v/99).map(n=>n.toFixed(1)).join(",")).join(" "));
+      });
+      if (k < 1) raf = requestAnimationFrame(step);
+    }
+    raf = requestAnimationFrame(step);
+  }
+  function render(){
+    const L = P[sel.l], Rr = P[sel.r];
+    P.forEach(p=>p.el.classList.toggle("on", p === L || p === Rr));
+    document.getElementById("pv-face-l").src = L.face; document.getElementById("pv-face-r").src = Rr.face;
+    document.getElementById("pv-name-l").textContent = L.name; document.getElementById("pv-name-r").textContent = Rr.name;
+    document.getElementById("pv-pos-l").textContent = "#"+L.no+" "+L.pos; document.getElementById("pv-pos-r").textContent = "#"+Rr.no+" "+Rr.pos;
+    document.getElementById("pv-ovr-l").textContent = ovr(L.stats); document.getElementById("pv-ovr-r").textContent = ovr(Rr.stats);
+    document.getElementById("pv-nname-l").textContent = L.name; document.getElementById("pv-nname-r").textContent = Rr.name;
+    document.getElementById("pv-catch-l").textContent = L.catch || ""; document.getElementById("pv-note-l").textContent = L.note || "";
+    document.getElementById("pv-catch-r").textContent = Rr.catch || ""; document.getElementById("pv-note-r").textContent = Rr.note || "";
+    const rows = document.getElementById("pv-rows");
+    rows.innerHTML = AX.map((k,i)=>`<div class="pv-row ${L.stats[i]>Rr.stats[i]?"win-l":L.stats[i]<Rr.stats[i]?"win-r":""}">
+      <span class="v l">${L.stats[i]}</span><span class="pv-bar l"><i data-v="${L.stats[i]}"></i></span>
+      <span class="k">${k}</span>
+      <span class="pv-bar r"><i data-v="${Rr.stats[i]}"></i></span><span class="v r">${Rr.stats[i]}</span></div>`).join("");
+    requestAnimationFrame(()=>requestAnimationFrame(()=>rows.querySelectorAll(".pv-bar i").forEach(el=>el.style.width=(el.dataset.v/99*100)+"%")));
+    animate();
+  }
+  render();
+})();
+
+/* ===== 集客ランキング描画 ===== */
+function renderFanRank(list){
+  const rows = (list || []).slice().sort((a,b)=>(b.count||0)-(a.count||0));
+  const row = (r,i)=>`<div class="fr-row r${i+1}"><span class="rk">${i+1}</span><span class="nm">${r.name}</span><span class="ct">${Number(r.count||0).toLocaleString()}<small>人</small></span></div>`;
+  const ghost = `<div class="fr-podium ghost">
+      <div class="pd pd2"><span class="pd-rk">2</span><span class="pd-av">?</span><span class="pd-nm">エントリー待ち</span><span class="pd-ct">–<small>人</small></span></div>
+      <div class="pd pd1"><span class="pd-rk">1</span><span class="pd-av">?</span><span class="pd-nm">あなたかも？</span><span class="pd-ct">–<small>人</small></span></div>
+      <div class="pd pd3"><span class="pd-rk">3</span><span class="pd-av">?</span><span class="pd-nm">エントリー待ち</span><span class="pd-ct">–<small>人</small></span></div>
+    </div><div class="fr-empty">まだ誰も報告していません — エントリーして最初の1人になろう！</div>`;
+  const empty = ghost;
+  const top = document.getElementById("fr-board");
+  if (top){
+    if (rows.length >= 3){
+      const pod = (r,i)=>`<div class="pd pd${i+1}"><span class="pd-rk">${i+1}</span><span class="pd-av">${String(r.name).slice(0,2)}</span><span class="pd-nm">${r.name}</span><span class="pd-ct">${Number(r.count||0).toLocaleString()}<small>人</small></span></div>`;
+      const [a,b,c] = rows;
+      top.innerHTML = `<div class="fr-podium">${pod(b,1)}${pod(a,0)}${pod(c,2)}</div>` + rows.slice(3,5).map((r,i)=>row(r,i+3)).join("");
+    } else top.innerHTML = rows.length ? rows.slice(0,5).map(row).join("") : empty;
+  }
+  const full = document.getElementById("fr-board-full");
+  if (full) full.innerHTML = rows.length ? rows.map(row).join("") : empty;
+  const btn = document.getElementById("fanrank-form-btn");
+  if (btn && CONFIG.fanRankingFormUrl) btn.href = CONFIG.fanRankingFormUrl;
+}
+renderFanRank(CONFIG.fanRanking);
+/* 下層ページ内スクロール / ヒーローの購入ボタン */
+document.querySelectorAll("[data-spscroll]").forEach(a=>a.addEventListener("click", e=>{
+  e.preventDefault(); const t = document.getElementById(a.dataset.spscroll); if (t) t.scrollIntoView({ behavior:"smooth", block:"start" });
+}));
+(function(){ const b = document.getElementById("hero-buy"); if (!b) return; b.addEventListener("click", e=>{ e.preventDefault(); const t = document.getElementById("seats"); if (t) t.scrollIntoView({ behavior:"smooth", block:"start" }); }); })();
+/* hero-buy smooth */
+document.querySelectorAll(".hero-ctas .hero-buy, .sticky-buy a").forEach(a=>a.addEventListener("click", e=>{
+  const t = document.getElementById("seats"); if (!t) return; e.preventDefault(); t.scrollIntoView({ behavior:"smooth", block:"start" });
+}));
+/* ページ内リンク(#seats等)は全てスムーススクロール(イベントカードの動的リンク含む) */
+document.addEventListener("click", e=>{
+  const a = e.target.closest('a[href^="#"]'); if (!a) return;
+  const id = a.getAttribute("href").slice(1); if (!id || a.dataset.swpage || a.dataset.page || a.dataset.spscroll) return;
+  const t = document.getElementById(id); if (!t) return;
+  e.preventDefault(); t.scrollIntoView({ behavior:"smooth", block:"start" });
+});
+/* ===== TEE(GUEST 02) 解禁: CONFIG.teeRevealAt に日時を入れると自動解禁（空なら非公開） ===== */
+(function(){
+  const REVEAL_TEE = CONFIG.teeRevealAt ? new Date(CONFIG.teeRevealAt) : null;
+  function apply(){
+    const on = !!REVEAL_TEE && new Date() >= REVEAL_TEE;
+    document.querySelectorAll(".rv-pre").forEach(el => { el.hidden = on; });
+    document.querySelectorAll(".rv-post").forEach(el => { el.hidden = !on; });
+    return on;
+  }
+  if (!apply()){ const t = setInterval(()=>{ if (apply()) clearInterval(t); }, 30000); }
+})();
+/* ===== クラウドファンディング 段階表示 =====
+   〜10/1 18:59  : 「大型プロジェクト スタートまで」カウントダウン
+   10/1 19:00〜  : ROAD TO YOYOGIバナー（CAMPFIREへリンク）
+   ユニフォーム事前受付は 10/5 23:59 まで */
+(function(){
+  const T1 = new Date("2026-10-01T19:00:00+09:00"), T2 = new Date("2026-10-15T19:00:00+09:00"), T3 = new Date("2026-10-05T23:59:59+09:00");
+  const $ = id => document.getElementById(id);
+  const el = $("cf-count"), line = $("vc-line-cf"), sub = $("vc-sub-cf"), teaser = $("cf-teaser"), start = $("cf-start"), hero = $("cf-hero");
+  const pad = v => String(v).padStart(2,"0");
+  const fmt = (cap, diff) => {
+    const d = Math.floor(diff/86400000), h = Math.floor(diff%86400000/3600000), m = Math.floor(diff%3600000/60000), sec = Math.floor(diff%60000/1000);
+    let n = '';
+    if (d > 0) n += '<b>' + d + '</b><i>日</i>';
+    if (d > 0 || h > 0) n += '<b>' + (d > 0 ? pad(h) : h) + '</b><i>時間</i>';
+    n += '<b>' + pad(m) + '</b><i>分</i><b>' + pad(sec) + '</b><i>秒</i>';
+    return '<span class="vc-cap">' + cap + '</span><span class="vc-nums">' + n + '</span>';
+  };
+  function tick(){
+    const now = new Date();
+    const sp = $("sponsor-btn"), un = $("uni-banner");
+    if (un){ un.hidden = now > T3; if (CONFIG.uniformUrl) un.href = CONFIG.uniformUrl; }
+    if (now < T1){
+      if (el) el.hidden = false; if (teaser) teaser.hidden = true; if (start) start.hidden = true; if (hero) hero.hidden = true;
+      if (line) line.innerHTML = fmt("大型プロジェクト公開まで あと", T1 - now);
+      if (sub) sub.textContent = "10月1日(木) 19:00 発表！";
+    } else {
+      if (el) el.hidden = true; if (teaser) teaser.hidden = true;
+      if (start){ start.hidden = false; if (CONFIG.crowdfundingUrl) start.href = CONFIG.crowdfundingUrl; }
+      if (hero) hero.hidden = true;
+      return;
+    }
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
+/* 出場選手: アコーディオン */
+document.querySelectorAll("[data-acc]").forEach(b=>b.addEventListener("click", ()=>{
+  const p = document.getElementById(b.dataset.acc); if (!p) return;
+  const open = p.hidden; p.hidden = !open; b.classList.toggle("open", open);
+}));
 /* ===== メニュー・下層ページ ===== */
 (function(){
   const pop = document.getElementById("menu-pop");
@@ -2132,27 +3352,44 @@ window.applyCMS = function(c){
   document.getElementById("mp-close").addEventListener("click", close);
   pop.addEventListener("click", e=>{ if (e.target === pop) close(); });
   pop.querySelectorAll("[data-close]").forEach(a=>a.addEventListener("click", close));
-  const openPage = id => {
+  /* 下層ページはURLハッシュ(#highlights など)に対応。共有・戻るボタン対応 */
+  const SLUG = { "page-about":"about", "page-highlights":"highlights", "page-roster":"players", "page-rules":"rules", "page-players":"vs", "page-history":"history" };
+  const ID_BY_SLUG = Object.fromEntries(Object.entries(SLUG).map(([k,v])=>[v,k]));
+  let syncing = false;
+  const openPage = (id, push=true) => {
     const p = document.getElementById(id);
     if (!p) return;
+    document.querySelectorAll(".subpage").forEach(q=>{ if (q!==p) q.hidden = true; });
     p.hidden = false; p.scrollTop = 0;
     document.body.style.overflow = "hidden";
+    if (push && SLUG[id] && location.hash !== "#"+SLUG[id]) { syncing = true; history.pushState({page:id}, "", "#"+SLUG[id]); syncing = false; }
   };
-  const closePages = ()=>{
+  const closePages = (push=true)=>{
+    const wasOpen = [...document.querySelectorAll(".subpage")].some(p=>!p.hidden);
     document.querySelectorAll(".subpage").forEach(p=>p.hidden=true);
     document.body.style.overflow = "";
+    if (push && wasOpen && ID_BY_SLUG[location.hash.slice(1)]) { history.pushState({page:null}, "", location.pathname + location.search); }
   };
+  const syncFromHash = ()=>{
+    const id = ID_BY_SLUG[location.hash.slice(1)];
+    if (id) openPage(id, false); else closePages(false);
+  };
+  window.addEventListener("popstate", syncFromHash);
+  if (ID_BY_SLUG[location.hash.slice(1)]) syncFromHash();
   pop.querySelectorAll("[data-page]").forEach(a=>a.addEventListener("click", e=>{
     e.preventDefault(); close(); openPage(a.dataset.page);
   }));
-  document.querySelectorAll("[data-spclose]").forEach(b=>b.addEventListener("click", closePages));
+  document.querySelectorAll("[data-spclose]").forEach(b=>b.addEventListener("click", ()=>closePages()));
   const jc = document.getElementById("junior-cta");
   if (jc) jc.addEventListener("click", e=>{ e.preventDefault(); openPage("page-junior"); });
   // 下層ページ間の遷移(F GAMEとは→過去の試合結果など)
   document.querySelectorAll("[data-swpage]").forEach(a=>a.addEventListener("click", e=>{
-    e.preventDefault(); closePages(); openPage(a.dataset.swpage);
+    e.preventDefault(); openPage(a.dataset.swpage);
   }));
-  document.querySelectorAll("[data-spclose-scroll]").forEach(b=>b.addEventListener("click", closePages));
+  document.querySelectorAll("[data-spbuy]").forEach(a=>a.addEventListener("click", e=>{
+    e.preventDefault(); closePages(); const t = document.getElementById("seats"); if (t) setTimeout(()=>t.scrollIntoView({ behavior:"smooth", block:"start" }), 60);
+  }));
+  document.querySelectorAll("[data-spclose-scroll]").forEach(b=>b.addEventListener("click", ()=>closePages()));
   document.addEventListener("keydown", e=>{ if (e.key === "Escape"){ close(); closePages(); } });
 })();
 
@@ -2413,13 +3650,47 @@ function renderAll(){
   const totalCap = CONFIG.tiers.reduce((s,t)=>s+t.capacity,0) || 1;
   const shownSold = Math.min(target, Math.round(totalSold / totalCap * target));
   const totalPct = Math.min(100, Math.round(totalSold / totalCap * 100));
-  document.getElementById("total-pct").textContent = totalPct + "%";
-  document.getElementById("total-count").textContent = ""; // 具体的な座席数・人数は表示しない
+  // ヒーロー: 人数表示（10,000人換算）
+  document.getElementById("total-pct").innerHTML = shownSold.toLocaleString() + '<small class="hl-unit">人</small>';
+  document.getElementById("total-count").textContent = "目標 " + target.toLocaleString() + "人（" + totalPct + "%）";
   requestAnimationFrame(()=>{ document.getElementById("total-bar").style.width = totalPct + "%"; });
+  // 集客ミッション
+  const ms = CONFIG.missions || [];
+  // 4,500人突破で「対抗図（選手能力）」ページを解放
+  const unlockPlayers = shownSold >= (CONFIG.playersUnlockAt != null ? CONFIG.playersUnlockAt : 4500);
+  ["mi-players","players-cta"].forEach(id=>{ const el = document.getElementById(id); if (el) el.hidden = !unlockPlayers; });
+  const strip = document.getElementById("ms-strip");
+  if (strip && ms.length){
+    let nf = false;
+    strip.innerHTML = ms.map(m=>{
+      const done = shownSold >= m.at; let cls = done ? "done" : "lock";
+      if (!done && !nf){ nf = true; cls = "next"; }
+      return `<div class="ms-med ${cls}"><div class="ms-coin"><b>${m.at/1000}K</b>${done ? '<i class="ms-chk">✓</i>' : ''}</div><span>${m.at.toLocaleString()}</span></div>`;
+    }).join("");
+    const donePct = Math.min(100, shownSold / target * 100);
+    strip.style.setProperty("--ms-line", donePct + "%");
+    const nx = ms.find(m => shownSold < m.at), nxEl = document.getElementById("ms-next");
+    if (nxEl) nxEl.innerHTML = nx
+      ? `次の特典まで <em>あと${(nx.at - shownSold).toLocaleString()}人</em>！`
+      : `<b>全ミッション達成！</b> 全特典が解放されました`;
+  }
+  const msNow = document.getElementById("ms-now");
+  if (msNow && ms.length){
+    msNow.textContent = shownSold.toLocaleString();
+    requestAnimationFrame(()=>{ document.getElementById("ms-fill").style.width = Math.min(100, shownSold / target * 100) + "%"; });
+    document.getElementById("ms-ticks").innerHTML = ms.map(m=>`<span class="ms-tick${shownSold >= m.at ? " done" : ""}" style="left:${m.at/target*100}%" data-k="${m.at/1000}K"></span>`).join("");
+    let nextFound = false;
+    document.getElementById("ms-list").innerHTML = ms.map(m=>{
+      const done = shownSold >= m.at;
+      let cls = done ? "done" : "lock", st = done ? "達成！" : "未達成";
+      if (!done && !nextFound){ nextFound = true; cls = "next"; st = "あと" + (m.at - shownSold).toLocaleString() + "人"; }
+      return `<div class="ms ${cls}"><span class="at">${m.at.toLocaleString()}<small>人</small></span><span class="lb">${m.label}</span><span class="st">${st}</span></div>`;
+    }).join("");
+  }
   document.getElementById("hero-updated").textContent = "最終更新 " + CONFIG.updatedAt;
 
   // 無限周回カルーセル: 複数セット複製し、端に近づいたら気づかれないように中央セットへ巻き戻す
-  const evBase = CONFIG.events;
+  const evBase = CONFIG.events.filter(e => !e.revealAt || new Date() >= new Date(e.revealAt));
   const evReps = evBase.length >= 4 ? 3 : (evBase.length >= 2 ? 5 : 7); // 少件数でも左右の覗きが途切れない枚数を確保
   const evMid = Math.floor(evReps / 2);
   const evList = Array.from({length: evReps}).flatMap(()=> evBase);
@@ -2430,7 +3701,7 @@ function renderAll(){
         <span class="ev-tag">${e.tag}</span>
         <span class="ev-t">${e.title}</span>
         ${e.desc ? `<span class="ev-d">${e.desc}</span>` : ``}
-        ${e.link ? `<a class="ev-link" href="${e.link.url}" target="_blank" rel="noopener">${e.link.label} →</a>` : ``}
+        ${e.link ? (e.link.page ? `<a class="ev-link" href="#" data-swpage="${e.link.page}">${e.link.label} →</a>` : e.link.inpage ? `<a class="ev-link" href="${e.link.url}">${e.link.label} →</a>` : `<a class="ev-link" href="${e.link.url}" target="_blank" rel="noopener">${e.link.label} →</a>`) : ``}
       </div>
     </div>`).join("");
   const sl = document.getElementById("event-list");
@@ -2727,6 +3998,7 @@ async function fetchLive(){
     if(data.updatedAt) CONFIG.updatedAt = data.updatedAt;
     if(Array.isArray(data.stockNotes)) CONFIG.stockNotes = data.stockNotes;
     if(data.notice){ CONFIG.notice = Object.assign({}, CONFIG.notice, data.notice); if (window.renderNotice) renderNotice(); }
+    if(Array.isArray(data.fanRanking)){ CONFIG.fanRanking = data.fanRanking; renderFanRank(CONFIG.fanRanking); }
     if(data.content && window.applyCMS) applyCMS(data.content);
     if(data.tiers) CONFIG.tiers.forEach(t=>{
       const d = data.tiers[t.id];
@@ -2743,14 +4015,22 @@ async function fetchLive(){
 }
 
 /* ROAD TO YOYOGI: GASが検出した話数を自動反映（2話目以降は何もしなくてもタブが増える） */
+function roadThumb(id){
+  const p = document.getElementById("road-player");
+  if (!p || !id) return;
+  p.style.backgroundImage = "linear-gradient(180deg, rgba(8,8,12,.35), rgba(8,8,12,.75)), url(https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg), url(https://i.ytimg.com/vi/" + id + "/hqdefault.jpg)";
+  p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center";
+}
 function renderRoadEps(list){
-  const ids = list.map(v => typeof v === "string" ? v : (v && v.id)).filter(Boolean);
+  const items = list.map((v,i) => typeof v === "string" ? { id:v, ep:"第"+(i+1)+"話" } : (v && v.id ? { id:v.id, ep:v.ep || ("第"+(i+1)+"話") } : null)).filter(Boolean);
+  const ids = items.map(v => v.id);
   const p = document.getElementById("road-player");
   if (!p || !ids.length) return;
   const latest = ids[ids.length-1];
   p.dataset.cur = p.querySelector("iframe") ? p.dataset.cur : latest; // 未再生なら最新話を再生対象に
+  if (!p.querySelector("iframe")) roadThumb(latest);
   const ep = document.getElementById("rp-ep");
-  if (ep) ep.textContent = "第" + ids.length + "話まで公開中";
+  if (ep) ep.textContent = items[items.length-1].ep + " 公開中";
   if (ids.length < 2) return;
   const frame = p.closest(".video-frame");
   let eps = document.getElementById("road-eps");
@@ -2760,14 +4040,18 @@ function renderRoadEps(list){
     frame.insertAdjacentElement("afterend", eps);
   }
   if (eps.childElementCount === ids.length) return; // 話数が変わったときだけ再構築
-  eps.innerHTML = ids.map((id,i)=>`<button type="button" data-id="${id}">第${i+1}話</button>`).join("");
+  eps.innerHTML = items.map(v=>`<button type="button" data-id="${v.id}">${v.ep}</button>`).join("");
   [...eps.children].forEach((b,i)=>b.classList.toggle("on", i===ids.length-1));
   eps.onclick = e => {
     const b = e.target.closest("button"); if (!b) return;
     roadPlay(b.dataset.id);
     [...eps.children].forEach(x=>x.classList.toggle("on", x===b));
+    p.scrollIntoView({ behavior:"smooth", block:"center" });
   };
 }
+
+if (Array.isArray(CONFIG.roadVideos) && CONFIG.roadVideos.length) renderRoadEps(CONFIG.roadVideos);
+else roadThumb(CONFIG.roadVideoId);
 
 const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.1});
 document.querySelectorAll(".reveal,.stagger").forEach(el=>io.observe(el));
