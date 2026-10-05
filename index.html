@@ -1298,6 +1298,34 @@ a.cf-img{padding:0}
 .sem-head{justify-content:center}
 .sem-head .tt{font-size:16px}
 .match-card::before{display:none}
+/* 見どころ ゲストカード: 写真＋名前（旧オーバーレイ型を上書き） */
+.hl-gg .hl-gc{position:static;aspect-ratio:auto;overflow:visible;display:flex;flex-direction:column;align-items:center;text-align:center;padding:12px 8px;border-radius:14px;background:linear-gradient(160deg,#1c1c24,#101015);border:1px solid rgba(232,196,106,.4)}
+.hl-gg .hl-gc img{position:static;width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);box-shadow:0 8px 22px rgba(0,0,0,.55);margin-bottom:9px}
+.hl-gg .hl-gc b{font-family:var(--font-disp);font-size:21px;letter-spacing:.06em;color:#fff;line-height:1.1}
+.hl-gg .hl-gc small{font-size:10.5px;font-weight:800;color:var(--gold);margin-top:3px}
+.hl-gg .hl-gc.secret{display:flex;border-style:dashed;border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.03)}
+.hl-gg .hl-gc[hidden]{display:none!important}
+/* ゲスト・MCカード: 写真＋名前の配置を統一（中央寄せ） */
+.guest.guest-photo{display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.guest.guest-photo .no{align-self:center}
+.guest.guest-photo .gp-row{display:grid;grid-template-columns:104px 1fr;align-items:center;justify-content:start;gap:16px;width:100%;max-width:none;margin:10px 0 0;padding-left:0}
+.guest.guest-photo .gp-img{width:104px;height:104px}
+.guest.guest-photo .gp-txt{text-align:left;min-width:0}
+.guest.guest-photo .gp-name{white-space:nowrap}
+.guest.guest-photo .gp-role{white-space:nowrap}
+@media(max-width:720px){.guest.guest-photo .gp-row{grid-template-columns:96px 1fr;gap:14px}.guest.guest-photo .gp-img{width:96px;height:96px}.guest.guest-photo .gp-name{font-size:22px}}
+/* クラファン: 目立たせ */
+.cf-live{position:relative;border:1.5px solid rgba(232,196,106,.9);border-radius:14px;overflow:hidden;text-decoration:none;
+  box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 0 36px rgba(230,0,18,.45),0 12px 36px rgba(0,0,0,.6);animation:cfPulse 2.6s ease-in-out infinite}
+.cf-live::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);transform:translateX(-100%);animation:nbShine 3.4s ease-in-out infinite;pointer-events:none}
+.cf-live img{border-radius:0!important}
+.cf-badge{position:static;display:flex;align-items:center;justify-content:center;gap:8px;padding:7px 12px;background:#0b0b0f;color:var(--gold);font-size:11.5px;font-weight:900;letter-spacing:.14em;border-bottom:1px solid rgba(232,196,106,.35)}
+.cf-badge em,.cf-btn em{font-style:normal}
+.cf-badge i{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);animation:cfDot 1.2s ease-in-out infinite}
+@keyframes cfDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.cf-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 16px;background:linear-gradient(135deg,#ff2a3c,#b3000f);color:#fff;font-size:15.5px;font-weight:900;letter-spacing:.06em;border-top:1px solid rgba(255,255,255,.15)}
+.cf-btn b{font-weight:900}
+@media(min-width:900px){.hero-grid.one > div > .cf-live{align-self:center;display:flex;flex-direction:column}}
 .rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
 .notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;
   padding:12px 18px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.07em;color:#fff;
@@ -2002,7 +2030,7 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
         </div>
         <div class="ro-pk">
           <div class="ro-pkh"><b>10</b><div><span class="ro-pkn">かにゃ</span><span class="ro-pke">KANYA</span></div><em>ALA<i>岡山県</i></em></div>
-          <div class="ro-tags"><span>エリートプログラム選出経験</span><span>高校全国大会出場</span></div>
+          <div class="ro-tags"><span>エリートプログラム選出経験</span><span>高校全国ベスト4</span></div>
           <p>女性選手として初めてF GAMEのピッチに立つ挑戦者。基礎技術は男子以上。屈強な世界選抜に、どう立ち向かうか。</p>
           <a class="ro-ig" href="https://www.instagram.com/ashisalfc_kanya" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_kanya</a>
         </div>
@@ -2023,7 +2051,7 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
       <button class="ro-acc" type="button" data-acc="acc-a-squad">登録選手<i></i></button>
       <div class="ro-panel" id="acc-a-squad" hidden>
         <p class="ro-note">▼ 名前をタップで選手詳細</p>
-        <div class="ro-grid"><button type="button" class="ro-p has gk" data-acc="pd-1"><b>1</b><span>伊藤 鳳起</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-1" hidden><div class="ro-pdh"><em>GK</em></div><p>ゴールマウスを守る若き守護神。大舞台での躍動に期待。</p></div><button type="button" class="ro-p has gk" data-acc="pd-2"><b>2</b><span>勝谷 広文</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-2" hidden><div class="ro-pdh"><em>GK</em><small>岐阜県</small></div><p>岐阜出身のゴレイロ。安定感のあるセービングでチームを支える。</p></div><button type="button" class="ro-p has" data-acc="pd-3"><b>3</b><span>池田 洋介</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-3" hidden><div class="ro-pdh"><em>ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>選手兼コーチ</span></div><p>2026年は選手兼コーチとして登録。合言葉は「攻守ハイクオリティ！」。</p></div><button type="button" class="ro-p has" data-acc="pd-4"><b>4</b><span>のぶくん</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-4" hidden><div class="ro-pdh"><em>ALA / FIXO</em><small>大阪府</small></div><div class="ro-tags"><span>元Fリーガー</span><span>あしざるFC創設者</span><span>F GAME発起人</span></div><p>攻守ともに高水準で完結するオールラウンダー。最大の武器は一撃必殺の「ボレーシュート」。キャプテンとしてチームを勝利へ導けるか。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_nobu" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_nobu</a></div><button type="button" class="ro-p has" data-acc="pd-5"><b>5</b><span>星 龍太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-5" hidden><div class="ro-pdh"><em>FIXO</em><small>東京都</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>W杯 2021 出場</span><span>AFCクラブ選手権 優勝</span></div><p>元フットサル日本代表。2021年W杯に出場し、名古屋オーシャンズでFリーグ優勝・AFCクラブ選手権制覇を重ねた守備の要。</p><a class="ro-ig" href="https://www.instagram.com/ryutahoshi5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ryutahoshi5</a></div><button type="button" class="ro-p has" data-acc="pd-6"><b>6</b><span>田村 佳翔</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-6" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>元Fリーガー（すみだ／長野／Y.S.C.C.横浜）</span><span>ソサイチ日本代表</span></div><p>元フットサル日本代表。Fリーグではフウガドールすみだ、ボアルース長野、Y.S.C.C.横浜でプレー。豊富な経験で試合の流れを読み、チームに落ち着きをもたらす。</p><a class="ro-ig" href="https://www.instagram.com/tamura.kasho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@tamura.kasho</a></div><button type="button" class="ro-p has" data-acc="pd-7"><b>7</b><span>北野 聖夜</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-7" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>岐阜県</small></div><div class="ro-tags"><span>元Fリーガー（Y.S.C.C.横浜）</span><span>名古屋オーシャンズ サテライト出身</span></div><p>名古屋サテライト・Y.S.C.C.横浜で主将を務めた勝負強いフィクソ。</p><a class="ro-ig" href="https://www.instagram.com/seiyha_7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@seiyha_7</a></div><button type="button" class="ro-p has" data-acc="pd-8"><b>8</b><span>藤巻 光司</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-8" hidden><div class="ro-pdh"><em>PIVO</em><small>神奈川県</small></div><div class="ro-tags"><span>神奈川選抜</span></div><p>神奈川選抜にも選ばれた実力派ピヴォ。前線で体を張り、ゴール前の起点となる。</p></div><button type="button" class="ro-p has" data-acc="pd-9"><b>9</b><span>レイン</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-9" hidden><div class="ro-pdh"><em>ALA</em><small>山形県</small></div><div class="ro-tags"><span>元Fリーガー</span><span>Fリーグ選抜</span></div><p>キレ味鋭いドリブルで相手を切り裂くアタッカー。ボールを持った瞬間、ゴールの匂いが立ちこめる。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_rein" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_rein</a></div><button type="button" class="ro-p has" data-acc="pd-10"><b>10</b><span>かにゃ</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-10" hidden><div class="ro-pdh"><em>ALA</em><small>岡山県</small></div><div class="ro-tags"><span>エリートプログラム選出経験</span><span>高校全国大会出場</span></div><p>女性選手として初めてF GAMEのピッチに立つ挑戦者。基礎技術は男子以上。屈強な世界選抜に、どう立ち向かうか。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_kanya" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_kanya</a></div><button type="button" class="ro-p has" data-acc="pd-11"><b>11</b><span>鈴木 幹太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-11" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>東京都</small></div><p>フィクソとアラをこなすユーティリティ。運動量でチームを助ける。</p></div><button type="button" class="ro-p has" data-acc="pd-14"><b>14</b><span>本多 亘</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-14" hidden><div class="ro-pdh"><em>ALA</em><small>千葉県</small></div><div class="ro-tags"><span>元Fリーガー（マルバ水戸FC）</span></div><p>Fリーグでの経験を持つアラ。的確なポジショニングと運動量で攻守に貢献する。</p></div><button type="button" class="ro-p has" data-acc="pd-15"><b>15</b><span>渡辺 大輔</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-15" hidden><div class="ro-pdh"><em>ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>元Fリーガー（ボアルース長野）</span></div><p>Fリーグ通算100試合超の経験を持つアラ。落ち着いたプレーで攻守をつなぐ。</p></div><button type="button" class="ro-p has" data-acc="pd-17"><b>17</b><span>柳内 崇佑</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-17" hidden><div class="ro-pdh"><em>ALA</em><small>東京都</small></div><p>東京出身のアラ。座右の銘は「不撓不屈」。粘り強さが持ち味。</p></div><button type="button" class="ro-p has" data-acc="pd-18"><b>18</b><span>杉田 魁聖</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-18" hidden><div class="ro-pdh"><em>PIVO</em><small>神奈川県</small></div><p>攻守共に違いをもたらすキーマン。前線で体を張り、ゴール前の起点となる。</p></div><button type="button" class="ro-p has" data-acc="pd-21"><b>21</b><span>磯崎 良太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-21" hidden><div class="ro-pdh"><em>PIVO</em><small>東京都</small></div><div class="ro-tags"><span>元ファイルフォックス八王子</span><span>パーソナルトレーナー</span></div><p>栃木シティ、ファイルフォックス八王子を経て加入したベテランピヴォ。</p></div><button type="button" class="ro-p has gk" data-acc="pd-22"><b>22</b><span>太田 剛司</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-22" hidden><div class="ro-pdh"><em>GK</em><small>神奈川県</small></div><p>神奈川出身のゴレイロ。鋭い反応で最後の砦を担う。</p></div><button type="button" class="ro-p has" data-acc="pd-23"><b>23</b><span>宗像 紘輝</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-23" hidden><div class="ro-pdh"><em>ALA</em><small>東京都</small></div><div class="ro-tags"><span>元Fリーガー（しながわシティ）</span><span>元ファイルフォックス八王子</span></div><p>ボディフェイントとダブルタッチを武器にするドリブラー。</p></div><button type="button" class="ro-p has" data-acc="pd-25"><b>25</b><span>上福元 俊哉</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-25" hidden><div class="ro-pdh"><em>PIVO</em><small>千葉県</small></div><div class="ro-tags"><span>元Fリーガー（府中／大分／すみだ）</span><span>元バサジィ大分 主将</span></div><p>府中・大分・すみだでプレーしたピヴォ職人。弟はJリーガー上福元直人。</p></div><button type="button" class="ro-p has" data-acc="pd-27"><b>27</b><span>高橋 明弘</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-27" hidden><div class="ro-pdh"><em>FIXO</em><small>神奈川県</small></div><div class="ro-tags"><span>元Fリーガー（湘南ベルマーレ）</span><span>選手兼コーチ</span></div><p>2026年は選手兼コーチとしてチームを支える。</p></div><button type="button" class="ro-p has" data-acc="pd-31"><b>31</b><span>坂井 佑駿</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-31" hidden><div class="ro-pdh"><em>ALA</em><small>石川県</small></div><div class="ro-tags"><span>元Fリーガー（ボアルース長野）</span><span>名古屋オーシャンズ サテライト出身</span><span>星稜高校出身</span></div><p>星稜高校サッカー部からフットサルへ転向。アパレルブランド「REVOLOTA」も展開する。</p></div><button type="button" class="ro-p has gk" data-acc="pd-52"><b>52</b><span>山﨑 総徳</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-52" hidden><div class="ro-pdh"><em>GK</em><small>東京都</small></div><div class="ro-tags"><span>元Fリーガー（しながわシティ）</span></div><p>Fリーグでのプレー経験を持つゴレイロ。冷静な判断と反応速度でゴールを守る。</p></div><button type="button" class="ro-p has" data-acc="pd-63"><b>63</b><span>星 翔太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-63" hidden><div class="ro-pdh"><em>PIVO</em><small>東京都</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>W杯 2012・2021 出場</span></div><p>元フットサル日本代表。2012年・2021年のW杯に出場し、名古屋オーシャンズ、バルドラール浦安などで活躍。2021年W杯は弟・龍太と日本初の兄弟同時選出。</p><a class="ro-ig" href="https://www.instagram.com/shotahoshi11" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@shotahoshi11</a></div><button type="button" class="ro-p has" data-acc="pd-80"><b>80</b><span>吉田 瑶希</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-80" hidden><div class="ro-pdh"><em>ALA</em><small>岩手県</small></div><p>岩手出身のアラ。スピードを活かした縦への推進力が武器。</p></div><button type="button" class="ro-p has gk" data-acc="pd-96"><b>96</b><span>北村 悠翔</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-96" hidden><div class="ro-pdh"><em>GK</em><small>東京都</small></div><p>東京出身の若手ゴレイロ。将来を担う存在として期待される。</p></div></div>
+        <div class="ro-grid"><button type="button" class="ro-p has gk" data-acc="pd-1"><b>1</b><span>伊藤 鳳起</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-1" hidden><div class="ro-pdh"><em>GK</em></div><p>ゴールマウスを守る若き守護神。大舞台での躍動に期待。</p></div><button type="button" class="ro-p has gk" data-acc="pd-2"><b>2</b><span>勝谷 広文</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-2" hidden><div class="ro-pdh"><em>GK</em><small>岐阜県</small></div><p>岐阜出身のゴレイロ。安定感のあるセービングでチームを支える。</p></div><button type="button" class="ro-p has" data-acc="pd-3"><b>3</b><span>池田 洋介</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-3" hidden><div class="ro-pdh"><em>ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>選手兼コーチ</span></div><p>2026年は選手兼コーチとして登録。合言葉は「攻守ハイクオリティ！」。</p></div><button type="button" class="ro-p has" data-acc="pd-4"><b>4</b><span>のぶくん</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-4" hidden><div class="ro-pdh"><em>ALA / FIXO</em><small>大阪府</small></div><div class="ro-tags"><span>元Fリーガー</span><span>あしざるFC創設者</span><span>F GAME発起人</span></div><p>攻守ともに高水準で完結するオールラウンダー。最大の武器は一撃必殺の「ボレーシュート」。キャプテンとしてチームを勝利へ導けるか。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_nobu" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_nobu</a></div><button type="button" class="ro-p has" data-acc="pd-5"><b>5</b><span>星 龍太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-5" hidden><div class="ro-pdh"><em>FIXO</em><small>東京都</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>W杯 2021 出場</span><span>AFCクラブ選手権 優勝</span></div><p>元フットサル日本代表。2021年W杯に出場し、名古屋オーシャンズでFリーグ優勝・AFCクラブ選手権制覇を重ねた守備の要。</p><a class="ro-ig" href="https://www.instagram.com/ryutahoshi5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ryutahoshi5</a></div><button type="button" class="ro-p has" data-acc="pd-6"><b>6</b><span>田村 佳翔</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-6" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>元Fリーガー（すみだ／長野／Y.S.C.C.横浜）</span><span>ソサイチ日本代表</span></div><p>元フットサル日本代表。Fリーグではフウガドールすみだ、ボアルース長野、Y.S.C.C.横浜でプレー。豊富な経験で試合の流れを読み、チームに落ち着きをもたらす。</p><a class="ro-ig" href="https://www.instagram.com/tamura.kasho" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@tamura.kasho</a></div><button type="button" class="ro-p has" data-acc="pd-7"><b>7</b><span>北野 聖夜</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-7" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>岐阜県</small></div><div class="ro-tags"><span>元Fリーガー（Y.S.C.C.横浜）</span><span>名古屋オーシャンズ サテライト出身</span></div><p>名古屋サテライト・Y.S.C.C.横浜で主将を務めた勝負強いフィクソ。スコーン専門店「iro」を経営。</p><a class="ro-ig" href="https://www.instagram.com/seiyha_7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@seiyha_7</a></div><button type="button" class="ro-p has" data-acc="pd-8"><b>8</b><span>藤巻 光司</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-8" hidden><div class="ro-pdh"><em>PIVO</em><small>神奈川県</small></div><div class="ro-tags"><span>神奈川選抜</span></div><p>神奈川選抜にも選ばれた実力派ピヴォ。前線で体を張り、ゴール前の起点となる。</p></div><button type="button" class="ro-p has" data-acc="pd-9"><b>9</b><span>レイン</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-9" hidden><div class="ro-pdh"><em>ALA</em><small>山形県</small></div><div class="ro-tags"><span>元Fリーガー</span><span>Fリーグ選抜</span></div><p>キレ味鋭いドリブルで相手を切り裂くアタッカー。ボールを持った瞬間、ゴールの匂いが立ちこめる。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_rein" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_rein</a></div><button type="button" class="ro-p has" data-acc="pd-10"><b>10</b><span>かにゃ</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-10" hidden><div class="ro-pdh"><em>ALA</em><small>岡山県</small></div><div class="ro-tags"><span>エリートプログラム選出経験</span><span>高校全国ベスト4</span></div><p>女性選手として初めてF GAMEのピッチに立つ挑戦者。基礎技術は男子以上。屈強な世界選抜に、どう立ち向かうか。</p><a class="ro-ig" href="https://www.instagram.com/ashisalfc_kanya" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@ashisalfc_kanya</a></div><button type="button" class="ro-p has" data-acc="pd-11"><b>11</b><span>鈴木 幹太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-11" hidden><div class="ro-pdh"><em>FIXO / ALA</em><small>東京都</small></div><p>フィクソとアラをこなすユーティリティ。運動量でチームを助ける。</p></div><button type="button" class="ro-p has" data-acc="pd-14"><b>14</b><span>本多 亘</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-14" hidden><div class="ro-pdh"><em>ALA</em><small>千葉県</small></div><div class="ro-tags"><span>元Fリーガー（マルバ水戸FC）</span></div><p>Fリーグでの経験を持つアラ。的確なポジショニングと運動量で攻守に貢献する。</p></div><button type="button" class="ro-p has" data-acc="pd-15"><b>15</b><span>渡辺 大輔</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-15" hidden><div class="ro-pdh"><em>ALA</em><small>神奈川県</small></div><div class="ro-tags"><span>元Fリーガー（ボアルース長野）</span></div><p>Fリーグ通算100試合超の経験を持つアラ。落ち着いたプレーで攻守をつなぐ。</p></div><button type="button" class="ro-p has" data-acc="pd-17"><b>17</b><span>柳内 崇佑</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-17" hidden><div class="ro-pdh"><em>ALA</em><small>東京都</small></div><p>東京出身のアラ。座右の銘は「不撓不屈」。粘り強さが持ち味。</p></div><button type="button" class="ro-p has" data-acc="pd-18"><b>18</b><span>杉田 魁聖</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-18" hidden><div class="ro-pdh"><em>PIVO</em><small>神奈川県</small></div><p>攻守共に違いをもたらすキーマン。前線で体を張り、ゴール前の起点となる。</p></div><button type="button" class="ro-p has" data-acc="pd-21"><b>21</b><span>磯崎 良太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-21" hidden><div class="ro-pdh"><em>PIVO</em><small>東京都</small></div><div class="ro-tags"><span>元ファイルフォックス八王子</span><span>パーソナルトレーナー</span></div><p>栃木シティ、ファイルフォックス八王子を経て加入したベテランピヴォ。</p></div><button type="button" class="ro-p has gk" data-acc="pd-22"><b>22</b><span>太田 剛司</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-22" hidden><div class="ro-pdh"><em>GK</em><small>神奈川県</small></div><p>神奈川出身のゴレイロ。鋭い反応で最後の砦を担う。</p></div><button type="button" class="ro-p has" data-acc="pd-23"><b>23</b><span>宗像 紘輝</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-23" hidden><div class="ro-pdh"><em>ALA</em><small>東京都</small></div><div class="ro-tags"><span>元Fリーガー（しながわシティ）</span><span>元ファイルフォックス八王子</span></div><p>ボディフェイントとダブルタッチを武器にするドリブラー。</p></div><button type="button" class="ro-p has" data-acc="pd-25"><b>25</b><span>上福元 俊哉</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-25" hidden><div class="ro-pdh"><em>PIVO</em><small>千葉県</small></div><div class="ro-tags"><span>元Fリーガー（府中／大分／すみだ）</span><span>元バサジィ大分 主将</span></div><p>府中・大分・すみだでプレーしたピヴォ職人。弟はJリーガー上福元直人。</p></div><button type="button" class="ro-p has" data-acc="pd-27"><b>27</b><span>高橋 明弘</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-27" hidden><div class="ro-pdh"><em>FIXO</em><small>神奈川県</small></div><div class="ro-tags"><span>元Fリーガー（湘南ベルマーレ）</span><span>選手兼コーチ</span></div><p>2026年は選手兼コーチとしてチームを支える。</p></div><button type="button" class="ro-p has" data-acc="pd-31"><b>31</b><span>坂井 佑駿</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-31" hidden><div class="ro-pdh"><em>ALA</em><small>石川県</small></div><div class="ro-tags"><span>元Fリーガー（ボアルース長野）</span><span>名古屋オーシャンズ サテライト出身</span><span>星稜高校出身</span></div><p>星稜高校サッカー部からフットサルへ転向。アパレルブランド「REVOLOTA」も展開する。</p></div><button type="button" class="ro-p has gk" data-acc="pd-52"><b>52</b><span>山﨑 総徳</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-52" hidden><div class="ro-pdh"><em>GK</em><small>東京都</small></div><div class="ro-tags"><span>元Fリーガー（しながわシティ）</span></div><p>Fリーグでのプレー経験を持つゴレイロ。冷静な判断と反応速度でゴールを守る。</p></div><button type="button" class="ro-p has" data-acc="pd-63"><b>63</b><span>星 翔太</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-63" hidden><div class="ro-pdh"><em>PIVO</em><small>東京都</small></div><div class="ro-tags"><span>元フットサル日本代表</span><span>W杯 2012・2021 出場</span></div><p>元フットサル日本代表。2012年・2021年のW杯に出場し、名古屋オーシャンズ、バルドラール浦安などで活躍。2021年W杯は弟・龍太と日本初の兄弟同時選出。</p><a class="ro-ig" href="https://www.instagram.com/shotahoshi11" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@shotahoshi11</a></div><button type="button" class="ro-p has" data-acc="pd-80"><b>80</b><span>吉田 瑶希</span><i>FP</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-80" hidden><div class="ro-pdh"><em>ALA</em><small>岩手県</small></div><p>岩手出身のアラ。スピードを活かした縦への推進力が武器。</p></div><button type="button" class="ro-p has gk" data-acc="pd-96"><b>96</b><span>北村 悠翔</span><i>GK</i><u class="ro-chev"></u></button><div class="ro-pd" id="pd-96" hidden><div class="ro-pdh"><em>GK</em><small>東京都</small></div><p>東京出身の若手ゴレイロ。将来を担う存在として期待される。</p></div></div>
         <div class="ro-sub" style="margin-top:14px">STAFF</div>
         <div class="ro-grid">
           <div class="ro-p st"><b>監督</b><span>荻窪 孝</span></div>
@@ -2122,9 +2150,9 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
 <g transform="translate(22,70)"><path d="M18 0H150L132 130H0Z" fill="url(#pgR)" opacity=".92"/><text x="78" y="62" fill="#fff" font-size="40">1st</text><text x="76" y="100" fill="#ffd0d4" font-size="17">12分</text></g>
 <g transform="translate(166,70)"><path d="M18 0H150L132 130H0Z" fill="url(#pgR)" opacity=".92"/><text x="78" y="62" fill="#fff" font-size="40">2nd</text><text x="76" y="100" fill="#ffd0d4" font-size="17">12分</text></g>
 <g transform="translate(310,70)"><path d="M18 0H150L132 130H0Z" fill="url(#pgR)" opacity=".92"/><text x="78" y="62" fill="#fff" font-size="40">3rd</text><text x="76" y="100" fill="#ffd0d4" font-size="17">12分</text></g>
-<g transform="translate(454,58)" filter="url(#pglow)"><path d="M20 0H164L144 154H0Z" fill="url(#pgG)"/><text x="86" y="62" fill="#1a1206" font-size="44">4th</text><text x="84" y="96" fill="#3a2a06" font-size="16">12分</text><rect x="10" y="110" width="140" height="30" rx="15" fill="#1a1206"/><text x="80" y="131" fill="#f5c15a" font-size="13" letter-spacing=".5">GOLD BALL ×2</text></g>
+<g transform="translate(454,58)" filter="url(#pglow)"><path d="M20 0H164L144 154H0Z" fill="url(#pgG)"/><text x="86" y="62" fill="#1a1206" font-size="44">4th</text><text x="84" y="96" fill="#3a2a06" font-size="16">12分</text><rect x="10" y="110" width="140" height="30" rx="15" fill="#1a1206"/><text x="80" y="131" fill="#f5c15a" font-size="15" letter-spacing="1">得点2倍</text></g>
 </g>
-<text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">最終ピリオドはゴールドボールで得点2倍。最後まで逆転がある。</text>
+<text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">最終ピリオドはゴールドボールで得点2倍。</text>
 </svg>
         </div>
       </article>
@@ -2143,12 +2171,12 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
 <g opacity=".08" stroke="#fff" stroke-width="1"><path d="M0 40H640M0 240H640"/><path d="M-40 280L120 0M100 280L260 0M240 280L400 0M380 280L540 0M520 280L680 0"/></g>
 <text x="320" y="30" text-anchor="middle" fill="#9a9aa8" font-size="13" font-weight="800" letter-spacing="4" font-family="sans-serif">2ND OR 3RD PERIOD ／ ONCE PER TEAM</text>
 <g transform="translate(0,0)">
-<path d="M36 80H262L246 190H20Z" fill="url(#adR)" opacity=".92"/><circle cx="70" cy="116" r="9" fill="#fff"/><path d="M57 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="104" cy="116" r="9" fill="#fff"/><path d="M91 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="138" cy="116" r="9" fill="#fff"/><path d="M125 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="172" cy="116" r="9" fill="#fff"/><path d="M159 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="206" cy="116" r="9" fill="#fff"/><path d="M193 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/>
+<path d="M36 80H262L246 190H20Z" fill="url(#adR)" opacity=".92"/><circle cx="78" cy="116" r="9" fill="#fff"/><path d="M65 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="112" cy="116" r="9" fill="#fff"/><path d="M99 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="146" cy="116" r="9" fill="#fff"/><path d="M133 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="180" cy="116" r="9" fill="#fff"/><path d="M167 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/><circle cx="214" cy="116" r="9" fill="#fff"/><path d="M201 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#fff"/>
 <text x="141" y="180" text-anchor="middle" fill="#ffd0d4" font-size="15" font-weight="900" font-family="sans-serif">5人</text>
 </g>
 <g filter="url(#adglow)"><text x="320" y="146" text-anchor="middle" fill="url(#adG)" font-size="34" font-weight="900" font-family="sans-serif">VS</text></g>
 <g>
-<path d="M394 80H620L604 190H378Z" fill="rgba(255,255,255,.06)" stroke="#5a5a66" stroke-width="2"/><circle cx="396" cy="116" r="9" fill="#c9c9d4"/><path d="M383 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="430" cy="116" r="9" fill="#c9c9d4"/><path d="M417 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="464" cy="116" r="9" fill="#c9c9d4"/><path d="M451 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="498" cy="116" r="9" fill="#c9c9d4"/><path d="M485 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="532" cy="116" r="9" fill="#4a4a55"/><path d="M519 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#4a4a55"/><g stroke="#ff1a2e" stroke-width="4" stroke-linecap="round"><path d="M516 108 L548 146 M548 108 L516 146"/></g>
+<path d="M394 80H620L604 190H378Z" fill="rgba(255,255,255,.06)" stroke="#5a5a66" stroke-width="2"/><circle cx="418" cy="116" r="9" fill="#c9c9d4"/><path d="M405 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="452" cy="116" r="9" fill="#c9c9d4"/><path d="M439 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="486" cy="116" r="9" fill="#c9c9d4"/><path d="M473 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="520" cy="116" r="9" fill="#c9c9d4"/><path d="M507 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#c9c9d4"/><circle cx="554" cy="116" r="9" fill="#4a4a55"/><path d="M541 148 v-14 a13 13 0 0 1 26 0 v14z" fill="#4a4a55"/><g stroke="#ff1a2e" stroke-width="4" stroke-linecap="round"><path d="M538 108 L570 146 M570 108 L538 146"/></g>
 <text x="499" y="180" text-anchor="middle" fill="#c9c9d4" font-size="15" font-weight="900" font-family="sans-serif">4人</text>
 </g>
 
@@ -2174,8 +2202,8 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
 <g stroke="rgba(255,255,255,.14)" stroke-width="1.5"><path d="M170 78 V200 M190 78 V200 M210 78 V200 M230 78 V200 M250 78 V200 M270 78 V200 M290 78 V200 M310 78 V200 M330 78 V200 M350 78 V200 M370 78 V200 M390 78 V200 M410 78 V200 M430 78 V200 M450 78 V200 M470 78 V200 M150 98 H490 M150 118 H490 M150 138 H490 M150 158 H490 M150 178 H490"/></g>
 <line x1="60" y1="200" x2="580" y2="200" stroke="#5a5a66" stroke-width="2"/>
 <g filter="url(#pkglow)"><circle cx="320" cy="186" r="20" fill="#fff"/><path d="M320 173 l4 8 9 1.2-6.5 6.3 1.6 9-8.1-4.3-8.1 4.3 1.6-9-6.5-6.3 9-1.2z" fill="#101016"/></g>
-<g transform="translate(320,120)" filter="url(#pkglow)"><rect x="-96" y="-30" width="192" height="60" rx="14" fill="url(#pkG)"/><text x="0" y="-2" text-anchor="middle" fill="#1a1206" font-size="15" font-weight="900" letter-spacing="2" font-family="sans-serif">GOAL → ONE MORE</text><text x="0" y="22" text-anchor="middle" fill="#1a1206" font-size="24" font-weight="900" font-family="sans-serif">＋1 PK</text></g>
-<g><rect x="512" y="60" width="98" height="30" rx="15" fill="url(#pkR)"/><text x="561" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="900" letter-spacing="1" font-family="sans-serif">×2 / GAME</text></g>
+<g transform="translate(320,120)" filter="url(#pkglow)"><rect x="-96" y="-30" width="192" height="60" rx="14" fill="url(#pkG)"/><text x="0" y="9" text-anchor="middle" fill="#1a1206" font-size="24" font-weight="900" letter-spacing="2" font-family="sans-serif">得点後にPK</text></g>
+<g><rect x="512" y="60" width="98" height="30" rx="15" fill="url(#pkR)"/><text x="561" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="900" letter-spacing="1" font-family="sans-serif">1試合2回</text></g>
 <text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">キッカーは女子選手 or 登録外スタッフ。1試合2回まで。</text>
 </svg>
         </div>
@@ -2198,10 +2226,10 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
 <path d="M200 106 l9 18 20 3-14.5 14 3.5 20-18-9.5-18 9.5 3.5-20-14.5-14 20-3z" fill="#6b4d0c"/>
 <path d="M150 118 q-12 22 0 44 M250 118 q12 22 0 44" stroke="#6b4d0c" stroke-width="3" fill="none"/></g>
 <g font-family="sans-serif" font-weight="900" text-anchor="middle">
-<text x="420" y="118" fill="#fff" font-size="26">4TH PERIOD</text>
+<text x="420" y="118" fill="#fff" font-size="26">第4ピリオド</text>
 <text x="420" y="196" fill="url(#dbG)" font-size="78" filter="url(#dbglow)">×2</text>
 </g>
-<g><rect x="290" y="204" width="260" height="26" rx="13" fill="url(#dbR)"/><text x="420" y="222" text-anchor="middle" fill="#fff" font-size="13" font-weight="900" letter-spacing="2" font-family="sans-serif">1 GOAL ＝ 2 POINTS</text></g>
+
 <text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">最終ピリオドは1ゴールが2点。</text>
 </svg>
         </div>
@@ -2222,7 +2250,7 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
 <text x="320" y="30" text-anchor="middle" fill="#9a9aa8" font-size="13" font-weight="800" letter-spacing="4" font-family="sans-serif">2 FOULS RULE</text>
 <circle cx="110" cy="140" r="34" fill="rgba(255,255,255,.07)" stroke="#5a5a66" stroke-width="2"/><text x="110" y="152" text-anchor="middle" fill="#c9c9d4" font-size="30" font-weight="900" font-family="sans-serif">1</text><circle cx="210" cy="140" r="34" fill="rgba(255,255,255,.07)" stroke="#5a5a66" stroke-width="2"/><text x="210" y="152" text-anchor="middle" fill="#c9c9d4" font-size="30" font-weight="900" font-family="sans-serif">2</text><g filter="url(#f2glow)"><circle cx="320" cy="140" r="40" fill="url(#f2R)"/><text x="320" y="154" text-anchor="middle" fill="#fff" font-size="38" font-weight="900" font-family="sans-serif">3</text></g>
 <path d="M378 140 h48 m-14 -12 14 12 -14 12" stroke="url(#f2G)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-<g filter="url(#f2glow)"><rect x="444" y="104" width="160" height="72" rx="16" fill="url(#f2G)"/><text x="524" y="134" text-anchor="middle" fill="#1a1206" font-size="13" font-weight="900" letter-spacing="2" font-family="sans-serif">FROM 3RD FOUL</text><text x="524" y="162" text-anchor="middle" fill="#1a1206" font-size="26" font-weight="900" font-family="sans-serif">第2PK</text></g>
+<g filter="url(#f2glow)"><rect x="444" y="104" width="160" height="72" rx="16" fill="url(#f2G)"/><text x="524" y="134" text-anchor="middle" fill="#1a1206" font-size="13" font-weight="900" letter-spacing="2" font-family="sans-serif">3回目のファールから</text><text x="524" y="162" text-anchor="middle" fill="#1a1206" font-size="26" font-weight="900" font-family="sans-serif">第2PK</text></g>
 <text x="215" y="206" text-anchor="middle" fill="#8a8a96" font-size="12.5" font-weight="800" letter-spacing="2" font-family="sans-serif">FOUL COUNT ／ EACH PERIOD</text>
 <text x="320" y="258" text-anchor="middle" fill="#c9c9d4" font-size="14" font-weight="800" font-family="sans-serif">各ピリオド3つ目以降のファールから第2PK。ピリオドごとにリセット。</text>
 </svg>
@@ -2378,7 +2406,7 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
       <div class="vc-line" id="vc-line-cf"></div>
       <div class="vc-sub" id="vc-sub-cf">10月1日(木) 19:00 発表！</div>
     </div>
-        <a class="cf-img" id="cf-start" href="#" target="_blank" rel="noopener" hidden><img src="assets/cf_start.jpg" alt="クラウドファンディング開始！" style="display:block;width:100%;border-radius:12px"></a>
+        <a class="cf-img cf-live" id="cf-start" href="#" target="_blank" rel="noopener" hidden><span class="cf-badge" id="cf-badge"><i></i><em id="cf-badge-txt">10/15(木) 19:00〜 支援開始！</em></span><img src="assets/cf_start.jpg" alt="クラウドファンディング開始！" style="display:block;width:100%"><span class="cf-btn"><em id="cf-btn-txt">まずは中身を見る</em><b>→</b></span></a>
         <div class="fr-hero fx d6" id="cf-hero" hidden>
               <span class="fh-tag"><i></i>クラウドファンディング<br class="sp-only">開始！<i></i></span>
               <a class="fh-btn" id="cf-btn" href="#" target="_blank" rel="noopener">プロジェクトを見る<span>→</span></a>
@@ -2653,7 +2681,6 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
           </div>
           <div class="d-buy">
             <div class="presale-note" id="presale-note" hidden></div>
-            <a class="btn btn-ghost join-btn d-join" id="d-join" href="#events" hidden>エスコートキッズに応募する<span class="arrow">→</span></a>
             <button type="button" class="btn btn-red buy-btn" id="buy-open">チケットを購入する<span class="arrow">→</span></button>
           </div>
         </div>
@@ -2843,23 +2870,6 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
     </div>
 
     <div class="info-list reveal stagger">
-      <a class="info-row" href="https://fanclub.ashisalfc.jp/my-account/draw-event" target="_blank" rel="noopener">
-        <span class="en">ESCORT KIDS</span>
-        <div><div class="jt">エスコートキッズ募集</div><div class="jd">あしもん会員限定。選手と手を繋いでコートへ。対象は中学生まで（応募多数の場合は抽選）</div>
-          <div class="ek-sched">
-            <div class="ek-blk">
-              <b>【FC1次募集】ゴールド会員限定</b>
-              <span>募集 9/26(土)〜10/2(金)　抽選 10/4(日)　当落通知 10/5(月)</span>
-            </div>
-            <div class="ek-blk">
-              <b>【FC2次募集】ノーマル会員以上</b>
-              <i class="ek-note">※ゴールド会員の1次募集で満枠となった場合、2次募集は実施しません</i>
-              <span>募集 10/9(金)〜10/16(金)　抽選 10/18(日)　当落通知 10/21(水)</span>
-            </div>
-          </div>
-        </div>
-        <span class="go">→</span>
-      </a>
       <a class="info-row" href="mailto:fgame.staff@salmate.co.jp?subject=%E8%BB%8A%E6%A4%85%E5%AD%90%E3%81%A7%E3%81%AE%E3%81%94%E8%A6%B3%E6%88%A6%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%EF%BC%88F%20GAME.7%EF%BC%89">
         <span class="en">ACCESSIBLE</span>
         <div><div class="jt">車椅子でのご観戦</div><div class="jd">専用スペースをご用意。2階席のチケットをご購入のうえ、事前にメールでご連絡ください</div></div>
@@ -2983,7 +2993,7 @@ const CONFIG = {
   // ▼ 集客ランキング（GAS連携 fanRanking で上書き）。{ name:"表示名", count:人数 }
   // ▼ クラウドファンディング（10/1 18:00 開始）。URL確定後にここへ
   // ▼ TEE解禁日時（例 "2026-10-07T18:00:00+09:00"）。空なら非公開のまま。解禁時はイベントカード(revealAt)も同じ日時に
-  teeRevealAt: "",
+  teeRevealAt: "2026-10-02T00:00:00+09:00",
   crowdfundingUrl: "https://camp-fire.jp/projects/979431",
   // ▼ ユニフォーム事前受付（10/1〜10/5）の遷移先URL
   uniformUrl: "https://goods.ashisalfc.jp/products/list?category_id=18",
@@ -3029,12 +3039,11 @@ const CONFIG = {
   // 表示フェーズの強制切替（デモ用）: "" | "pre" | "fc1" | "fc2" | "ga"
   FORCE_PHASE: "",
   events: [
-    { tag:"LIVE", revealAt:"2099-12-31T00:00:00+09:00", title:"TEE 出演決定！", desc:"シンガーソングライターTEEの出演が決定！HIPPYとのコラボLIVEに加え、その他楽曲のミニライブも開催。", sq:"assets/event_tee_live.jpg" },
+    { tag:"LIVE", title:"TEE 出演決定！", desc:"シンガーソングライターTEEの出演が決定！HIPPYとのコラボLIVEに加え、その他楽曲のミニライブも開催。", sq:"assets/event_tee_live.jpg" },
+    { tag:"GOODS", title:"ベースボールシャツ 先行販売決定！", desc:"あしざるFCベースボールシャツを F GAME.7 会場にて先行販売！", sq:"assets/event_baseball_shirt.jpg" },
     { tag:"KIDS FREE", title:"小学生以下 チケット無料！（2階席・3階席対象）", desc:"※無料の場合でもチケットの発券が必要です。※数には限りがあります。", link:{ label:"座席を確認して申し込む", url:"#seats", inpage:true }, sq:"assets/event_kidsfree.jpg" },
     // ▼ 写真撮影会（商品URL確定後に再掲。下の1行を有効化）
     // { tag:"PHOTO SESSION", title:"リカルジーニョ選手＆オルティス選手 写真撮影会", desc:"先着50名様限定。試合後の2選手との写真撮影会に参加できます。", link:{ label:"撮影会チケットを購入する", url:"#" /* ★商品ページURLに差し替え */ }, sq:"assets/event_photo.jpg" },
-    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（ゴールド会員対象）", desc:"", link:{ label:"あしもんに入会する", url:"https://fanclub.ashisalfc.jp/" }, sq:"assets/event_escort_gold.jpg" },
-    { tag:"ESCORT KIDS", title:"エスコートキッズ募集（通常会員対象）", desc:"※ゴールド会員の1次募集で満枠となった場合、2次募集は実施しません", link:{ label:"あしもんに入会する", url:"https://fanclub.ashisalfc.jp/" }, sq:"assets/event_escort_normal.jpg" },
     { tag:"LIVE", title:"HIPPY 出演決定！", desc:"あしざるFCと共に制作した「YOYOGI feat. HIPPY」をライブ披露！その他楽曲のミニライブも開催。", sq:"assets/event_hippy_live.jpg" },
     { tag:"GOODS", title:"会場にてグッズ販売実施！", desc:"あしざるFC公式グッズを会場で販売！新作も盛りだくさん。", sq:"assets/event_goods_hanbai.jpg" }
     // ▼ イベント追加はこの形式で行をコピーするだけ（何件でもOK・自動でスライダーに並び、周回します）
@@ -3226,7 +3235,7 @@ window.applyCMS = function(c){
     { side:"l", no:9,  name:"レイン",         pos:"ALA", catch:"疾風怒濤の稲妻レフティ", note:"キレ味鋭いドリブルで相手を切り裂くアタッカー。ボールを持った瞬間、ゴールの匂いが立ちこめる——ゴールに飢えた稲妻レフティ。",        face:"assets/face_rain.jpg",       stats:[88,89,83,79,80,91] },
     { side:"l", no:10, name:"かにゃ",         pos:"ALA", catch:"岡山が生んだあしざるFCのワンダーガール", note:"女性選手として初めてF GAMEのピッチに立つ挑戦者。基礎技術は男子以上。屈強な世界選抜に、どう立ち向かうか。",        face:"assets/face_kanya.jpg",      stats:[85,87,83,79,71,75] },
     { side:"r", no:10, name:"リカルジーニョ", pos:"ALA", catch:"フットサル世界No.1プレーヤー", note:"誰もが認める歴代世界No.1。異次元のスキルで会場を沸かせる、世界最高峰のテクニックをとくとご覧あれ。",        face:"assets/face_ricardinho.jpg", stats:[99,99,99,99,99,99] },
-    { side:"r", no:8,  name:"オルティス",     pos:"FIXO", catch:"スペインの絶対的リーダー", note:"フットサルスペイン代表最多キャップを誇る、世界最高のオールラウンダー。鉄壁の守備と正確無比なパスで、ゲームを完全に支配する。",       face:"assets/face_ortiz.jpg",      stats:[92,95,99,99,99,91] },
+    { side:"r", no:8,  name:"オルティス",     pos:"FIXO", catch:"スペインの絶対的リーダー", note:"フットサルスペイン代表最多キャップを誇る、世界最高のオールラウンダー。鉄壁の守備と正確無比なパスで、ゲームを完全に支配する。",       face:"assets/face_ortiz.jpg",      stats:[95,95,99,99,99,95] },
   ];
   const ovr = s => Math.round(s.reduce((a,b)=>a+b,0)/s.length);
   const cl = document.getElementById("pv-cards-l"), cr = document.getElementById("pv-cards-r");
@@ -3342,7 +3351,8 @@ document.addEventListener("click", e=>{
 })();
 /* ===== クラウドファンディング 段階表示 =====
    〜10/1 18:59  : 「大型プロジェクト スタートまで」カウントダウン
-   10/1 19:00〜  : ROAD TO YOYOGIバナー（CAMPFIREへリンク）
+   10/1 19:00〜  : ROAD TO YOYOGIバナー（CAMPFIREへリンク）「10/15(木) 19:00〜 支援開始！／まずは中身を見る」
+   10/15 19:00〜 : 同バナー「クラファン限定グッズ・体験 盛りだくさん！／プロジェクトを応援する」
    ユニフォーム事前受付は 10/6 23:59 まで */
 (function(){
   const T1 = new Date("2026-10-01T19:00:00+09:00"), T2 = new Date("2026-10-15T19:00:00+09:00"), T3 = new Date("2026-10-06T23:59:59+09:00");
@@ -3369,6 +3379,16 @@ document.addEventListener("click", e=>{
       if (el) el.hidden = true; if (teaser) teaser.hidden = true;
       if (start){ start.hidden = false; if (CONFIG.crowdfundingUrl) start.href = CONFIG.crowdfundingUrl; }
       if (hero) hero.hidden = true;
+      const bt = $("cf-badge-txt"), bn = $("cf-btn-txt"), bd = $("cf-badge");
+      if (now < T2){
+        if (bt) bt.textContent = "10/15(木) 19:00〜 支援開始！";
+        if (bn) bn.textContent = "まずは中身を見る";
+        if (bd) bd.classList.remove("live");
+        setTimeout(tick, 1000); return;
+      }
+      if (bt) bt.textContent = "クラファン限定グッズ・体験 盛りだくさん！";
+      if (bn) bn.textContent = "プロジェクトを応援する";
+      if (bd) bd.classList.add("live");
       return;
     }
     setTimeout(tick, 1000);
@@ -3931,8 +3951,7 @@ function selectTier(id, scroll){
   if(!salesOpen()){
     note.hidden = false;
     note.textContent = "チケットは発売前です。あしもんゴールド会員先行は 8/3(月)18:00、一般販売は 8/10(月)18:00 スタート。";
-    joinBtn.hidden = false;
-  } else { note.hidden = true; joinBtn.hidden = true; }
+  } else { note.hidden = true; }
 
   const out = salesOpen() && t.sold >= t.capacity;
   currentTier = t;
