@@ -140,6 +140,8 @@ button{font-family:inherit;cursor:pointer}
 .tt-row.sub::before{width:6px;height:6px;left:76px;background:rgba(255,255,255,.4);box-shadow:none}
 .tt-label{font-size:15px;font-weight:900;line-height:1.7}
 .tt-sm{font-style:normal;display:block;font-size:11px;font-weight:700;color:var(--mist);line-height:1.6}
+.tt-and{display:block;margin-top:9px}
+.tt-hot{display:block;font-style:normal;font-size:14px;font-weight:900;color:var(--gold);margin-top:2px;letter-spacing:.02em}
 .tt-row.sub .tt-label{font-size:13px;font-weight:700;color:var(--mist)}
 .tt-note{max-width:560px;margin:18px auto 0;font-size:11.5px;font-weight:700;color:var(--mist);text-align:center}
 @media(max-width:600px){.tt::before{left:64px}.tt-time{width:52px;font-size:17px}.tt-row{gap:18px}.tt-row::before{left:59.5px}.tt-row.sub::before{left:62px}}
@@ -1013,8 +1015,9 @@ button{font-family:inherit;cursor:pointer}
 /* MC ラベルの書体統一 */
 .guests-mc .guest .no{font-family:var(--font-jp);font-weight:900;font-size:12px;letter-spacing:.2em}
 /* ヒーロー: クラファン画像 / 協賛 / ユニフォーム */
-.cf-img{display:block;width:100%;max-width:560px;margin:14px 0 0;border-radius:12px;border:1px solid rgba(232,196,106,.35)}
+.cf-img{display:block;width:100%;max-width:560px;margin:14px 0 0;border-radius:0;border:0}
 .cf-img[hidden]{display:none!important}
+.photo-banner{margin-top:14px}.photo-banner img{display:block;width:100%;height:auto}
 a.cf-img{padding:0}
 .hero-sponsor{gap:10px;font-size:15px;padding:11px 16px}
 .hero-sponsor .hs-logo{height:22px;width:auto;display:block}
@@ -1313,19 +1316,42 @@ a.cf-img{padding:0}
 .guest.guest-photo .gp-txt{text-align:left;min-width:0}
 .guest.guest-photo .gp-name{white-space:nowrap}
 .guest.guest-photo .gp-role{white-space:nowrap}
+.gp-note{font-size:10.5px;font-weight:700;color:var(--mist);margin-top:7px;line-height:1.55;letter-spacing:0}
+.hl-gnote{display:block;font-style:normal;font-size:10px;font-weight:700;color:#9a9aa8;margin-top:6px;line-height:1.5}
 @media(max-width:720px){.guest.guest-photo .gp-row{grid-template-columns:96px 1fr;gap:14px}.guest.guest-photo .gp-img{width:96px;height:96px}.guest.guest-photo .gp-name{font-size:22px}}
-/* クラファン: 目立たせ */
-.cf-live{position:relative;border:1.5px solid rgba(232,196,106,.9);border-radius:14px;overflow:hidden;text-decoration:none;
-  box-shadow:0 0 0 1px rgba(255,255,255,.06) inset,0 0 36px rgba(230,0,18,.45),0 12px 36px rgba(0,0,0,.6);animation:cfPulse 2.6s ease-in-out infinite}
-.cf-live::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);transform:translateX(-100%);animation:nbShine 3.4s ease-in-out infinite;pointer-events:none}
-.cf-live img{border-radius:0!important}
-.cf-badge{position:static;display:flex;align-items:center;justify-content:center;gap:8px;padding:7px 12px;background:#0b0b0f;color:var(--gold);font-size:11.5px;font-weight:900;letter-spacing:.14em;border-bottom:1px solid rgba(232,196,106,.35)}
-.cf-badge em,.cf-btn em{font-style:normal}
-.cf-badge i{width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);animation:cfDot 1.2s ease-in-out infinite}
-@keyframes cfDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
-.cf-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 16px;background:linear-gradient(135deg,#ff2a3c,#b3000f);color:#fff;font-size:15.5px;font-weight:900;letter-spacing:.06em;border-top:1px solid rgba(255,255,255,.15)}
-.cf-btn b{font-weight:900}
-@media(min-width:900px){.hero-grid.one > div > .cf-live{align-self:center;display:flex;flex-direction:column}}
+/* クラファン: 画像ベタ貼り */
+.cf-live{display:block;position:relative;border:0;border-radius:0;overflow:hidden;text-decoration:none;box-shadow:none;animation:none;background:none}
+.cf-live img{display:block;width:100%;height:auto;border-radius:0!important}
+@media(min-width:900px){.hero-grid.one > div > .cf-live{align-self:center}}
+.top-news-h{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px;color:#fff;font-size:15px;font-weight:900;letter-spacing:.22em}
+.top-news-h i{flex:1;max-width:120px;height:1px;background:linear-gradient(90deg,transparent,rgba(232,196,106,.8))}
+.top-news-h i:last-child{background:linear-gradient(90deg,rgba(232,196,106,.8),transparent)}
+.top-news-h + .photo-banner{margin-top:12px}
+@media(min-width:900px){.hero-grid.one > div > .top-news-h{flex:0 0 100%;margin:6px 0 -6px}}
+.top-act{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+@media(min-width:900px){.hero-grid.one > div > .top-act{flex:0 0 100%;max-width:none;margin:0;align-items:center}.hero-grid.one > div > .top-act > *{width:100%;max-width:540px;box-sizing:border-box}}
+/* TOP: クラファン列（画像→購入ボタン→達成率） */
+.cf-col{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.cf-col .cf-img,.cf-col .cf-big{margin:0;max-width:none}
+.cf-col .cf-img img{width:100%;height:auto}
+.top-buy{display:flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 20px;border-radius:999px;background:linear-gradient(180deg,#ff1f31,#d9000f);box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 8px 24px rgba(230,0,18,.35);text-decoration:none;color:#fff}
+.top-buy b{font-size:21px;font-weight:900;letter-spacing:.08em;line-height:1}
+.top-buy i{font-style:normal;font-size:20px;font-weight:900;line-height:1;transform:translateY(-1px)}
+.top-prog{position:relative;overflow:hidden;background:linear-gradient(160deg,#1a1a22,#0b0b10);border:1.5px solid rgba(232,196,106,.75);border-radius:16px;padding:12px 18px 11px;text-align:center;box-shadow:0 0 0 1px rgba(255,255,255,.04) inset,0 10px 30px rgba(0,0,0,.55)}
+.top-prog::before{content:"";position:absolute;inset:-40% -20% auto;height:70%;background:radial-gradient(ellipse at 50% 0%,rgba(230,0,18,.28),transparent 60%);pointer-events:none}
+.tp-kicker{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;font-size:10.5px;font-weight:900;letter-spacing:.3em;color:var(--gold)}
+.tp-kicker i{width:22px;height:1px;background:rgba(232,196,106,.6)}
+.tp-title{position:relative;margin-top:0;font-size:16px;line-height:1.2;font-weight:900;letter-spacing:.08em;color:#fff}
+.tp-row{position:relative;display:flex;align-items:baseline;justify-content:center;margin-top:8px;line-height:1}
+.tp-g{flex:1;min-width:0}
+.tp-word{font-size:13px;font-weight:900;letter-spacing:.14em;color:var(--mist)}
+.tp-pct{flex:none;font-family:var(--font-disp);font-weight:400;font-size:50px;line-height:1;color:#fff;text-shadow:0 0 28px rgba(230,0,18,.55)}
+.tp-pct .hl-unit{font-size:.36em;margin-left:3px;color:var(--gold)}
+.tp-gauge{position:relative;height:14px;margin-top:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12)}
+.tp-gauge>i{box-shadow:0 0 18px rgba(230,0,18,.75)}
+.tp-scale{position:relative;display:flex;justify-content:space-between;margin-top:3px;font-size:10px;font-weight:800;letter-spacing:.08em;color:#6a6a76}
+.tp-foot{position:relative;display:flex;justify-content:center;margin-top:8px;font-size:11px;font-weight:700;color:var(--mist)}
+@media(min-width:900px){.hero-grid.one > div > .cf-col{flex:1 1 440px;max-width:540px;margin:0;align-self:center}}
 .rate-note{font-size:10px;color:var(--mist);font-weight:500;margin:6px 0 0;line-height:1.6}
 .notice-bar{position:sticky;top:62px;margin-top:62px;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;
   padding:12px 18px;text-align:center;font-size:14px;font-weight:900;letter-spacing:.07em;color:#fff;
@@ -1686,7 +1712,7 @@ svg.arena{width:100%;height:auto;display:block}
 @media(prefers-reduced-motion:reduce){.eq i,.vs{animation:none}}
 .guest-head{font-family:var(--font-disp);font-size:14px;letter-spacing:.3em;color:var(--mist);margin:40px 0 16px;display:flex;align-items:center;gap:14px}
 .guest-head::after{content:"";flex:1;height:1px;background:var(--line)}
-.guests{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.guests{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:760px}
 .guest{background:linear-gradient(160deg,var(--ink2),var(--ink));border:1px solid var(--line);border-top:3px solid var(--red);border-radius:14px;padding:26px 24px;text-align:center;transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden}
 .guest::before{content:attr(data-en);position:absolute;right:-6px;bottom:-16px;font-family:var(--font-disp);font-size:60px;color:rgba(255,255,255,.05);letter-spacing:.02em;pointer-events:none}
 .guest:hover{transform:translateY(-5px);border-color:rgba(230,0,18,.55);box-shadow:0 18px 44px rgba(230,0,18,.18)}
@@ -1974,7 +2000,7 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
         <div class="hl-head" data-acc="hl-4"><b class="hl-num">04</b><h3>豪華ゲストが出演！</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
         <div class="hl-body" id="hl-4" hidden>
         <div class="hl-gg">
-          <div class="hl-gc"><img src="assets/guest_hippy.jpg" alt="HIPPY"><b>HIPPY</b><small>シンガーソングライター</small></div>
+          <div class="hl-gc"><img src="assets/guest_hippy.jpg" alt="HIPPY"><b>HIPPY</b><small>シンガーソングライター</small><em class="hl-gnote">※療養中のため、今回はライブは行わず出演のみとなります。</em></div>
           <div class="hl-gc rv-pre secret"><span class="q">?</span><b>SECRET</b><small>近日発表</small></div>
           <div class="hl-gc rv-post" hidden><img src="assets/guest_tee.jpg" alt="TEE"><b>TEE</b><small>シンガーソングライター</small></div>
         </div>
@@ -1987,16 +2013,33 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
         </div>
       </article>
       <article class="hl">
-        <div class="hl-head" data-acc="hl-6"><b class="hl-num">06</b><h3>メンバーおすすめのグルメ</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-head" data-acc="hl-6"><b class="hl-num">06</b><h3>新作グッズ盛りだくさん！</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
         <div class="hl-body" id="hl-6" hidden>
+        <img class="hl-img" src="assets/event_goods_hanbai.jpg" alt="F GAME.7 会場にてグッズ販売実施！">
+        <p class="hl-p">ベースボールシャツをはじめ、<b>新作グッズが続々登場！</b></p>
+        <p class="hl-sub">グッズ物販は当日10:00〜（※会場外にて販売予定）</p>
+        </div>
+      </article>
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-7"><b class="hl-num">07</b><h3>メンバーおすすめのグルメ</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-7" hidden>
         <p class="hl-p">メンバーおすすめのキッチンカーで購入すると<b>特別コースターがもらえる！</b></p>
         </div>
       </article>
       <article class="hl">
-        <div class="hl-head" data-acc="hl-7"><b class="hl-num">07</b><h3>新曲MVに映れるかも!?</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
-        <div class="hl-body" id="hl-7" hidden>
+        <div class="hl-head" data-acc="hl-8"><b class="hl-num">08</b><h3>新曲MVに映れるかも!?</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-8" hidden>
         <p class="hl-p">当日、<b>あしざるFCユニフォーム着用者限定</b>！</p>
         <p class="hl-sub">会場でもユニフォームを販売しています</p>
+        </div>
+      </article>
+      <article class="hl">
+        <div class="hl-head" data-acc="hl-9"><b class="hl-num">09</b><h3>メンバーと集合記念撮影</h3><i class="acc-i"><span class="hl-chev"></span></i></div>
+        <div class="hl-body" id="hl-9" hidden>
+        <img class="hl-img" src="assets/photo_banner.jpg" alt="朝10時からメンバーと写真撮影 先着1,000名様にハリセンプレゼント！">
+        <p class="hl-p">当日<b>10時〜</b> 代々木第一体育館前で集合写真！</p>
+        <p class="hl-p">先着<b>1,000名様</b>にハリセンプレゼント！</p>
+        <p class="hl-sub">※参加は無料です</p>
         </div>
       </article>
     </div>
@@ -2400,17 +2443,29 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
         <div class="hero-ctas fx d5">
           <a class="btn btn-red hero-buy" href="#seats">チケットを購入する<span class="arrow">→</span></a>
         </div>
+        <div class="top-act">
+        <div class="top-prog" aria-label="チケット販売の達成率">
+          <div class="tp-title">代々木満員まで　達成率</div>
+          <div class="tp-row"><b class="tp-pct" id="top-pct">–</b></div>
+          <div class="gauge tp-gauge"><i id="top-bar"></i></div>
+        </div>
+        <a class="top-buy" href="#seats"><b>チケットを購入する</b><i>→</i></a>
+        </div>
+        <div class="top-news-h"><i></i><span>最新情報</span><i></i></div>
+        <a class="cf-img photo-banner" id="photo-banner" href="#" data-swpage="page-highlights"><img src="assets/photo_banner.jpg" alt="朝10時からメンバーと写真撮影 先着1,000名様にハリセンプレゼント！" style="display:block;width:100%"></a>
     <!-- クラウドファンディング: 〜10/1 19:00 大型プロジェクト → 〜10/15 19:00 CF開始まで → 10/15 19:00〜 開始 -->
+        <div class="cf-col">
         <img class="cf-img" id="cf-teaser" src="assets/cf_teaser.jpg" alt="" hidden>
         <div class="vs-count cf-big" id="cf-count" hidden>
       <div class="vc-line" id="vc-line-cf"></div>
       <div class="vc-sub" id="vc-sub-cf">10月1日(木) 19:00 発表！</div>
     </div>
-        <a class="cf-img cf-live" id="cf-start" href="#" target="_blank" rel="noopener" hidden><span class="cf-badge" id="cf-badge"><i></i><em id="cf-badge-txt">10/15(木) 19:00〜 支援開始！</em></span><img src="assets/cf_start.jpg" alt="クラウドファンディング開始！" style="display:block;width:100%"><span class="cf-btn"><em id="cf-btn-txt">まずは中身を見る</em><b>→</b></span></a>
+        <a class="cf-img cf-live" id="cf-start" href="#" target="_blank" rel="noopener" hidden><img src="assets/cf_start.jpg" alt="クラウドファンディング開始！" style="display:block;width:100%"></a>
         <div class="fr-hero fx d6" id="cf-hero" hidden>
               <span class="fh-tag"><i></i>クラウドファンディング<br class="sp-only">開始！<i></i></span>
               <a class="fh-btn" id="cf-btn" href="#" target="_blank" rel="noopener">プロジェクトを見る<span>→</span></a>
             </div>
+        </div>
         <a class="uni-banner fx d6" id="uni-banner" href="#" target="_blank" rel="noopener"><img src="assets/uniform_banner.jpg" alt="ユニフォーム事前受付開始！ 10/1(水)-10/6(火) 在庫切れの不安なく、F GAME.7会場にて受け取りが可能！"><span class="uni-btn">事前受付はこちら →</span></a>
 
         <div class="fanclub fx d5">
@@ -2433,7 +2488,7 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="sec-en">EVENT</span>
-      <h2 class="sec-jp">イベント最新情報</h2>
+      <h2 class="sec-jp">イベント情報</h2>
     </div>
     <div class="ev-wrap reveal">
       <button type="button" class="ev-arrow prev" id="ev-prev" aria-label="前のイベントへ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 L8 12 L14.5 18.5"/></svg></button>
@@ -2769,6 +2824,7 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
           <div class="gp-txt">
             <div class="gp-name">HIPPY</div>
             <div class="gp-role">シンガーソングライター</div>
+            <div class="gp-note">※療養中のため、今回はライブは行わず出演のみとなります。</div>
           </div>
         </div>
       </div>
@@ -2786,11 +2842,6 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
             <div class="gp-role">シンガーソングライター</div>
           </div>
         </div>
-      </div>
-      <div class="guest" data-en="?">
-        <span class="no">GUEST 03</span>
-        <div class="gn gn-secret">SECRET</div>
-        <div class="gr">近日発表</div>
       </div>
     </div>
     <div class="guest-head">MC</div>
@@ -2901,8 +2952,8 @@ src="https://www.facebook.com/tr?id=1995918007766821&ev=PageView&noscript=1"
       <details><summary><span class="q">Q</span>子ども料金・無料の対象を教えてください。<span class="tg"></span></summary><div class="a">ドリーム〜ブロンズの子ども料金は18歳以下が対象です。2階・3階スタンドの子ども料金は中学生以上〜18歳以下が対象で、小学生以下は無料でご入場いただけます（無料の場合もチケットサイトでのお手続きが必要です）。学生証のご提示をお願いする場合がございます。</div></details>
       <details><summary><span class="q">Q</span>当日、会場でグッズ販売はありますか？<span class="tg"></span></summary><div class="a">はい、会場にて物販ブースを設置いたします。新作を含む当日限定グッズもご用意しておりますので、ぜひお立ち寄りください。</div></details>
       <details><summary><span class="q">Q</span>スマホでの写真・動画撮影は可能ですか？<span class="tg"></span></summary><div class="a">はい、可能です。ぜひSNSへ投稿してください。ただし、フラッシュ撮影や三脚・一脚の使用、他のお客様の観戦を妨げるような長時間の撮影はご遠慮ください。</div></details>
-      <details><summary><span class="q">Q</span>会場内での飲食は可能ですか？<span class="tg"></span></summary><div class="a">はい、全席にてご飲食が可能です。お弁当や飲み物などの持ち込み制限もございませんので、どうぞご自由にお楽しみください。</div></details>
-      <details><summary><span class="q">Q</span>途中入場・再入場はできますか？<span class="tg"></span></summary><div class="a">はい、可能です。再入場の際は電子チケットの画面をご提示ください。なお、会場内は全面禁煙です。</div></details>
+      <details><summary><span class="q">Q</span>会場内での飲食は可能ですか？<span class="tg"></span></summary><div class="a">はい、全席にてご飲食が可能です。当日は会場外にキッチンカーが出店予定（10:00〜）ですので、ぜひご利用ください。</div></details>
+      <details><summary><span class="q">Q</span>途中入場・再入場はできますか？<span class="tg"></span></summary><div class="a">はい、可能です。入場時にお渡しするリストバンドで管理いたしますので、再入場の際はリストバンドをご提示ください。なお、会場内は全面禁煙です。</div></details>
     </div>
     <p style="margin-top:26px;font-size:13.5px;color:var(--mist)">解決しない場合は <a class="textlink" style="display:inline;margin:0" href="https://hp.ashisalfc.jp/other-inquiry" target="_blank" rel="noopener">大会に関するお問い合わせ</a> よりご連絡ください。</p>
   </div>
@@ -2978,17 +3029,18 @@ const CONFIG = {
   },
   // ===== 当日スケジュール: tが空の行はサブ項目表示 =====
   timetable: [
-    { t:"10:00", label:"グッズ物販開始<i class=\"tt-sm\">（※会場外にて販売予定）</i>" },
+    { t:"10:00", label:"あしざるFCメンバーと集合記念撮影<i class=\"tt-sm\">（代々木第一体育館前／参加無料）</i><em class=\"tt-hot\">先着1,000名様にハリセンプレゼント！</em><span class=\"tt-and\">グッズ販売&amp;キッチンカー開始！</span><i class=\"tt-sm\">（※会場外にて販売予定）</i>" },
     { t:"14:00", label:"開場" },
     { t:"15:00", label:"開演" },
     { t:"",      label:"オープニングショー（あしざるFCメンバー登場）" },
+    { t:"",      label:"TEE ライブ" },
     { t:"",      label:"オープニングマッチ（サルベイビー）" },
     { t:"",      label:"あしざるFC ウォーミングアップ" },
     { t:"17:00", label:"KICK OFF" },
     { t:"HT",    label:"ハーフタイムショー" },
     { t:"19:15", label:"試合終了&amp;楽曲LIVEスタート" },
-    { t:"20:15", label:"<img class=\"inl-logo\" src=\"assets/logo_fgame7.png\" alt=\"F GAME.7\"> 終演／ドリームシート&amp;VIPシート特典撮影会" },
-    { t:"21:15", label:"ドリームシート&amp;VIPシート特典撮影会終了" }
+    { t:"20:00", label:"<img class=\"inl-logo\" src=\"assets/logo_fgame7.png\" alt=\"F GAME.7\"> 終演／ドリームシート&amp;VIPシート特典撮影会" },
+    { t:"21:00", label:"ドリームシート&amp;VIPシート特典撮影会終了" }
   ],
   // ▼ 集客ランキング（GAS連携 fanRanking で上書き）。{ name:"表示名", count:人数 }
   // ▼ クラウドファンディング（10/1 18:00 開始）。URL確定後にここへ
@@ -3018,13 +3070,16 @@ const CONFIG = {
     { date:"8.10", text:"【シルバー席】mu-mo TICKETにて残り2席" }
   ],
   DATA_URL: "https://script.google.com/macros/s/AKfycbwpjfgwhLprkYa3VvFO7L0vR_yemrkViInOZwfqbSvWxbWc2zLcNLQ4iZhz9HjkWdlV2Q/exec", // 進捗トラッカー(GAS)
-  roadVideoId: "XGxwDpfKM3I",
+  roadVideoId: "AvagEfs5Zqg",
   // ▼ ROAD TO YOYOGI 話数リスト(古い順)。GAS連携でroadVideosが返ればそちらが優先(自動更新)
   roadVideos: [
     { id:"v-hMbLVi9qc", ep:"第1話" },
     { id:"MjSV5bfSniI", ep:"第2話" },
     { id:"d5LOScSPdW4", ep:"第3話" },
-    { id:"XGxwDpfKM3I", ep:"第4話" }
+    { id:"XGxwDpfKM3I", ep:"第4話" },
+    { id:"wEwORm1Cw5E", ep:"第5話" },
+    { id:"ylWiafwDzp0", ep:"第6話" },
+    { id:"AvagEfs5Zqg", ep:"第7話" }
   ],
   links: [
     { label:"チケットぴあ", url:"https://w.pia.jp/t/fgame7-y/" },
@@ -3709,6 +3764,11 @@ function renderAll(){
   document.getElementById("total-pct").innerHTML = totalPct + '<small class="hl-unit">%</small>';
   document.getElementById("total-count").textContent = "";
   requestAnimationFrame(()=>{ document.getElementById("total-bar").style.width = totalPct + "%"; });
+  // TOP（クラファン下）の達成率
+  const tpPct = document.getElementById("top-pct"), tpBar = document.getElementById("top-bar"), tpUpd = document.getElementById("top-upd");
+  if (tpPct) tpPct.innerHTML = totalPct + '<small class="hl-unit">%</small>';
+  if (tpBar) requestAnimationFrame(()=>{ tpBar.style.width = totalPct + "%"; });
+  if (tpUpd) tpUpd.textContent = "最終更新 " + CONFIG.updatedAt;
   // 集客ミッション
   const ms = CONFIG.missions || [];
   // 4,500人突破で「対抗図（選手能力）」ページを解放
